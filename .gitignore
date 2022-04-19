@@ -1,1 +1,6 @@
 .env
+.history
+.vscode
+__pycache__
+donnees_serveurs
+Seanren-old.py
