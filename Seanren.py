@@ -4,12 +4,11 @@ import discord.ext.commands
 import dotenv
 import os
 
-class Seanren(discord.ext.commands.Bot):
+class Seanren(discord.Client):
     def __init__(self) -> None:
-        super().__init__(command_prefix = "")
+        super().__init__()
         self.name = "Seanren"
-        self.version = [0, 1, 0]
-        self.load_command()
+        self.version = [0, 2, 0]
 
     def __str__(self) -> str:
         return f"{self.name} ({self.version[0]}.{self.version[1]}.{self.version[2]})"
@@ -19,34 +18,36 @@ class Seanren(discord.ext.commands.Bot):
         print(self)
         print("Salut tout le monde !")
 
+    async def example(self, message : discord.Message):
+        await message.channel.send("Coucou")
+
+    async def on_message(self, message : discord.Message) -> None:
+        # self.command(discord_bot.Message(message))
+        if message.author != self.user:
+            await self.example(message)
+
     def check_message(self, message : discord_bot.Message, level : int = 0) -> bool:
         pass
 
-    def load_command(self) -> None:
-        @self.command(name = "version")
-        async def test(ctx) -> None:
-            await ctx.channel.send(str(self))
+    async def test(self) -> None:
+        await self.channel.send(str(self))
 
-        @self.command(name = "t")
-        async def test(ctx) -> None:
-            await ctx.channel.send("Send")
+    async def test(self) -> None:
+        await self.channel.send("Send")
 
-        @self.command(name = "close")
-        async def close(ctx) -> None:
+    async def close(self) -> None:
+        await self.close()
+
+    async def reboot(self) -> None:
+        try:
             await self.close()
+        except Exception:
+            print("Exception")
+        finally:
+            os.system("py -3 Seanren.py")
 
-        @self.command(name = "reboot")
-        async def reboot(ctx) -> None:
-            try:
-                await self.close()
-            except Exception:
-                print("Exception")
-            finally:
-                os.system("py -3 Seanren.py")
-
-        @self.command(name = "clear")
-        async def clear(ctx, number: int) -> None:
-            await ctx.channel.purge(limit = number + 1)
+    async def clear(self, number: int) -> None:
+        await self.channel.purge(limit = number + 1)
 
 if __name__ == "__main__":
     dotenv.load_dotenv()
