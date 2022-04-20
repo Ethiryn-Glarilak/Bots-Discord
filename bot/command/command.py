@@ -15,11 +15,12 @@ class Command:
         TokenType.TOKEN_TEST.name : self.test,
         }
 
-    def error(self, tools : dict, args : tuple):
-        print("Function name not found.")
+    async def error(self, message : Message):
+        if message.bot.user != message.message.author:
+            print("Function name not found.")
 
     async def __call__(self, message : Message) -> None:
         await self.function.get(message.parse[0].name, self.error)(message)
 
     async def test(self, message : Message) -> None:
-        await print("Command test.")
+        await message.message.channel.send("Command test.")

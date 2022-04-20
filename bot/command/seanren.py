@@ -8,7 +8,7 @@ class CommandSeanren(Command):
         super().__init__()
 
         additional_function = {
-            "test" : self.test,
+            TokenType.TOKEN_TEST.name : self.test,
         }
 
         self.function.update(additional_function)
