@@ -12,6 +12,8 @@ class TokenType(enum.Enum):
     #  Reserved words #
     TOKEN_TEST = 8
     TOKEN_CLEAR = 9
+    TOKEN_CLOSE = 10
+    TOKEN_REBOOT = 11
 
     #  Other reserved words #
     TOKEN_L_HOCK = 31 # <'['>
@@ -56,6 +58,11 @@ class TokenType(enum.Enum):
                     ],
                 6 : [
                     ("0clear", TokenType.TOKEN_CLEAR),
+                    ("0clean", TokenType.TOKEN_CLEAR),
+                    ("0close", TokenType.TOKEN_CLOSE),
+                    ],
+                7 : [
+                    ("0reboot", TokenType.TOKEN_REBOOT),
                     ],
                 },
         }
@@ -74,12 +81,17 @@ class Token(object):
     def __init__(self, type : TokenType, content : str = None) -> None:
         self.type : TokenType = type
         self.content : str = content
-        self.name : str = type.name
 
     def __eq__(self, other):
         if not isinstance(other, TokenType):
             raise TypeError(f"Type error on equality : {other.__class__.__name__}")
         return self.type == other
+
+    def __getattr__(self, attr : str):
+        if attr == "name":
+            return self.type.name
+        if attr == "value":
+            return self.type.value
 
     def __repr__(self):
         return f"{self.type.name} : {self.content}"

@@ -11,7 +11,9 @@ class Parser(object):
     rules : dict = {
         "default" : [
             {"next" : "test"},
-            # {"next" : "clear"},
+            {"next" : "clear"},
+            {"next" : "reboot"},
+            {"next" : "close"},
         ],
         "example" : [
             {"next" : str},
@@ -19,6 +21,12 @@ class Parser(object):
         ],
         "test" : [
             {"token" : TokenType.TOKEN_TEST, "save" : True, "mandatory" : 0},
+        ],
+        "reboot" : [
+            {"token" : TokenType.TOKEN_REBOOT, "save" : True, "mandatory" : 0},
+        ],
+        "close" : [
+            {"token" : TokenType.TOKEN_CLOSE, "save" : True, "mandatory" : 0},
         ],
         "clear" : [
             {"token" : TokenType.TOKEN_CLEAR, "save" : True, "mandatory" : 0, "number" : 0},
