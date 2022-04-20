@@ -1,6 +1,6 @@
 import typing
 import termcolor
-from discord_bot.class_object.lexer.token import *
+from bot.lexer.token import *
 
 class Lexer(object):
 
@@ -82,7 +82,7 @@ class Lexer(object):
             return self.token_word(position, 0)
 
         for token in tokens:
-            if token[0] == self.input[self.position:position + 1]:
+            if token[0] == self.input[self.position:position]:
                 return self.new_token(token[1], position - self.position, 0)
         return self.token_word(position, 0)
 

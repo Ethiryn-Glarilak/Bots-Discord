@@ -1,6 +1,6 @@
 import os
-from discord_bot.old.class_object.messages_info import *
-from discord_bot.old.class_object.user_discord_coc import *
+from bot.old.class_object.messages_info import *
+from bot.old.class_object.user_discord_coc import *
 
 def associer(message):
     #Changement du dossier sources vers dossier compte coc

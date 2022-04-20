@@ -1,5 +1,5 @@
-from discord_bot.class_object.lexer import *
-from discord_bot.class_object.parser.parser import *
+from bot.lexer import *
+from bot.parser.parser import *
 
 class ParserNormal(Parser):
 
@@ -8,7 +8,7 @@ class ParserNormal(Parser):
 
         additional_rules = {
             "words" : [
-                {"token" : TokenType.TOKEN_WORD, "save" : True, "mandatory" : False},
+                {"token" : TokenType.TOKEN_WORD, "save" : True, "mandatory" : -1, "number" : -1},
             ],
         }
 

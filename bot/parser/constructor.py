@@ -1,13 +1,15 @@
-from discord_bot.class_object.lexer import *
-from discord_bot.class_object.parser.parser import *
+from bot.lexer import *
+from bot.parser.parser import *
 
 # Import parser
-from discord_bot.class_object.parser.normal import *
-from discord_bot.class_object.parser.command_vjn import *
+from bot.parser.normal import *
+from bot.parser.command_vjn import *
 
 class ParserMode(ParserFunction):
-    MODE_NORMAL = ParserNormal(Lexer(TokenMode.MODE_NORMAL))
-    MODE_COMMAND_VJN = ParserCommandJVN(Lexer(TokenMode.MODE_COMMAND_VJN))
+    MODE_NORMAL = ParserNormal, TokenMode.MODE_NORMAL
+    # MODE_COMMAND_VJN = ParserCommandJVN, TokenMode.MODE_COMMAND_VJN
+    # MODE_NORMAL_OLD = ParserNormal(Lexer(TokenMode.MODE_NORMAL))
+    # MODE_COMMAND_VJN_OLD = ParserCommandJVN(Lexer(TokenMode.MODE_COMMAND_VJN))
 
 class ParserExample(Parser):
 

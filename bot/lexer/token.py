@@ -11,6 +11,7 @@ class TokenType(enum.Enum):
 
     #  Reserved words #
     TOKEN_TEST = 8
+    TOKEN_CLEAR = 9
 
     #  Other reserved words #
     TOKEN_L_HOCK = 31 # <'['>
@@ -50,8 +51,11 @@ class TokenType(enum.Enum):
             "esc_token_" : {},
             "spc_char__" : "{}()[]",
             "word_token" : {
-                1 : [
-                    ("t", TokenType.TOKEN_TEST),
+                2 : [
+                    ("0t", TokenType.TOKEN_TEST),
+                    ],
+                6 : [
+                    ("0clear", TokenType.TOKEN_CLEAR),
                     ],
                 },
         }
@@ -70,6 +74,7 @@ class Token(object):
     def __init__(self, type : TokenType, content : str = None) -> None:
         self.type : TokenType = type
         self.content : str = content
+        self.name : str = type.name
 
     def __eq__(self, other):
         if not isinstance(other, TokenType):
