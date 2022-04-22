@@ -11,10 +11,10 @@ class Message():
         self.bot = bot
 
     def set_parser(self) -> ParserMode:
-        return ParserMode.MODE_NORMAL()
+        # To change prefix just write mode("new prefix") : self.bot.mode("new prefix").MODE_NORMAL
+        return self.bot.mode.MODE_NORMAL
 
     def parse(self) -> TokenType:
-        parser = self.bot.mode("COUCOU").MODE_NORMAL
         parser = self.set_parser()
         parser.set_lexer(self.message.content)
         code, parse = parser.parse()

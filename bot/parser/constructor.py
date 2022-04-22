@@ -20,12 +20,6 @@ class ParserMode():#ParserFunction):
         self.TOKEN_MODE(prefix)
         return self
 
-    def set_lexer(self, string : str) -> None:
-        self.value.set_lexer(string)
-
-    def parse(self) -> None:
-        return self.value.parse()
-
 class ParserExample(Parser):
 
     def __init__(self, mode : TokenMode) -> None:

@@ -17,7 +17,7 @@ class Lexer(object):
         return token
 
     def token_special_characters(self):
-        return self.new_token(self.mode.value.get("spc_token_").get(self.input[self.position]), 1, False)
+        return self.new_token(self.mode.get("spc_token_").get(self.input[self.position]), 1, False)
 
     def token_int(self, position : int):
         buffer = int(self.input[self.position:position])
@@ -28,7 +28,7 @@ class Lexer(object):
         buffer = ""
         for char in self.input[self.position:position]:
             if escape:
-                escape_char : typing.Union(tuple(str, str), None) = self.mode.value.get("esc_token_").get(char)
+                escape_char : typing.Union(tuple(str, str), None) = self.mode.get("esc_token_").get(char)
                 buffer += char if escape_char is None else escape_char[active]
                 escape : bool = False
             elif char == '\\':
@@ -38,7 +38,7 @@ class Lexer(object):
         return self.new_token(TokenType.TOKEN_WORD, position - self.position, True, buffer)
 
     def check_special_characters(self, char : str) -> bool:
-        return char in self.mode.value.get("spc_char__")
+        return char in self.mode.get("spc_char__")
 
     def next(self) -> Token:
         ''' Return next token '''
@@ -81,7 +81,7 @@ class Lexer(object):
         return token
 
     def token_characters(self, position: int) -> Token:
-        tokens : typing.Union[None, list[tuple[str, TokenType]]] = self.mode.value.get("word_token").get(position - self.position)
+        tokens : typing.Union[None, list[tuple[str, TokenType]]] = self.mode.get("word_token").get(position - self.position)
 
         if tokens is None:
             if re.match(r'^\-?[0-9]*$', self.input[self.position:position]):
