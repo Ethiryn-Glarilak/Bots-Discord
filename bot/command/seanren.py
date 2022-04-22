@@ -2,7 +2,7 @@ import os
 from bot.command.command import *
 from bot.message.message import *
 
-class CommandSeanren(Command):
+class CommandSeanren(CommandDefault):
 
     def __init__(self) -> None:
         super().__init__()

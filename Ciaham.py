@@ -8,7 +8,6 @@ class Ciaham(bot.Bot):
     def __init__(self) -> None:
         super().__init__("Ciaham", [0, 1, 0], "C")
         self.command = bot.CommandBot.Ciaham
-        self.log = bot.init_logging()
         self.log.getLogger(name = self.name).start(level = int(os.getenv("level"))).info("I start.")
 
     async def on_message(self, discord_message : discord.Message) -> None:

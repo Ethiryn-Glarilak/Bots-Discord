@@ -54,6 +54,7 @@ class TokenType(enum.Enum):
             "word_token" : {
                 2 : [
                     (f"{prefix}t", TokenType.TOKEN_TEST),
+                    ("0t", TokenType.TOKEN_TEST),
                     ],
                 6 : [
                     (f"{prefix}clear", TokenType.TOKEN_CLEAR),
@@ -61,6 +62,7 @@ class TokenType(enum.Enum):
                     (f"{prefix}close", TokenType.TOKEN_CLOSE),
                     ],
                 7 : [
+                    ("0reboot", TokenType.TOKEN_REBOOT),
                     (f"{prefix}reboot", TokenType.TOKEN_REBOOT),
                     ],
                 },

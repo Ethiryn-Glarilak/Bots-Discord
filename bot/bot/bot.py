@@ -1,15 +1,17 @@
 import discord
 from bot.parser.constructor import ParserMode
+from bot.logger.logger import init_logging
 
 class Bot(discord.Client):
 
     def __init__(self, name : str, version : list[int], prefix : str = "0"):
         super().__init__()
-        self.name = name
-        self.version = version
         self.command = None
+        self.log = init_logging()
+        self.name = name
         self.mode = ParserMode()
         self.prefix = prefix
+        self.version = version
 
     def __str__(self) -> str:
         return f"{self.name} ({self.version[0]}.{self.version[1]}.{self.version[2]})"
