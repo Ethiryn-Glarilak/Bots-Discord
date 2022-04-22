@@ -23,6 +23,7 @@ class CommandDefault:
             print("Exception")
         finally:
             os.system(f"py -3 {message.bot.name}.py")
+
 class Command(CommandDefault):
 
     def __init__(self) -> None:
