@@ -5,7 +5,7 @@ from bot.lexer.token import *
 
 class Lexer(object):
 
-    def __init__(self, mode : TokenMode = TokenMode.MODE_NORMAL) -> None:
+    def __init__(self, mode : TokenMode) -> None:
         self.input : str = None
         self.position : int = 0
         self.token : Token = Token(TokenType.TOKEN_ERROR)

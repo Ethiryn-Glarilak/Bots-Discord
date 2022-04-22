@@ -14,6 +14,7 @@ class Message():
         return ParserMode.MODE_NORMAL()
 
     def parse(self) -> TokenType:
+        parser = self.bot.mode("COUCOU").MODE_NORMAL
         parser = self.set_parser()
         parser.set_lexer(self.message.content)
         code, parse = parser.parse()

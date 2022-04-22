@@ -3,8 +3,8 @@ from bot.lexer import *
 
 class Parser(object):
 
-    def __init__(self, lexer : Lexer = Lexer()) -> None:
-        self.lexer : Lexer = lexer
+    def __init__(self, mode : TokenMode) -> None:
+        self.lexer : Lexer = Lexer(mode)
         self.list : list = []
         self.error : list = []
 
@@ -84,12 +84,12 @@ class Parser(object):
             self.error.append(self.lexer.pop())
         return TokenType.TOKEN_ERROR, self.error
 
-class ParserFunction(enum.Enum):
-    def set_lexer(self, string : str) -> None:
-        self.value.set_lexer(string)
+# class ParserFunction():
+#     def set_lexer(self, string : str) -> None:
+#         self.value.set_lexer(string)
 
-    def parse(self) -> None:
-        return self.value.parse()
+#     def parse(self) -> None:
+#         return self.value.parse()
 
-    def __call__(self) -> None:
-        return self.value[0](Lexer(self.value[1]))
+#     def __call__(self) -> None:
+#         return self.value(Lexer(self.value[1]))

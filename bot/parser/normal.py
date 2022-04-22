@@ -3,8 +3,8 @@ from bot.parser.parser import *
 
 class ParserNormal(Parser):
 
-    def __init__(self, lexer : Lexer = Lexer()) -> None:
-        super().__init__(lexer)
+    def __init__(self, mode : TokenMode) -> None:
+        super().__init__(mode)
 
         additional_rules = {
             "words" : [
