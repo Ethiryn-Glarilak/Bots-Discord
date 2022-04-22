@@ -1,11 +1,12 @@
-import discord
 import bot
+import discord
 import dotenv
 import os
 
 class Seanren(bot.Bot):
+
     def __init__(self) -> None:
-        super().__init__("Seanren", [0, 5, 0], "S")
+        super().__init__("Seanren", [1, 0, 0], "S")
         self.command = bot.CommandBot.Seanren
         self.log = bot.init_logging()
         self.log.getLogger(name = self.name).start(level = int(os.getenv("level"))).info("I start.")
@@ -15,7 +16,7 @@ class Seanren(bot.Bot):
 
         # bot.Message choisit le parser selon les metadata du message
         if message.parse() == bot.TokenType.TOKEN_ERROR and discord_message.author != self.user:
-            await discord_message.channel.send("This is not a valid message")
+            await discord_message.channel.send("This is not a valid message", reference = discord_message)
             return
         await message.command()
 
