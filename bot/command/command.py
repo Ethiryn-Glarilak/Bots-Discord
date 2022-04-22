@@ -19,7 +19,8 @@ class Command:
         }
 
     async def none(self, message : Message) -> None:
-        message.bot.log.getLogger(f"command-{message.bot.name}").start(filename = "command").debug("Message ignore")
+        print(f"coucou {message.bot.name}")
+        message.bot.log.getLogger(f"command-{message.bot.name}", "command").debug("Message ignore")
 
     async def error(self, message : Message):
         if message.bot.user != message.message.author:

@@ -1,13 +1,14 @@
 import discord
+import os
 from bot.parser.constructor import ParserMode
-from bot.logger.logger import init_logging
+from bot.logger.logger import Manager
 
 class Bot(discord.Client):
 
     def __init__(self, name : str, version : list[int], prefix : str = "0"):
         super().__init__()
         self.command = None
-        self.log = init_logging()
+        self.log = Manager().setLevel(int(os.getenv("level")))
         self.name = name
         self.mode = ParserMode()
         self.prefix = prefix
@@ -21,7 +22,7 @@ class Bot(discord.Client):
         print(self)
         print("Salut tout le monde !")
 
-    def __getattribute__(self, name):
-        if name == "mode":
+    def __getattribute__(self, __name):
+        if __name == "mode":
             return super().__getattribute__("mode")(self.prefix)
-        return super().__getattribute__(name)
+        return super().__getattribute__(__name)

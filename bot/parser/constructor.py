@@ -11,10 +11,10 @@ class ParserMode():#ParserFunction):
 
     TOKEN_MODE = TokenMode()
 
-    def __getattribute__(self, name):
-        if "MODE_" in name:
-            return super().__getattribute__(name)(getattr(self.TOKEN_MODE, name))
-        return super().__getattribute__(name)
+    def __getattribute__(self, __name):
+        if "MODE_" in __name:
+            return super().__getattribute__(__name)(getattr(self.TOKEN_MODE, __name))
+        return super().__getattribute__(__name)
 
     def __call__(self, prefix):
         self.TOKEN_MODE(prefix)

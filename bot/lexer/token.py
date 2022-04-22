@@ -40,10 +40,10 @@ class TokenMode:
         delattr(self, "prefix")
         return prefix
 
-    def __getattribute__(self, name):
-        if "MODE_" in name:
-            return super().__getattribute__(name)(self.pop_prefix())
-        return super().__getattribute__(name)
+    def __getattribute__(self, __name):
+        if "MODE_" in __name:
+            return super().__getattribute__(__name)(self.pop_prefix())
+        return super().__getattribute__(__name)
 
     def __call__(self, prefix):
         self.prefix = prefix
