@@ -7,9 +7,7 @@ from bot.parser.command_vjn import *
 
 class ParserMode(ParserFunction):
     MODE_NORMAL = ParserNormal, TokenMode.MODE_NORMAL
-    # MODE_COMMAND_VJN = ParserCommandJVN, TokenMode.MODE_COMMAND_VJN
-    # MODE_NORMAL_OLD = ParserNormal(Lexer(TokenMode.MODE_NORMAL))
-    # MODE_COMMAND_VJN_OLD = ParserCommandJVN(Lexer(TokenMode.MODE_COMMAND_VJN))
+    MODE_COMMAND_VJN = ParserCommandJVN, TokenMode.MODE_COMMAND_VJN
 
 class ParserExample(Parser):
 
