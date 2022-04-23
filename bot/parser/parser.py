@@ -84,6 +84,9 @@ class Parser(object):
             self.error.append(self.lexer.pop())
         return TokenType.TOKEN_ERROR, self.error
 
+    # def parse(self):
+    #     return TokenType.TOKEN_NO_ERROR, [Token(TokenType.TOKEN_TEST)]
+
 class ParserDefault():
     TOKEN_MODE = TokenMode()
 
