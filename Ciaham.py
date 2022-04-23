@@ -6,7 +6,7 @@ import os
 class Ciaham(bot.Bot):
 
     def __init__(self) -> None:
-        super().__init__("Ciaham", [0, 1, 0], "C")
+        super().__init__("Ciaham", [1, 1], "C")
         self.command = bot.CommandBot.Ciaham
         self.log.getLogger(self.name).info("I start.")
 

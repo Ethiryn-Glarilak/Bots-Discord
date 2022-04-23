@@ -6,7 +6,7 @@ import os
 class Seanren(bot.Bot):
 
     def __init__(self) -> None:
-        super().__init__("Seanren", [1, 0, 0], "S")
+        super().__init__("Seanren", [1, 1], "S")
         self.command = bot.CommandBot.Seanren
         self.log.getLogger(self.name).info("I start.")
 
