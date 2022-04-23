@@ -5,20 +5,9 @@ from bot.parser.parser import *
 from bot.parser.normal import *
 from bot.parser.command_vjn import *
 
-class ParserMode():#ParserFunction):
+class ParserMode(ParserDefault):
     MODE_NORMAL = ParserNormal
-    # MODE_COMMAND_VJN = ParserCommandJVN
-
-    TOKEN_MODE = TokenMode()
-
-    def __getattribute__(self, __name):
-        if "MODE_" in __name:
-            return super().__getattribute__(__name)(getattr(self.TOKEN_MODE, __name))
-        return super().__getattribute__(__name)
-
-    def __call__(self, prefix):
-        self.TOKEN_MODE(prefix)
-        return self
+    MODE_COMMAND_VJN = ParserCommandJVN
 
 class ParserExample(Parser):
 

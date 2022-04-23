@@ -84,12 +84,14 @@ class Parser(object):
             self.error.append(self.lexer.pop())
         return TokenType.TOKEN_ERROR, self.error
 
-# class ParserFunction():
-#     def set_lexer(self, string : str) -> None:
-#         self.value.set_lexer(string)
+class ParserDefault():
+    TOKEN_MODE = TokenMode()
 
-#     def parse(self) -> None:
-#         return self.value.parse()
+    def __getattribute__(self, __name):
+        if "MODE_" in __name:
+            return super().__getattribute__(__name)(getattr(self.TOKEN_MODE, __name))
+        return super().__getattribute__(__name)
 
-#     def __call__(self) -> None:
-#         return self.value(Lexer(self.value[1]))
+    def __call__(self, prefix):
+        self.TOKEN_MODE(prefix)
+        return self
