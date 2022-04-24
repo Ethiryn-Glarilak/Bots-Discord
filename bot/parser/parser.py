@@ -80,7 +80,9 @@ class Parser:
     def parse(self):
         for rule in self.rules.get("default", []):
             if self.default_parse(rule.get("next", "")) == TokenType.TOKEN_ERROR:
-                return TokenType.TOKEN_ERROR, self.error
+                self.error.clear()
+                self.lexer.restart()
+                self.list.clear()
             if len(self.list) != 0:
                 break
         if self.lexer.peek() == TokenType.TOKEN_EOF:

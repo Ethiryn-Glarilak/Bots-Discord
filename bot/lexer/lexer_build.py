@@ -41,7 +41,7 @@ class LexerBuild(LexerDefault):
 
         for token in tokens:
             if token[0] == self.input[self.position:position]:
-                return self.new_token(token[1], position - self.position, 0)
+                return self.new_token(token[1], position - self.position, False)
         if re.match(r'^\-?[0-9]*$', self.input[self.position:position]):
             return self.token_int(position)
         return self.token_word(position, 0)
