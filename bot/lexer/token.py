@@ -11,7 +11,7 @@ class Token(object):
 
     def __eq__(self, other):
         if not isinstance(other, TokenType):
-            raise TypeError(f"Type error on equality : {other.__class__.__name__}")
+            raise TypeError(f"Type error on equality : {other}")
         return self.type == other
 
     def __getattr__(self, attr : str):

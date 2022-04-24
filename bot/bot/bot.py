@@ -8,7 +8,7 @@ class Bot(discord.Client):
     def __init__(self, name : str, version : list[int], prefix : str = "0"):
         super().__init__()
         self.command = None
-        self.log : Manager = Manager().setLevel(int(os.getenv("level")))
+        self.log : Manager = Manager().set_level(int(os.getenv("level")))
         self.name : str = name
         self.mode : ParserMode = ParserMode()
         self.prefix : str = prefix

@@ -8,7 +8,10 @@ class ParserNormal(Parser):
 
         additional_rules = {
             "words" : [
-                {"token" : TokenType.TOKEN_WORD, "save" : True, "mandatory" : -1, "number" : -1},
+                {"token" : [
+                    TokenType.TOKEN_WORD,
+                    TokenType.TOKEN_IO_NUMBER,
+                            ], "save" : True, "mandatory" : -1, "number" : -1},
             ],
         }
 

@@ -19,12 +19,11 @@ class Command:
         }
 
     async def none(self, message : Message) -> None:
-        print(f"coucou {message.bot.name}")
-        message.bot.log.getLogger(f"command-{message.bot.name}", "command").debug("Message ignore")
+        message.bot.log.get_logger(f"command-{message.bot.name}", "command", True).debug("Message ignore")
 
     async def error(self, message : Message):
         if message.bot.user != message.message.author:
-            print("Function name not found.")
+            message.bot.log.get_logger(f"command-{message.bot.name}", "command", True).debug(f"Function not found {message.parse[0]}")
 
     async def __call__(self, message : Message) -> None:
         await self.function.get(message.parse[0].name, self.error)(message)

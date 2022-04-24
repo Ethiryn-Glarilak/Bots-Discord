@@ -29,7 +29,7 @@ class TokenType(enum.Enum):
             return self == other.type
         if isinstance(other, TokenType):
             return self.value == other.value
-        raise TypeError(f"Type error on equality : {other.__class__.__name__}")
+        raise TypeError(f"Type error on equality : {other}")
 
     def example(self, prefix : str) -> dict:
         return {
