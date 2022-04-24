@@ -4,3 +4,4 @@ from bot.lexer import *
 from bot.logger import *
 from bot.message import *
 from bot.parser import *
+from bot.valid import *
