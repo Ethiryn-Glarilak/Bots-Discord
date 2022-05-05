@@ -1,6 +1,6 @@
 
 def ajouter_emojis(message):
-    #Validation nom du fichier d'enregistrement des emojis
+    #Validator nom du fichier d'enregistrement des emojis
     if 680605398549528613 != message.user_id_int:
         message.parametre = [message.parametre[0]] + ["Liste_Emojis"] + message.parametre[1:]
     elif message.parametre[1] == "0":

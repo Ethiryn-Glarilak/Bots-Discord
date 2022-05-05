@@ -1,1 +1,1 @@
-from bot.valid.validation import *
+from bot.valid.validator import *

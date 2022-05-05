@@ -16,7 +16,7 @@ def associer(message):
     #Découpage données
     liste_compte_coc = [compte_coc.split(caractere_separation) for compte_coc in liste_compte_coc]
 
-    #Validation nouvelle entré données
+    #Validator nouvelle entré données
 
 
     #Création nouvelle entré msg utilisateur

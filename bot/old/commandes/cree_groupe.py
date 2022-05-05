@@ -1,6 +1,6 @@
 def cree_groupe(message):
     if not(message.parametre[1] in ["TSI1_2019_2020","GROUPE_5"]):
-        #Validation nom du fichier d'enregistrement des emojis
+        #Validator nom du fichier d'enregistrement des emojis
         if message.parametre[1] == "0":
             message.parametre[1] = "TSI1_2019_2020"
         elif message.parametre[1].isnumeric():

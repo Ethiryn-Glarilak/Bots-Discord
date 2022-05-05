@@ -1,7 +1,7 @@
 import random, pickle, glob
 
 def elus(message):
-    #Validation nom du fichier des elus
+    #Validator nom du fichier des elus
     if message.commande in ["0ec","0elus_choix"]:
         if not(message.user_id_int in [680605398549528613,694158393644023878]):
             fichiers = [dossier.split("-") for dossier in glob.glob("liste_elus/*")]
