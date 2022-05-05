@@ -10,9 +10,10 @@ class DefaultValidator(object):
         validator.set_data(message).add_user(680605398549528613)
         return validator
 
-    def role(self, message : Message, role : int) -> Validator:
+    @staticmethod
+    def role(message : Message, roles : list[int]) -> Validator:
         """ Return an object representing validator for given role """
         validator = Validator()
         validator.set_roles(message.message.author.roles)
-        validator.add(role)
+        validator.add(map(lambda role : (role, "r"), roles))
         return validator
