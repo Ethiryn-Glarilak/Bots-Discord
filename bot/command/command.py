@@ -30,9 +30,7 @@ class Command:
         await self.function.get(message.parse[0].name, self.error)(message)
 
     async def test(self, message : Message) -> None:
-        # valid = Validator()
-        # valid.add_user(680605398549528613).set_data(message)
-        # if valid.check():
+        if DefaultValidator.creator(message).check():
             await message.message.channel.send("Command test.")
 
 class CommandDefault(Command):
@@ -48,18 +46,14 @@ class CommandDefault(Command):
         self.function.update(additional_function)
 
     async def close(self, message : Message) -> None:
-        # valid = Validator()
-        # valid.add_user(680605398549528613).set_data(message)
-        # if valid.check():
+        if DefaultValidator.creator(message).check():
             await message.bot.get_channel(966322896014307398).send(f"Command close of {message.bot.name}.")
             await message.bot.close()
-        # else:
-        #     await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command close but not authorized.")
+        else:
+            await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command close but not authorized.")
 
     async def reboot(self, message : Message) -> None:
-        # valid = Validator()
-        # valid.add_user(680605398549528613).set_data(message)
-        # if valid.check():
+        if DefaultValidator.creator(message).check():
             try:
                 await message.bot.get_channel(966322896014307398).send(f"Command reboot of {message.bot.name}.")
                 await message.bot.close()
@@ -67,5 +61,5 @@ class CommandDefault(Command):
                 print("Exception")
             finally:
                 os.system(f"py -3 {message.bot.name}.py")
-        # else:
-        #     await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command reboot but not authorized.")
+        else:
+            await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command reboot but not authorized.")

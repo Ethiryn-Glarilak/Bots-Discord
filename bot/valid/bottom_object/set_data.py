@@ -18,7 +18,7 @@ class SetData(Data):
         return self
 
     def set_roles(self, roles : list[int]):
-        self.roles.extend(roles)
+        self.roles.extend(map(lambda role : role.id, roles))
         return self
 
     def set_server(self, server : int):
