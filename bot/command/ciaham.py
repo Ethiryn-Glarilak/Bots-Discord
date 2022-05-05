@@ -14,7 +14,7 @@ class CommandCiaham(CommandDefault):
         self.function.update(additional_function)
 
     async def test(self, message : Message) -> None:
-        valid = Validator()
-        valid.add_user(680605398549528613).set_data(message)
-        if valid.check():
+        # valid = Validator()
+        # valid.add_user(680605398549528613).set_data(message)
+        # if valid.check():
             await message.message.channel.send("Command test de Seanren.")
