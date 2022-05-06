@@ -1,5 +1,5 @@
 import enum
-from bot.lexer import *
+from bot.lexer import Lexer, TokenMode, TokenType
 
 class Parser:
 

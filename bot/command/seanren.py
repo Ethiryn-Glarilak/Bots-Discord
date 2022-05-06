@@ -1,7 +1,4 @@
-import os
-from bot.command.command import *
-from bot.message.message import *
-from bot.valid import *
+from bot import CommandDefault, DefaultValidator, Message, TokenType
 
 class CommandSeanren(CommandDefault):
 

@@ -32,7 +32,7 @@ class Group(dict):
                 self[-1].append(add)
         elif next is not None:
             raise ValueError("Mode next must not defined if mode is not 2.")
-        self.mode = mode # 0 = OR; 1 = AND; 2 = NOT
+        self.mode = mode # 0 = OR;; 1 = AND;; 2 = NOT
         self.name = self.get_name() if name is None else name
 
     def children(self, name : str = None, mode : int = None, next : tuple[str, int] = None):

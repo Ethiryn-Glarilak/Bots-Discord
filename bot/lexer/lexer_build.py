@@ -1,12 +1,12 @@
 import typing
 import re
-from bot.lexer.lexer_default import *
-from bot.lexer.token import *
+from bot import LexerDefault, Token, TokenType
 
 class LexerBuild(LexerDefault):
 
     def new_token(self, type : TokenType, length : int, content : bool, buffer = None) -> Token:
-        token = Token(type, (self.input[self.position:length] if buffer is None else buffer)) if content else Token(type)
+        buffer = self.input[self.position:length] if buffer is None else buffer
+        token = Token(type, (buffer)) if content else Token(type)
         self.position += length
         return token
 
@@ -32,7 +32,7 @@ class LexerBuild(LexerDefault):
         return self.new_token(TokenType.TOKEN_WORD, position - self.position, True, buffer)
 
     def token_characters(self, position: int) -> Token:
-        tokens : typing.Union[None, list[tuple[str, TokenType]]] = self.mode.get("word_token").get(position - self.position)
+        tokens : typing.Union[None, list[tuple[str, typing.Type(TokenType)]]] = self.mode.get("word_token").get(position - self.position)
 
         if tokens is None:
             if re.match(r'^\-?[0-9]*$', self.input[self.position:position]):

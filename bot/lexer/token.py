@@ -26,7 +26,7 @@ class Token(object):
     def __str__(self):
         return f"{self.type.name} : {self.content}"
 
-from bot.lexer.type import *
+from bot import TokenType
 
 class TokenMode:
 

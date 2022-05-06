@@ -1,5 +1,4 @@
 import logging
-from re import I
 import typing
 import pathlib
 

@@ -1,8 +1,7 @@
 import enum
 import os
-from bot.lexer.token import *
-from bot.message.message import *
-from bot.valid import *
+import platform
+from bot import DefaultValidator, Message, TokenType
 
 class CommandFunction(enum.Enum):
 
@@ -60,6 +59,11 @@ class CommandDefault(Command):
             except Exception:
                 print("Exception")
             finally:
-                os.system(f"py -3 {message.bot.name}.py")
+                if platform.system() == "Windows":
+                    os.system(f"py -3 {message.bot.name}.py")
+                elif platform.system() == "Linux":
+                    os.system(f"python3 {message.bot.name}.py")
+                else:
+                    message.bot.log.get("command").error(f"os not supported : {platform.system()}")
         else:
             await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command reboot but not authorized.")

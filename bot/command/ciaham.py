@@ -1,7 +1,4 @@
-import os
-from bot.command.command import *
-from bot.message.message import *
-from bot.valid import *
+from bot import CommandDefault, DefaultValidator, Message, TokenType
 
 class CommandCiaham(CommandDefault):
 
@@ -16,4 +13,4 @@ class CommandCiaham(CommandDefault):
 
     async def test(self, message : Message) -> None:
         if DefaultValidator.creator(message).check():
-            await message.message.channel.send("Command test de Seanren.")
+            await message.channel.send("Command test de Seanren.")

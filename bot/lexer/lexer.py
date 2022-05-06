@@ -1,5 +1,4 @@
-from bot.lexer.lexer_build import *
-from bot.lexer.token import *
+from bot import LexerBuild, Token, TokenType
 
 class Lexer(LexerBuild):
 

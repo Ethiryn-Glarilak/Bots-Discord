@@ -1,5 +1,4 @@
-from bot.message import *
-from bot.valid.validator import *
+from bot import Message, Validator
 
 class DefaultValidator(object):
 

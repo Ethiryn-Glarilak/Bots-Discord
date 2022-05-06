@@ -1,10 +1,11 @@
+import typing
 import termcolor
-from bot.lexer.token import *
+from bot import Token, TokenMode, TokenType
 
 class LexerDefault:
 
     def __init__(self, mode : TokenMode) -> None:
-        self.input : str = None
+        self.input : typing.Union(str, None) = None
         self.position : int = 0
         self.token : Token = Token(TokenType.TOKEN_ERROR)
         self.mode : TokenMode = mode

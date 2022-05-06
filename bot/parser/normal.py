@@ -1,5 +1,4 @@
-from bot.lexer import *
-from bot.parser.parser import *
+from bot import Parser, TokenMode, TokenType
 
 class ParserNormal(Parser):
 

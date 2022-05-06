@@ -1,10 +1,10 @@
-from bot.valid.object import *
-from bot.valid.bottom_object.group_object import *
+import typing
+from bot import Channel, Group, Id, Role, Server, User
 
 class AddObject():
 
     def __init__(self, name = None) -> None:
-        self.id : list[Id] = []
+        self.id : list[typing.Type(Id)] = []
         self.object: Group = Group(name = name)
         self.function : dict = {
             "c": self.add_channel,

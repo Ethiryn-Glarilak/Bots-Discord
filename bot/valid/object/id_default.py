@@ -1,5 +1,3 @@
-from bot.valid.validator import *
-
 class Id:
 
     def __init__(self, id : int, good = True):

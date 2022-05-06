@@ -1,4 +1,4 @@
-from bot.valid.object.id_default import *
+from bot import Id
 
 class Channel(Id):
     def check(self, other):

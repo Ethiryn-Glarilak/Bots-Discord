@@ -1,9 +1,7 @@
-from bot.lexer import *
-from bot.parser.parser import *
+from bot import Parser, ParserDefault, TokenMode
 
 # Import parser
-from bot.parser.normal import *
-from bot.parser.command_vjn import *
+from bot import ParserNormal, ParserCommandJVN
 
 class ParserMode(ParserDefault):
     MODE_NORMAL = ParserNormal

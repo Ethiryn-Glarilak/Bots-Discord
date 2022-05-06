@@ -1,6 +1,4 @@
-from bot.message.message import *
-from bot.valid.object import *
-from bot.valid.bottom_object.data import *
+from bot import Data, Message
 
 class SetData(Data):
 

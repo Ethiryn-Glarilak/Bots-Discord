@@ -1,4 +1,4 @@
-from bot.valid.bottom_object import *
+from bot import AddObject, GetData, SetData
 
 class Validator(AddObject, GetData, SetData):
 
