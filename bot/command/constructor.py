@@ -1,7 +1,8 @@
-from bot import CommandFunction
+from bot.command.command import CommandFunction
 
 # Import bot
-from bot import CommandCiaham,  CommandSeanren
+from bot.command.ciaham import CommandCiaham
+from bot.command.seanren import CommandSeanren
 
 class CommandBot(CommandFunction):
     Seanren = CommandSeanren()

@@ -1,4 +1,4 @@
-from bot import Data
+from bot.valid.bottom_object.data import Data
 
 class GetData(Data):
 

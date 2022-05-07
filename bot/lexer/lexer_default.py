@@ -1,6 +1,7 @@
 import typing
 import termcolor
-from bot import Token, TokenMode, TokenType
+from bot.lexer.token import Token, TokenMode
+from bot.lexer.type import TokenType
 
 class LexerDefault:
 

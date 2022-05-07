@@ -1,4 +1,7 @@
-from bot import CommandDefault, DefaultValidator, Message, TokenType
+from bot.command.command import CommandDefault
+from bot.lexer.type import TokenType
+from bot.message.message import Message
+from bot.valid.default import DefaultValidator
 
 class CommandCiaham(CommandDefault):
 

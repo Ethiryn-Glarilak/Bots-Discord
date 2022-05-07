@@ -1,7 +1,9 @@
 import enum
 import os
 import platform
-from bot import DefaultValidator, Message, TokenType
+from bot.lexer.type import TokenType
+from bot.message.message import Message
+from bot.valid.default import DefaultValidator
 
 class CommandFunction(enum.Enum):
 
@@ -22,7 +24,7 @@ class Command:
         message.bot.log.get_logger(f"command-{message.bot.name}", "command", True).debug("Message ignore")
 
     async def error(self, message : Message):
-        if message.bot.user != message.message.author:
+        if message.bot.user != message.author:
             message.bot.log.get_logger(f"command-{message.bot.name}", "command", True).debug(f"Function not found {message.parse[0]}")
 
     async def __call__(self, message : Message) -> None:
@@ -30,7 +32,7 @@ class Command:
 
     async def test(self, message : Message) -> None:
         if DefaultValidator.creator(message).check():
-            await message.message.channel.send("Command test.")
+            await message.channel.send("Command test.")
 
 class CommandDefault(Command):
 
@@ -49,7 +51,7 @@ class CommandDefault(Command):
             await message.bot.get_channel(966322896014307398).send(f"Command close of {message.bot.name}.")
             await message.bot.close()
         else:
-            await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command close but not authorized.")
+            await message.bot.get_channel(966322896014307398).send(f"User {message.author} use command close but not authorized.")
 
     async def reboot(self, message : Message) -> None:
         if DefaultValidator.creator(message).check():
@@ -66,4 +68,4 @@ class CommandDefault(Command):
                 else:
                     message.bot.log.get("command").error(f"os not supported : {platform.system()}")
         else:
-            await message.bot.get_channel(966322896014307398).send(f"User {message.message.author} use command reboot but not authorized.")
+            await message.bot.get_channel(966322896014307398).send(f"User {message.author} use command reboot but not authorized.")

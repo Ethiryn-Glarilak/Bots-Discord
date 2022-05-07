@@ -1,6 +1,8 @@
 import typing
 import re
-from bot import LexerDefault, Token, TokenType
+from bot.lexer.lexer_default import LexerDefault
+from bot.lexer.token import Token
+from bot.lexer.type import TokenType
 
 class LexerBuild(LexerDefault):
 

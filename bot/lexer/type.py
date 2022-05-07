@@ -1,5 +1,5 @@
 import enum
-from bot import Token
+from bot.lexer.token import Token
 
 class TokenType(enum.Enum):
 

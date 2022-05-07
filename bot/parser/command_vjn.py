@@ -1,4 +1,4 @@
-from bot import Parser
+from bot.parser.parser import Parser
 
 class ParserCommandJVN(Parser):
     pass

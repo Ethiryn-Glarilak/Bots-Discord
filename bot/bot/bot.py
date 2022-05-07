@@ -1,6 +1,7 @@
 import discord
 import os
-from bot import ParserMode, Manager
+from bot.parser.constructor import ParserMode
+from bot.logger.logger import Manager
 
 class Bot(discord.Client):
 

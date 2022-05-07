@@ -1,6 +1,8 @@
 import discord
 import typing
-from bot import Bot, ParserMode, TokenType
+from bot.bot.bot import Bot
+from bot.lexer.type import TokenType
+from bot.parser.constructor import ParserMode
 
 # Essayer d'hériter de discord.Message mais d'initialiser avec un objet discord.Message
 class Message(discord.Message):
@@ -8,9 +10,13 @@ class Message(discord.Message):
     def __init__(self, message : discord.Message, bot : Bot):
         self.bot = bot
 
-        for key, value in message.__dict__.items():
-            self.__dict__[key] = value
-
+        for key in message.__slots__:
+            try:
+                value = message.__getattribute__(key)
+            except AttributeError:
+                value = None
+            finally:
+                self.__setattr__(key, value)
 
     def set_parser(self) -> ParserMode:
         # To change prefix just write mode("new prefix") : self.bot.mode("new prefix").MODE_NORMAL

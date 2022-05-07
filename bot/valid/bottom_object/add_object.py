@@ -1,5 +1,10 @@
 import typing
-from bot import Channel, Group, Id, Role, Server, User
+from bot.valid.bottom_object.group_object import Group
+from bot.valid.object.channel import Channel
+from bot.valid.object.id_default import Id
+from bot.valid.object.role import Role
+from bot.valid.object.server import Server
+from bot.valid.object.user import User
 
 class AddObject():
 
@@ -35,9 +40,12 @@ class AddObject():
         self.append(User(user))
         return self
 
-    def add_check(self, element : list):
+    def add_error(self, error : int) -> None:
+        return self
+
+    def add_check(self, element : tuple):
         """ Valid element is good type but not valid content of element """
-        if not isinstance(element, list):
+        if not isinstance(element, tuple):
             raise TypeError(f"Type {type(element)} not supported.")
         if len(element) != 2:
             raise ValueError("Must have 2 elements {int, str}[value, type]")

@@ -16,7 +16,7 @@ class Ciaham(bot.Bot):
         if message.parse() != bot.TokenType.TOKEN_ERROR or discord_message.author == self.user:
             await message.command()
             return
-        self.log.getLogger(self.name).error(f"This message not understand {message.message.content}")
+        self.log.getLogger(self.name).error(f"This message not understand {message.content}")
         await discord_message.channel.send("This is not a valid message", reference = discord_message)
 
 if __name__ == "__main__":
