@@ -32,8 +32,6 @@ class Import:
             "parser" : (Import.__parser_get, Import.__parser_set),
         }
 
-        print(args, Import.link.keys())
-
         for key, value in init.items():
             for name in args:
                 list_import = Import.link.get(name, {}).get(key)
