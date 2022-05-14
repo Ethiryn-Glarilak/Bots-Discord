@@ -1,19 +1,51 @@
+import argparse
 import discord
+import discord_components
 import os
-from bot.parser.constructor import ParserMode
-from bot.logger.logger import Manager
+from bot.bot.import_option import Import
+from bot.command.command import Command
+from bot.parser.mode import Mode
+from bot.logger import Manager
 
 class Bot(discord.Client):
 
     def __init__(self, name : str, version : list[int], prefix : str = "0"):
         super().__init__()
-        self.command = None
-        self.log : Manager = Manager().set_level(int(os.getenv("level")))
         self.name : str = name
-        self.mode : ParserMode = ParserMode()
-        self.prefix : str = prefix
         self.version : list[int] = version
         self.set_version()
+        self.parse_args()
+        self.log : Manager = Manager().set_level(int(os.getenv("level")))
+        self.mode : Mode = Mode()
+        self.prefix : str = prefix
+        self.components : discord_components.DiscordComponents = discord_components.DiscordComponents(self)
+        self.command : Command = Command()
+        Import.load(self, self.args.option)
+
+    def parse_args(self):
+        parser = argparse.ArgumentParser(f"{self.name.lower()}.py")
+        parser.add_argument(
+            "-o",
+            "--option",
+            dest = "option",
+            type = str,
+            required=False,
+            help = "Optional argument to add other mode to the bot",
+            nargs = "+",
+        )
+        parser.add_argument(
+            "--run",
+            action='store_true',
+            dest = "run",
+            required=False,
+            help = "Optional argument to run Ciaham",
+        )
+        self.args = parser.parse_args()
+        if self.args.option is None:
+            self.args.option = [self.name, "normal"]
+        else:
+            self.args.option.append(self.name)
+            self.args.option.append("normal")
 
     def __str__(self) -> str:
         return f"{self.name} ({self.version[0]}.{self.version[1]}.{self.version[2]})"

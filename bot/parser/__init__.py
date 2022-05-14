@@ -1,1 +1,1 @@
-from bot.parser.constructor import *
+from bot.parser.mode import Mode

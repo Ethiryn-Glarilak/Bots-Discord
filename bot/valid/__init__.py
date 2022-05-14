@@ -1,2 +1,2 @@
-from bot.valid.default import *
-from bot.valid.validator import *
+from bot.valid.validator import Validator
+from bot.valid.default import DefaultValidator

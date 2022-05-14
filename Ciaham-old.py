@@ -1,4 +1,4 @@
-import discord, datetime, bot as mdb
+import discord, datetime, bot_old as mdb
 from discord.ext import commands, tasks
 from itertools import cycle
 

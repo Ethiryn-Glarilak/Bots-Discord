@@ -1,7 +1,9 @@
 from bot import *
+import dotenv
 
-class Test():
-    pass
+dotenv.load_dotenv()
+bot = Bot("Seanren", [0, 1])
 
-test = Test()
-print(test)
+# command = Command()
+# Import._Import__command(command, CommandNormal)
+print(bot)

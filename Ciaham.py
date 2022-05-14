@@ -7,11 +7,10 @@ class Ciaham(bot.Bot):
 
     def __init__(self) -> None:
         super().__init__("Ciaham", [1, 1], "C")
-        self.command = bot.CommandBot.Ciaham
         self.log.get_logger(self.name).info("I start.")
 
     async def on_message(self, discord_message : discord.Message) -> None:
-        message : bot.Message = bot.Message(discord_message, self)
+        message : bot.Message = bot.Message(self, discord_message)
 
         if message.parse() != bot.TokenType.TOKEN_ERROR or discord_message.author == self.user:
             await message.command()
