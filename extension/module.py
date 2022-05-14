@@ -4,8 +4,9 @@ from extension.command_vjn import *
 Import.link.update(
     {
         "commandVJN" : {
-            "bot" : BotCommandVJN,
-            "lexer" : LexerCommandVJN,
+            # "bot" : BotCommandVJN,
+            "parser" : ParserCommandVJN,
+            "command" : CommandCommandVJN,
         },
     }
 )

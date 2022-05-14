@@ -6,6 +6,7 @@ from bot.bot.import_option import Import
 from bot.command.command import Command
 from bot.parser.mode import Mode
 from bot.logger import Manager
+from extension.module import *
 
 class Bot(discord.Client):
 

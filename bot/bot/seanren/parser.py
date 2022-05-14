@@ -1,10 +1,9 @@
-from bot.parser.parser.parser import Parser
 from bot.parser.token.token_type import TokenType
 
 class ParserSeanren:
 
     @staticmethod
-    def MODE_NORMAL(prefix : str) -> Parser:
+    def MODE_NORMAL(prefix : str) -> tuple[list, dict]:
 
         token = {
             "word_token" : [

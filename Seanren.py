@@ -1,4 +1,3 @@
-from pickle import NONE
 import bot
 import discord
 import dotenv
