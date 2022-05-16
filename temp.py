@@ -1,9 +1,14 @@
 from bot import *
-import dotenv
+from bot.interaction.interaction import Interaction
+from bot.interaction.composent.option import Option
+from bot.interaction.composent.menu import Menu
 
-dotenv.load_dotenv()
-bot = Bot("Seanren", [0, 1])
+interaction = Interaction().add_option({"label" : "Test", "value" : "Pour voir"})
 
-# command = Command()
-# Import._Import__command(command, CommandNormal)
-print(bot)
+
+import discord_components
+test = discord_components.SelectOption(label = "Test", value = "Pour voir")
+menu = discord_components.Select(options = [test])
+
+print([menu])
+print(Interaction().add_option())
