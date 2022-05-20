@@ -1,5 +1,6 @@
 import enum
 from bot.interaction.generic import Generic
+from bot.interaction.generic import get_emoji
 
 class Style(enum.IntEnum):
     BLUE = 1
@@ -21,11 +22,7 @@ class Button:
     ):
         self.style : int = style
         self.label : str = label
-
-        self.emoji : str = None
-        if emoji is not None:
-            raise NotImplementedError("Emoji are not implemented")
-
+        self.emoji : str = None if emoji is None else get_emoji(emoji)
         self.id : str = Generic.generic_str() if id is None else id
         self.url : str = url
         self.disabled : bool = disabled
@@ -60,7 +57,7 @@ class Button:
             "url": self.url if self.style == Style.URL else None,
             "disabled": self.disabled,
         }
-        if self.emoji:
+        if self.emoji is not None:
             data["emoji"] = self.emoji.to_dict()
         return data
 

@@ -14,6 +14,7 @@ class Response:
                 return
         await self.error(interaction)
 
-    async def error(self, message):
-        if message.bot.user != message.author:
-            message.bot.log.get_logger(f"interaction-{message.bot.name}", "interaction", True).debug(f"Function not found {message.parse[0]}")
+    async def error(self, interaction : discord_components.Interaction):
+        if interaction.client.bot.user != interaction.user:
+            interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
+            await interaction.respond(content = f"Function not found {interaction.custom_id}")

@@ -18,7 +18,7 @@ class Command:
             message.bot.log.get_logger(f"command-{message.bot.name}", "command", True).debug(f"Function not found {message.parse[0]}")
 
     async def __call__(self, message) -> None:
-        await self.function.get(message.parse[0].name, self.error)(message)
+        await self.function.get(message.parser[0].name, self.error)(message)
 
     async def test(self, message) -> None:
         if DefaultValidator.creator(message).check():

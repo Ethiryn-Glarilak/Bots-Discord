@@ -7,7 +7,7 @@ async def test(message) -> None:
         await message.channel.send("Command test de Seanren.")
 
 async def clear(message) -> None:
-    number = 1 if len(message.parse) <= 1 else message.parse[1].content
+    number = 1 if len(message.parser) <= 1 else message.parser[1].content
     async for element in message.channel.history(limit = number + 1):
         if message.channel.type != ChannelType.private or element.author.id == message.bot.user.id:
             await element.delete()

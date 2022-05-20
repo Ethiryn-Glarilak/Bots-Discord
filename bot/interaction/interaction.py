@@ -27,6 +27,10 @@ class Interaction(list):
         super().append(Button(**item))
         return self
 
+    def add_interaction(self, *item: list):
+        super().append(*item)
+        return self
+
     def add_option(self, **item : dict):
         if self.menu is None:
             self.add_menu()
@@ -47,7 +51,7 @@ class Interaction(list):
 
     link = [
         error,
-        error,
+        add_interaction,
         add_button,
         add_menu,
         add_input,

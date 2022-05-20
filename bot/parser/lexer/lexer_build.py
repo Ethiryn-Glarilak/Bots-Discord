@@ -37,7 +37,7 @@ class LexerBuild(LexerDefault):
         tokens : typing.Union[None, list[tuple[str, typing.Type(TokenType)]]] = self.mode.get("word_token").get(position - self.position)
 
         if tokens is None:
-            if re.match(r'^\-?[0-9]*$', self.input[self.position:position]):
+            if re.match(r'^\-?[0-9]+$', self.input[self.position:position]):
                 return self.token_int(position)
             return self.token_word(position, 0)
 

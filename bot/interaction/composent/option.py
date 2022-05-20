@@ -1,4 +1,5 @@
 from bot.interaction.generic import Generic
+from bot.interaction.generic import get_emoji
 
 class Option:
 
@@ -13,11 +14,7 @@ class Option:
         self.label : str = label
         self.value : str = Generic.generic_str() if value is None else value
         self.description : str = description
-
-        self.emoji : str = emoji
-        if emoji is not None:
-            raise NotImplementedError()
-
+        self.emoji : str = None if emoji is None else get_emoji(emoji)
         self.default : bool = default
 
     def get_component(self):
@@ -49,7 +46,7 @@ class Option:
             "default": self.default,
         }
         if self.emoji is not None:
-            data["emoji"] = self.emoji
+            data["emoji"] = self.emoji.to_dict()
         return data
 
     def __str__(self) -> str:

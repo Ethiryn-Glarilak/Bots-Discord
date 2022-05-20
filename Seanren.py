@@ -15,7 +15,7 @@ class Seanren(bot.Bot):
     async def on_message(self, discord_message : discord.Message) -> None:
         message : bot.Message = bot.Message(self, discord_message)
 
-        if message.parse() != bot.TokenType.TOKEN_ERROR or discord_message.author == self.user:
+        if message.parse() != bot.TokenType.TOKEN_ERROR:
             await message.command()
             return
         self.log.get_logger(self.name).error(f"This message not understand {message.content}")
