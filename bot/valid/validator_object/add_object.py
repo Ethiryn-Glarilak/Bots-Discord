@@ -14,7 +14,7 @@ class AddObject():
         self.function : dict = {
             "c": self.add_channel,
             "r": self.add_role,
-            "s": self.add_server,
+            "s": self.add_guild,
             "u": self.add_user,
         }
 
@@ -32,8 +32,8 @@ class AddObject():
         self.append(Role(role))
         return self
 
-    def add_server(self, server : int) -> None:
-        self.append(Guild(server))
+    def add_guild(self, guild : int) -> None:
+        self.append(Guild(guild))
         return self
 
     def add_user(self, user : int) -> None:

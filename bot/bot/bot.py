@@ -4,8 +4,11 @@ import discord_components
 import os
 from bot.bot.import_option import Import
 from bot.command.command import Command
-from bot.parser.mode import Mode
+from bot.data.postgres import DataBase
+from bot.interaction.response import Response
 from bot.logger import Manager
+from bot.parser.mode import Mode
+from extension.module import *
 
 class Bot(discord.Client):
 
@@ -20,6 +23,8 @@ class Bot(discord.Client):
         self.prefix : str = prefix
         self.components : discord_components.DiscordComponents = discord_components.DiscordComponents(self)
         self.command : Command = Command()
+        self.interaction : Response = Response()
+        self.database : dict[DataBase] = {"default" : DataBase()}
         Import.load(self, self.args.option)
 
     def parse_args(self):

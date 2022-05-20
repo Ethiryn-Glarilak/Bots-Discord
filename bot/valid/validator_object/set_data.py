@@ -22,8 +22,8 @@ class SetData(Data):
         self.roles.extend(map(lambda role : role.id, roles))
         return self
 
-    def set_server(self, server : discord.Guild):
-        self.server = server.id
+    def set_guild(self, guild : discord.Guild):
+        self.guild = guild.id
         return self
 
     def set_user(self, user : discord.User):
@@ -35,6 +35,6 @@ class SetData(Data):
         with contextlib.suppress(AttributeError):
             self.set_roles(message.author.roles)
         if message.guild is not None:
-            self.set_server(message.guild)
+            self.set_guild(message.guild)
         self.set_user(message.author)
         return self

@@ -5,7 +5,10 @@ Import.link.update(
     {
         "commandVJN" : {
             "bot" : BotCommandVJN,
-            "lexer" : LexerCommandVJN,
+            "parser" : ParserCommandVJN,
+            "command" : CommandCommandVJN,
+            "interaction" : InteractionCommandVJN,
+            "postgres" : PostgresCommandVJN,
         },
     }
 )

@@ -1,9 +1,19 @@
-from bot import *
-import dotenv
+# from bot import *
 
-dotenv.load_dotenv()
-bot = Bot("Seanren", [0, 1])
+from bot.data.dict import Dict
 
-# command = Command()
-# Import._Import__command(command, CommandNormal)
-print(bot)
+test = Dict()
+test[1:"dd",test:6]
+
+print("coucou")
+# from bot.data.postgres import DataBase
+
+# basedata = DataBase()
+
+# basedata.execute("INSERT INTO test (num, data) VALUES (%s, %s)", (100, "abc'def"))
+
+# basedata.execute("SELECT * FROM test")
+# basedata.fetchone()
+
+# for record in basedata:
+#     print(record)
