@@ -9,7 +9,9 @@ async def refresh(message) -> None:
         channel = message.bot.get_channel(972454299789557860)
         async for element in channel.history():
             await element.delete()
-        await channel.send("Clicker et rendez-vous dans tes DM avec moi", components=Interaction().add_button({"label": "Commander", "style": Style.GREEN }))
+        components = Interaction().add_button(label  = "Commander", style = Style.GREEN, id = "commander")
+        await channel.send("Clicker et rendez-vous dans tes DM avec moi", components=components)
+        message.bot.vjn_object.set_start_menu(message.bot)
 
 # async def none(message) -> None:
 #     if DefaultValidator.channel(message, [972454299789557860]).check() \

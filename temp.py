@@ -1,14 +1,19 @@
-from bot import *
-from bot.interaction.interaction import Interaction
-from bot.interaction.composent.option import Option
-from bot.interaction.composent.menu import Menu
+# from bot import *
 
-interaction = Interaction().add_option({"label" : "Test", "value" : "Pour voir"})
+from bot.data.dict import Dict
 
+test = Dict()
+test[1:"dd",test:6]
 
-import discord_components
-test = discord_components.SelectOption(label = "Test", value = "Pour voir")
-menu = discord_components.Select(options = [test])
+print("coucou")
+# from bot.data.postgres import DataBase
 
-print([menu])
-print(Interaction().add_option())
+# basedata = DataBase()
+
+# basedata.execute("INSERT INTO test (num, data) VALUES (%s, %s)", (100, "abc'def"))
+
+# basedata.execute("SELECT * FROM test")
+# basedata.fetchone()
+
+# for record in basedata:
+#     print(record)

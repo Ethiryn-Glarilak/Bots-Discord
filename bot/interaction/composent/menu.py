@@ -10,13 +10,12 @@ class Menu:
         max : int = 1,
         disabled : bool = False
     ):
-        raise NotImplementedError("Error after send by discord API")
-        # self.id : str = Generic.generic_str() if id is None else id
-        # self.placeholder : str = placeholder
-        # self.options : list = []
-        # self.min : int = min
-        # self.max : int = max
-        # self.disabled : bool = disabled
+        self.id : str = Generic.generic_str() if id is None else id
+        self.placeholder : str = placeholder
+        self.options : list = []
+        self.min : int = min
+        self.max : int = max
+        self.disabled : bool = disabled
 
     def append(self, item):
         if len(self.options) > 24:

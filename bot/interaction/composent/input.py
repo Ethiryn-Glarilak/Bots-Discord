@@ -18,14 +18,15 @@ class Input:
         value : str = None,
         placeholder : str = None
     ):
-        self.id : str = Generic.generic_str() if id is None else id
-        self.style : Style = style
-        self.label : str = label
-        self.min : int = min
-        self.max : int = max
-        self.required : bool = required
-        self.value : str = value
-        self.placeholder : str = placeholder
+        raise NotImplementedError("Error after send by discord API")
+        # self.id : str = Generic.generic_str() if id is None else id
+        # self.style : Style = style
+        # self.label : str = label
+        # self.min : int = min
+        # self.max : int = max
+        # self.required : bool = required
+        # self.value : str = value
+        # self.placeholder : str = placeholder
 
     def get_component(self):
         return self.to_dict()

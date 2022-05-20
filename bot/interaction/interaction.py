@@ -23,33 +23,25 @@ class Interaction(list):
     def error(self, item : dict):
         raise NotImplementedError(f"Type {item.get('type')} is not implemented")
 
-    def add_button(self, item: dict = None):
-        if item is None:
-            item = {}
+    def add_button(self, **item: dict):
         super().append(Button(**item))
         return self
 
-    def add_option(self, item : dict = None):
-        if item is None:
-            item = {}
+    def add_option(self, **item : dict):
         if self.menu is None:
             self.add_menu()
         self.menu.append(Option(**item))
         return self
 
-    def add_menu(self, item : dict = None):
-        if item is None:
-            item = {}
+    def add_menu(self, **item : dict):
         if self.menu is not None:
             raise ValueError("Menu already exists")
         self.menu = Menu(**item)
         super().append(self.menu)
         return self
 
-    def add_input(self, item: dict = None):
+    def add_input(self, **item: dict):
         raise NotImplementedError()
-        # if item is None:
-        #     item = {}
         # super().append(Input(**item))
         # return self
 

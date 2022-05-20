@@ -4,9 +4,11 @@ from extension.command_vjn import *
 Import.link.update(
     {
         "commandVJN" : {
-            # "bot" : BotCommandVJN,
+            "bot" : BotCommandVJN,
             "parser" : ParserCommandVJN,
             "command" : CommandCommandVJN,
+            "interaction" : InteractionCommandVJN,
+            "postgres" : PostgresCommandVJN,
         },
     }
 )
