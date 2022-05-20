@@ -1,4 +1,3 @@
-from pickle import NONE
 import bot
 import discord
 import dotenv
@@ -9,7 +8,7 @@ import subprocess
 class Seanren(bot.Bot):
 
     def __init__(self) -> None:
-        super().__init__("Seanren", [1, 1], "S")
+        super().__init__("Seanren", [3, 2], "S")
         self.log.get_logger(self.name).info("I start.")
 
     async def on_message(self, discord_message : discord.Message) -> None:

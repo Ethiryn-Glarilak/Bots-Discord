@@ -6,7 +6,7 @@ import os
 class Ciaham(bot.Bot):
 
     def __init__(self) -> None:
-        super().__init__("Ciaham", [1, 1], "C")
+        super().__init__("Ciaham", [3, 1], "C")
         self.log.get_logger(self.name).info("I start.")
 
     async def on_message(self, discord_message : discord.Message) -> None:
