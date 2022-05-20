@@ -20,6 +20,12 @@ class Parser:
             {"token" : [
                 TokenType.TOKEN_WORD,
                 TokenType.TOKEN_IO_NUMBER,
+                TokenType.TOKEN_L_BRACE,
+                TokenType.TOKEN_L_HOCK,
+                TokenType.TOKEN_L_PAREN,
+                TokenType.TOKEN_R_BRACE,
+                TokenType.TOKEN_R_HOCK,
+                TokenType.TOKEN_R_PAREN,
                         ], "save" : True, "mandatory" : -1, "number" : -1},
         ],
     }

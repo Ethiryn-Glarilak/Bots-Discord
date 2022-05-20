@@ -1,5 +1,6 @@
 import bot
 import discord
+import discord_components
 import dotenv
 import os
 import platform
@@ -14,11 +15,17 @@ class Seanren(bot.Bot):
     async def on_message(self, discord_message : discord.Message) -> None:
         message : bot.Message = bot.Message(self, discord_message)
 
-        if message.parse() != bot.TokenType.TOKEN_ERROR or discord_message.author == self.user:
+        if message.parse() != bot.TokenType.TOKEN_ERROR:
             await message.command()
             return
         self.log.get_logger(self.name).error(f"This message not understand {message.content}")
         await discord_message.channel.send("This is not a valid message", reference = discord_message)
+
+    async def on_button_click(self, interaction : discord_components.interaction) -> None:
+        await self.interaction(interaction)
+
+    async def on_select_option(self, interaction : discord_components.interaction) -> None:
+        await self.interaction(interaction)
 
 if __name__ == "__main__":
     dotenv.load_dotenv()

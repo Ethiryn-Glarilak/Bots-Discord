@@ -27,11 +27,11 @@ class DefaultValidator(object):
         return validator
 
     @staticmethod
-    def server(message : Message, servers : list[int]) -> Validator:
-        """ Return an object representing validator for given server """
+    def guild(message : Message, guilds : list[int]) -> Validator:
+        """ Return an object representing validator for given guild """
         validator = Validator()
         validator.set_data(message)
-        validator.add(*list(map(lambda server : (server, "s"), servers)))
+        validator.add(*list(map(lambda guild : (guild, "s"), guilds)))
         return validator
 
     @staticmethod

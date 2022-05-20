@@ -1,0 +1,9 @@
+1-sucre
+2-beurre sucre
+3-miel
+4-chèvre miel
+5-banane
+6-nutella
+7-nutella banane
+8-confiture fraise
+9-confiture abricot

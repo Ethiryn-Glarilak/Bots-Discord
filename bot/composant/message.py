@@ -19,7 +19,7 @@ class Message(Composant):
         code, parse = parser.parse()
         if code == TokenType.TOKEN_ERROR:
             return TokenType.TOKEN_ERROR
-        self.parse : list[typing.Type(TokenType)] = parse
+        self.parser : list[typing.Type(TokenType)] = parse
         return TokenType.TOKEN_NO_ERROR
 
     async def command(self) -> None:

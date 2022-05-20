@@ -13,8 +13,8 @@ class GetData(Data):
     def get_roles(self):
         return self.roles
 
-    def get_server(self):
-        return self.server
+    def get_guild(self):
+        return self.guild
 
     def get_user(self):
         return self.user

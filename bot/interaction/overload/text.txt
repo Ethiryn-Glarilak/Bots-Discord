@@ -1,0 +1,1 @@
+On peut créer notre propre outils pour send les messages avec les composants comme dans discord_components
