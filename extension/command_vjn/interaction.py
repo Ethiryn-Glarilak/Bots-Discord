@@ -51,6 +51,33 @@ async def assigned(interaction : discord_components.Interaction) -> None:
         components = interaction.client.bot.vjn_object.set_after_assignment(id_command)
     )
 
+async def modifier(interaction : discord_components.Interaction) -> None:
+    id_command = interaction.custom_id.split('-')[2]
+    database = interaction.client.bot.database.get("default")
+    cooks = database.execute(f"SELECT status FROM command_VJN WHERE id = {id_command}").fetchall()[0, "status"]
+    database.execute(f"""
+        UPDATE command_VJN
+        SET status = {Status.FILE_ATTENTE.value}
+        WHERE id = {id_command}
+    """)
+
+    emojis = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    await interaction.edit_origin(
+        content = f"{interaction.message.content[:-(4 + 1 + len(emojis[cooks]) + 1)]}",
+        components = interaction.client.bot.vjn_object.set_assignment(id_command)
+    )
+
+async def annuler(interaction : discord_components.Interaction) -> None:
+    id_command = interaction.custom_id.split('-')[2]
+    database = interaction.client.bot.database.get("default")
+    database.execute(f"""
+        DELETE FROM command_VJN
+        WHERE id = {id_command}
+    """)
+    channel = interaction.client.bot.get_channel(978735565795127316)
+    await channel.send(content=f":x: {interaction.message.content} :x:")
+    await interaction.message.delete()
+
 class InteractionCommandVJN:
 
     additional_function = {
@@ -58,4 +85,6 @@ class InteractionCommandVJN:
         "menu-*" : menu,
         "valid-*" : valider,
         "assigned-*" : assigned,
+        "modifier-*" : modifier,
+        "annuler-*" : annuler,
     }

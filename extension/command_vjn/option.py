@@ -21,7 +21,7 @@ async def crepes(interaction : discord_components.Interaction) -> None:
             AND status = {Status.COMMAND.value}
     """)
     database.commit()
-    await interaction.user.send(content = f"Commande n°{interaction.values[0][7:]}\n{command(interaction, interaction.values[0][7:])}\nConfirmer votre commande.", components = interaction.client.bot.vjn_object.check_command)
+    await interaction.user.send(content = f"Commande n°{interaction.values[0][7:]}\n{command(interaction, interaction.values[0][7:])}\nConfirmer votre commande.", components = interaction.client.bot.vjn_object.set_check_command(None))
     await interaction.message.delete()
 
 async def category(interaction : discord_components.Interaction) -> None:
