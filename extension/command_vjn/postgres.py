@@ -1,3 +1,5 @@
+from extension.command_vjn.vjn_object import VJNObject
+
 class PostgresCommandVJN:
 
     def __init__(self):
@@ -33,4 +35,4 @@ class PostgresCommandVJN:
                                 id_product      INT REFERENCES product_VJN(id),
                                 id_ingredient   INT REFERENCES ingredient_VJN(id)
                             )""")
-        bot.vjn_object.set_start_menu(bot)
+        bot.vjn_object = VJNObject(bot)

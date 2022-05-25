@@ -13,7 +13,7 @@ from extension.module import *
 class Bot(discord.Client):
 
     def __init__(self, name : str, version : list[int], prefix : str = "0"):
-        super().__init__()
+        super().__init__(intents = discord.Intents.all())
         self.name : str = name
         self.version : list[int] = version
         self.set_version()

@@ -88,7 +88,12 @@ class DataBase:
     def __getitem__(self, key):
         if self.value.is_empty():
             return self.cursor.__getitem__(key)
-        return self.cursor.__getitem__(key)
+        return self.value.__getitem__(key)
 
     def __len__(self):
         return self.cursor.__len__() if self.value.is_empty() else self.value.__len__()
+
+    def __contains__(self, item):
+        if self.value.is_empty():
+            return self.cursor.__contains__(item)
+        return self.value.__contains__(item)

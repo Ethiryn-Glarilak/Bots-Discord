@@ -29,8 +29,38 @@ class Dict:
         self._pos = 0
         raise StopIteration
 
+    def get_columns(self, columns):
+        return next((index for index, column in enumerate(self.columns) if column.name == columns), 0)
+
+    def set_rc(self, item):
+        if isinstance(item[0], int) and isinstance(item[1], str):
+            return item[0], self.get_columns(item[1])
+        elif isinstance(item[0], int) and isinstance(item[1], int):
+            return item
+        elif isinstance(item[0], str) and isinstance(item[1], int):
+            return item[1], self.get_columns(item[0])
+        elif isinstance(item[0], str) and isinstance(item[1], str):
+            return self["id"].index(int(item[0])), self.get_columns(item[1])
+        else:
+            raise NotImplementedError("This type getitem is not supported")
+
     def __getitem__(self, item):
-        print("Coucou5")
+        if isinstance(item, int):
+            return self.rows[self["id"].index(str(item))]
+
+        if isinstance(item, str):
+            return [row[self.get_columns(item)] for row in self.rows]
+
+        if not isinstance(item, tuple):
+            raise NotImplementedError("This type getitem is not supported")
+        rows, columns = self.set_rc(item)
+        return self.rows[rows][columns]
 
     def __len__(self):
         return len(self.rows)
+
+    def __contains__(self, item):
+        return item in self["id"]
+
+    def __str__(self):
+        return self.rows.__str__()
