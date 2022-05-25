@@ -13,11 +13,12 @@ def command(interaction : discord_components.Interaction, id_command : int):
 async def crepes(interaction : discord_components.Interaction) -> None:
     database = interaction.client.bot.database.get("default")
     id_command = interaction.custom_id.split('-')[2]
-    database.execute(f"SELECT price FROM product_VJN WHERE id = {interaction.values[0][7:]}")
+    id_product = interaction.values[0].split('-')[1]
+    database.execute(f"SELECT price FROM product_VJN WHERE id = {id_product}")
     database.fetchall()
     database.execute(f"""
         UPDATE command_VJN
-        SET id_product = {interaction.values[0][7:]},
+        SET id_product = {id_product},
             price = '{database[0, "price"]}'
         WHERE id = {id_command}
     """)
@@ -28,9 +29,17 @@ async def crepes(interaction : discord_components.Interaction) -> None:
     await interaction.message.delete()
 
 async def category(interaction : discord_components.Interaction) -> None:
-    if interaction.client.bot.user != interaction.user:
-        interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
-        await interaction.respond(content = f"Les catégories ne sont pas développer {interaction.custom_id}:{interaction.values[0]}")
+    id_command = interaction.custom_id.split('-')[2]
+    id_product = interaction.values[0].split('-')[1]
+
+    await interaction.user.send(components = interaction.client.bot.vjn_object.set_category_menu(id_command, id_product))
+    if interaction.message.channel is None:
+        interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
+    await interaction.message.delete()
+
+    # if interaction.client.bot.user != interaction.user:
+    #     interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
+    #     await interaction.respond(content = f"Les catégories ne sont pas développer {interaction.custom_id}:{interaction.values[0]}")
 
 async def compose(interaction : discord_components.Interaction) -> None:
     if interaction.client.bot.user != interaction.user:

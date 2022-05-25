@@ -59,7 +59,24 @@ class VJNObject:
             raise ValueError("To many options, max options are 25")
 
         self.set_menu(start_menu, menu)
-        return start_menu
+        return start_menu.add_button(label = "Annuler", style = Style.RED, id = f"annuler-start_menu-{id}")
+
+    def set_category_menu(self, id, category):
+        # Récupération recette existante
+        self.database.execute("SELECT * FROM product_VJN")
+        self.database.fetchall()
+
+        # Création composent
+        start_menu = Interaction().add_menu(id = f"menu-1-{id}", placeholder = "Choice your crêpe")
+        menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"crepes-{product}"} for product in [str(product.get("id")) for product in self.json.get("product") if int(category) in product.get("category")] if int(product) in self.database]
+
+        if len(menu) > 25:
+            raise ValueError("To many options, max options are 25")
+        if not menu:
+            menu.append({"label": "empty category", "value": "error"})
+
+        self.set_menu(start_menu, menu)
+        return start_menu.add_button(label = "Annuler", style = Style.RED, id = f"annuler-category_menu-{id}")
 
     def set_check_command(self, id):
         return Interaction()\

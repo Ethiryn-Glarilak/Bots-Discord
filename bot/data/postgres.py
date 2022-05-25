@@ -97,3 +97,9 @@ class DataBase:
         if self.value.is_empty():
             return self.cursor.__contains__(item)
         return self.value.__contains__(item)
+
+    def __str__(self):
+        return self.cursor.__str__() if self.value.is_empty() else self.value.__str__()
+
+    def __repr__(self):
+        return self.cursor.__repr__() if self.value.is_empty() else self.value.__repr__()
