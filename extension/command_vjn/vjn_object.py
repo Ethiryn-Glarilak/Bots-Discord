@@ -49,7 +49,7 @@ class VJNObject:
 
         # Création composent
         start_menu = Interaction().add_menu(id = f"menu-1-{id}", placeholder = "Choice your crêpe")
-        menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price']}", "value": f"crepes-{product}"} for product in [product.split("-")[0] for product in self.json.get("highlighted")] if int(product) in self.database]
+        menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"crepes-{product}"} for product in [product.split("-")[0] for product in self.json.get("highlighted")] if int(product) in self.database]
         # FIXME: add choix aléatoire
         menu.extend({"label": f"{name.capitalize()}", "value": f"category-{id}"} for name, id in self.json.get("category").items())
         if self.json.get("compose", False):
