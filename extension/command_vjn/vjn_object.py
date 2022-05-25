@@ -1,4 +1,3 @@
-from ast import In
 import enum
 import json
 import pathlib
@@ -38,7 +37,6 @@ class VJNObject:
             self.json = json.load(file)
 
         self.set_start_menu()
-        self.set_check_command()
 
     def set_menu(self, menu : Interaction, options : list):
         for option in options:
@@ -66,7 +64,7 @@ class VJNObject:
         return Interaction()\
             .add_interaction(
                 Interaction()
-                    .add_button(label = "Valider", style = Style.GREEN, id = "valid-command")
+                    .add_button(label = "Valider", style = Style.GREEN, id = f"valid-command-{id}")
                     # FIXME: ajouter bouton pour revenir en arrière
                     # .add_button(label = "Retour", style = Style.GREY, id = "retour")
                     # FIXME: ajouter bouton pour annuler

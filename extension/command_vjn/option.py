@@ -42,16 +42,14 @@ function_menu = {
 
 async def valid(interaction : discord_components.Interaction) -> None:
     database = interaction.client.bot.database.get("default")
-    database.execute(f"SELECT * FROM command_VJN WHERE id_user = {interaction.user.id} AND status = {Status.COMMAND.value}")
-    database.fetchall()
+    id_command = interaction.custom_id.split('-')[2]
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.PAYMENT_REQUIRED.value}
-        WHERE id_user = {interaction.user.id}
-            AND status = {Status.COMMAND.value}
+        WHERE id = {id_command}
     """)
-
-    id_command = database[0, "id"]
+    database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}")
+    database.fetchall()
     price = database[0, 'price']
     if price != "0,00 €":
         # paid
@@ -71,13 +69,13 @@ async def valid(interaction : discord_components.Interaction) -> None:
 async def paiement(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     database = interaction.client.bot.database.get("default")
-    database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}")
-    database.fetchall()
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.FILE_ATTENTE.value}
         WHERE id = {id_command}
     """)
+    database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}")
+    database.fetchall()
     price = database[0, 'price']
     channel = interaction.client.bot.get_channel(978708109189074964)
     await channel.send(
@@ -89,14 +87,14 @@ async def paiement(interaction : discord_components.Interaction) -> None:
 async def assigned(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     database = interaction.client.bot.database.get("default")
-    database.execute(f"SELECT id_user FROM command_VJN WHERE id = {id_command}")
-    database.fetchall()
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.READY.value}
         WHERE id = {id_command}
     """)
     channel = interaction.client.bot.get_channel(978727142781231114)
+    database.execute(f"SELECT id_user FROM command_VJN WHERE id = {id_command}")
+    database.fetchall()
     await channel.send(
         content = interaction.message.content,
         components = interaction.client.bot.vjn_object.set_livrer(id_command)
@@ -118,7 +116,7 @@ async def livrer(interaction : discord_components.Interaction) -> None:
     await interaction.message.delete()
 
 function_valid = {
-    "valid-command" : valid,
+    "valid-command-*" : valid,
     "valid-paiement-*" : paiement,
     "valid-assigned-*" : assigned,
     "valid-livrer-*" : livrer,
