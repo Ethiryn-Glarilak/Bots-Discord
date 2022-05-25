@@ -45,6 +45,14 @@ class Bot(discord.Client):
             required=False,
             help = "Optional argument to run Ciaham",
         )
+        parser.add_argument(
+            "-e",
+            "--environment",
+            dest = "environment",
+            type = str,
+            required=False,
+            help = "Optional argument to load specified environment",
+        )
         self.args = parser.parse_args()
         if self.args.option is None:
             self.args.option = [self.name, "normal"]

@@ -1,5 +1,6 @@
 import enum
 import json
+import dotenv
 import pathlib
 from bot.interaction.interaction import Interaction
 from bot.interaction.composent.button import Style
@@ -26,6 +27,7 @@ class VJNObject:
 
     def __init__(self, bot):
         # Raccourcis bot et database
+        dotenv.load_dotenv(pathlib.Path(f"extension/command_VJN/.env{'' if bot.args.environment is None else f'-{bot.args.environment}'}"))
         self.database = bot.database.get("default")
 
         # Recuperation recette disponible
@@ -36,19 +38,17 @@ class VJNObject:
         with open(path_event, encoding="utf-8") as file:
             self.json = json.load(file)
 
-        self.set_start_menu()
-
     def set_menu(self, menu : Interaction, options : list):
         for option in options:
             menu.add_option(**option)
 
-    def set_start_menu(self):
+    def set_start_menu(self, id):
         # Récupération recette existante
         self.database.execute("SELECT * FROM product_VJN")
         self.database.fetchall()
 
         # Création composent
-        self.start_menu = Interaction().add_menu(id = "menu-1", placeholder = "Choice your crêpe")
+        start_menu = Interaction().add_menu(id = f"menu-1-{id}", placeholder = "Choice your crêpe")
         menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price']}", "value": f"crepes-{product}"} for product in [product.split("-")[0] for product in self.json.get("highlighted")] if int(product) in self.database]
         # FIXME: add choix aléatoire
         menu.extend({"label": f"{name.capitalize()}", "value": f"category-{id}"} for name, id in self.json.get("category").items())
@@ -58,7 +58,8 @@ class VJNObject:
         if len(menu) > 25:
             raise ValueError("To many options, max options are 25")
 
-        self.set_menu(self.start_menu, menu)
+        self.set_menu(start_menu, menu)
+        return start_menu
 
     def set_check_command(self, id):
         return Interaction()\
@@ -67,8 +68,7 @@ class VJNObject:
                     .add_button(label = "Valider", style = Style.GREEN, id = f"valid-command-{id}")
                     # FIXME: ajouter bouton pour revenir en arrière
                     # .add_button(label = "Retour", style = Style.GREY, id = "retour")
-                    # FIXME: ajouter bouton pour annuler
-                    # .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
+                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-check_command-{id}")
             )
 
     def set_paiement_command(self, id):
@@ -76,7 +76,7 @@ class VJNObject:
             .add_interaction(
                 Interaction()
                     .add_button(label = "Valider", style = Style.GREEN, id = f"valid-paiement-{id}")
-                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
+                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-paiement-{id}")
             )
 
     def set_assignment(self, id):
@@ -93,7 +93,7 @@ class VJNObject:
                 Interaction()
                     .add_button(label = "Valider", style = Style.GREEN, id = f"valid-assigned-{id}")
                     .add_button(label = "Modifier", style = Style.BLUE, id = f"modifier-assigned-{id}")
-                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
+                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-after_assigned-{id}")
             )
 
     def set_livrer(self, id):
