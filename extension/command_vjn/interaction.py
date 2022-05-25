@@ -7,7 +7,11 @@ async def commander(interaction : discord_components.Interaction) -> None:
     bot = interaction.client.bot
     database = bot.database.get("default")
 
-    #FIXME Vérifier qu'une command au statu Status.COMMAND n'est pas déjà en cours
+    # Check si l'utilisateur n'as pas déjà une commande en cours
+    if database.execute(f"SELECT count(*) as number FROM command_VJN WHERE id_user = {interaction.user.id} AND status = {Status.COMMAND.value}").fetchall()[0, "number"] != 0:
+        await interaction.respond(content = "Tu as une commande non terminer.")
+        return
+
     database.execute(f"""INSERT INTO command_VJN (id_user, status) VALUES ({interaction.user.id}, {Status.COMMAND})""")
 
     await interaction.user.send(components = bot.vjn_object.start_menu)
@@ -23,7 +27,6 @@ async def menu(interaction : discord_components.Interaction) -> None:
         if re.match(name, interaction.values[0]):
             await value(interaction)
             return
-    print(interaction.values[0])
     await error(interaction)
 
 async def valider(interaction : discord_components.Interaction) -> None:

@@ -3,12 +3,11 @@ from extension.command_vjn.vjn_object import Status
 
 def command(interaction : discord_components.Interaction, id_command : int):
     database = interaction.client.bot.database.get("default")
-    print(id_command)
     name = database.execute(f"SELECT name FROM product_VJN WHERE id = (SELECT id_product FROM command_VJN WHERE id = {id_command})").fetchall()[0, "name"].capitalize() + " :"
     database.execute(f"SELECT name FROM (SELECT id_ingredient FROM (SELECT * FROM product_VJN WHERE id = {id_command}) AS product_VJN JOIN product_ingredient_VJN ON id = id_product) AS product_ingredient_VJN JOIN ingredient_VJN ON id = id_ingredient")
     for product in database.fetchall():
         name += f" {product[0]},"
-    return name[:-1]
+    return name[:-2]
 
 async def crepes(interaction : discord_components.Interaction) -> None:
     database = interaction.client.bot.database.get("default")
@@ -30,10 +29,15 @@ async def category(interaction : discord_components.Interaction) -> None:
         interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
         await interaction.respond(content = f"Les catégories ne sont pas développer {interaction.custom_id}:{interaction.values[0]}")
 
+async def compose(interaction : discord_components.Interaction) -> None:
+    if interaction.client.bot.user != interaction.user:
+        interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
+        await interaction.respond(content = f"Allez sur le stand VJN voir le caissier {interaction.custom_id}:{interaction.values[0]}")
+
 function_menu = {
     "crepes-*" : crepes,
     "category-*" : category,
-    "compose" : category,
+    "compose" : compose,
 }
 
 async def valid(interaction : discord_components.Interaction) -> None:
@@ -49,10 +53,10 @@ async def valid(interaction : discord_components.Interaction) -> None:
 
     id_command = database[0, "id"]
     price = database[0, 'price']
-    if database["price"] != 0:
+    if price != "0,00 €":
         # paid
         channel = interaction.client.bot.get_channel(978670079224975410)
-        await interaction.user.send(content = f"La commande {command(interaction, id_command)} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.")
+        await interaction.user.send(content = f"La commande {command(interaction, id_command)} à {price} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.")
         await channel.send(content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}", components = interaction.client.bot.vjn_object.set_paiement_command(id_command))
     else:
         # assigned
@@ -62,7 +66,6 @@ async def valid(interaction : discord_components.Interaction) -> None:
             content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}",
             components = interaction.client.bot.vjn_object.set_assignment(id_command)
         )
-        return
     await interaction.message.delete()
 
 async def paiement(interaction : discord_components.Interaction) -> None:
