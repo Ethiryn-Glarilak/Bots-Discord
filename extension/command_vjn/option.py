@@ -1,8 +1,14 @@
 import discord_components
 from extension.command_vjn.vjn_object import Status
 
-def command(id):
-    return "name + content"
+def command(interaction : discord_components.Interaction, id_command : int):
+    database = interaction.client.bot.database.get("default")
+    print(id_command)
+    name = database.execute(f"SELECT name FROM product_VJN WHERE id = (SELECT id_product FROM command_VJN WHERE id = {id_command})").fetchall()[0, "name"].capitalize() + " :"
+    database.execute(f"SELECT name FROM (SELECT id_ingredient FROM (SELECT * FROM product_VJN WHERE id = {id_command}) AS product_VJN JOIN product_ingredient_VJN ON id = id_product) AS product_ingredient_VJN JOIN ingredient_VJN ON id = id_ingredient")
+    for product in database.fetchall():
+        name += f" {product[0]},"
+    return name[:-1]
 
 async def crepes(interaction : discord_components.Interaction) -> None:
     database = interaction.client.bot.database.get("default")
@@ -16,7 +22,7 @@ async def crepes(interaction : discord_components.Interaction) -> None:
             AND status = {Status.COMMAND.value}
     """)
     database.commit()
-    await interaction.user.send(content = f"Commande n°{interaction.values[0][7:]}\n{command(interaction.values[0][7:])}\nConfirmer votre commande.", components = interaction.client.bot.vjn_object.check_command)
+    await interaction.user.send(content = f"Commande n°{interaction.values[0][7:]}\n{command(interaction, interaction.values[0][7:])}\nConfirmer votre commande.", components = interaction.client.bot.vjn_object.check_command)
     await interaction.message.delete()
 
 async def category(interaction : discord_components.Interaction) -> None:
@@ -42,17 +48,18 @@ async def valid(interaction : discord_components.Interaction) -> None:
     """)
 
     id_command = database[0, "id"]
+    price = database[0, 'price']
     if database["price"] != 0:
         # paid
         channel = interaction.client.bot.get_channel(978670079224975410)
-        await interaction.user.send(content = f"La commande {command(id_command)} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.")
-        await channel.send(content = f"n°{id_command} {interaction.user} : {command(id_command)} -> {database[0, 'price']}", components = interaction.client.bot.vjn_object.set_paiement_command(id_command))
+        await interaction.user.send(content = f"La commande {command(interaction, id_command)} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.")
+        await channel.send(content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}", components = interaction.client.bot.vjn_object.set_paiement_command(id_command))
     else:
         # assigned
         channel = interaction.client.bot.get_channel(978708109189074964)
-        await interaction.user.send(content = f"La commande {command(id_command)} est envoyée à VJN.")
+        await interaction.user.send(content = f"La commande {command(interaction, id_command)} est envoyée à VJN.")
         await channel.send(
-            content = f"n°{id_command} {interaction.user} : {command(id_command)} -> {database[0, 'price']}",
+            content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}",
             components = interaction.client.bot.vjn_object.set_assignment(id_command)
         )
         return
@@ -68,9 +75,10 @@ async def paiement(interaction : discord_components.Interaction) -> None:
         SET status = {Status.FILE_ATTENTE.value}
         WHERE id = {id_command}
     """)
+    price = database[0, 'price']
     channel = interaction.client.bot.get_channel(978708109189074964)
     await channel.send(
-        content = f"n°{database[0, 'id']} {interaction.user} : {command(database[0, 'id'])} -> {database[0, 'price']}",
+        content = f"n°{database[0, 'id']} {interaction.user} : {command(interaction, database[0, 'id'])} -> {price}",
         components = interaction.client.bot.vjn_object.set_assignment(id_command)
     )
     await interaction.message.delete()
@@ -91,7 +99,7 @@ async def assigned(interaction : discord_components.Interaction) -> None:
         components = interaction.client.bot.vjn_object.set_livrer(id_command)
     )
     user = interaction.client.bot.get_user(database[0, "user"])
-    await user.send(content = f"Votre commande n°{id_command} est prête.")
+    await user.send(content = f"Votre commande n°{id_command} est prête. Il s'agit de la commande {command(interaction, id_command)}")
     await interaction.message.delete()
 
 async def livrer(interaction : discord_components.Interaction) -> None:

@@ -50,17 +50,17 @@ class DataBase:
                 self.cursor.execute(query)
             if self.count >= self.number:
                 self.commit()
-        return self.connect
+        return self
 
     def fetchone(self) -> bool:
         if self.connect:
             self.value.set(self.cursor.description, self.cursor.fetchone())
-        return self.connect
+        return self
 
     def fetchall(self) -> bool:
         if self.connect:
             self.value = Dict(self.cursor.description, self.cursor.fetchall())
-        return self.connect
+        return self
 
     def set_commit(self, number : int):
         self.number = number

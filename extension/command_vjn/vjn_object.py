@@ -83,7 +83,7 @@ class VJNObject:
 
     def set_assignment(self, id):
         cooks = Interaction()
-        for i in range(self.json.get("cooks")):
+        for i in range(min(self.json.get("cooks"), 10)):
             cooks.add_button(label = f"Cooks {i}", style = Style.GREY, id = f"assigned-{id}-{i}")
         return Interaction()\
             .add_interaction(cooks)\
