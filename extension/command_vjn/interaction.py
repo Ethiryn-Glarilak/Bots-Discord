@@ -2,7 +2,7 @@ import discord_components
 import os
 import re
 from extension.command_vjn.vjn_object import Status
-from extension.command_vjn.option import function_menu, function_valid
+from extension.command_vjn.option import function_menu, function_valid, function_retour
 
 async def commander(interaction : discord_components.Interaction) -> None:
     bot = interaction.client.bot
@@ -68,6 +68,13 @@ async def modifier(interaction : discord_components.Interaction) -> None:
         components = interaction.client.bot.vjn_object.set_assignment(id_command)
     )
 
+async def retour(interaction : discord_components.Interaction) -> None:
+    for name, value in function_retour.items():
+        if re.match(name, interaction.custom_id):
+            await value(interaction)
+            return
+    await error(interaction)
+
 async def annuler(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     database = interaction.client.bot.database.get("default")
@@ -90,5 +97,6 @@ class InteractionCommandVJN:
         "valid-*" : valider,
         "assigned-*" : assigned,
         "modifier-*" : modifier,
+        "retour-*" : retour,
         "annuler-*" : annuler,
     }

@@ -14,7 +14,7 @@ async def refresh(message) -> None:
             await element.delete()
         components = Interaction().add_button(label = "Commander", style = Style.GREEN, id = "commander", emoji = "✅")
         await channel.send("Clicker et rendez-vous dans tes DM avec moi", components=components)
-        message.bot.database.get("default").commit()
+        message.bot.database.get("default")
 
 # async def none(message) -> None:
 #     if DefaultValidator.channel(message, [972454299789557860]).check() \

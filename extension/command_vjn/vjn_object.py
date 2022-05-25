@@ -48,7 +48,7 @@ class VJNObject:
         self.database.fetchall()
 
         # Création composent
-        start_menu = Interaction().add_menu(id = f"menu-1-{id}", placeholder = "Choice your crêpe")
+        start_menu = Interaction().add_menu(id = f"menu-start-{id}", placeholder = "Choice your crêpe")
         menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"crepes-{product}"} for product in [product.split("-")[0] for product in self.json.get("highlighted")] if int(product) in self.database]
         # FIXME: add choix aléatoire
         menu.extend({"label": f"{name.capitalize()}", "value": f"category-{id}"} for name, id in self.json.get("category").items())
@@ -67,7 +67,7 @@ class VJNObject:
         self.database.fetchall()
 
         # Création composent
-        start_menu = Interaction().add_menu(id = f"menu-1-{id}", placeholder = "Choice your crêpe")
+        start_menu = Interaction().add_menu(id = f"menu-category_{category}-{id}", placeholder = "Choice your crêpe")
         menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"crepes-{product}"} for product in [str(product.get("id")) for product in self.json.get("product") if int(category) in product.get("category")] if int(product) in self.database]
 
         if len(menu) > 25:
@@ -76,15 +76,18 @@ class VJNObject:
             menu.append({"label": "empty category", "value": "error"})
 
         self.set_menu(start_menu, menu)
-        return start_menu.add_button(label = "Annuler", style = Style.RED, id = f"annuler-category_menu-{id}")
+        return start_menu.add_interaction(
+            Interaction()
+                .add_button(label = "Retour", style = Style.GREY, id = f"retour-start-{id}")
+                .add_button(label = "Annuler", style = Style.RED, id = f"annuler-category_menu-{id}")
+        )
 
-    def set_check_command(self, id):
+    def set_check_command(self, id, origin):
         return Interaction()\
             .add_interaction(
                 Interaction()
                     .add_button(label = "Valider", style = Style.GREEN, id = f"valid-command-{id}")
-                    # FIXME: ajouter bouton pour revenir en arrière
-                    # .add_button(label = "Retour", style = Style.GREY, id = "retour")
+                    .add_button(label = "Retour", style = Style.GREY, id = f"retour-{origin}-{id}")
                     .add_button(label = "Annuler", style = Style.RED, id = f"annuler-check_command-{id}")
             )
 

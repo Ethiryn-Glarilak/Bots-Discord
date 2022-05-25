@@ -12,6 +12,7 @@ def command(interaction : discord_components.Interaction, id_command : int):
 
 async def crepes(interaction : discord_components.Interaction) -> None:
     database = interaction.client.bot.database.get("default")
+    origin = interaction.custom_id.split('-')[1]
     id_command = interaction.custom_id.split('-')[2]
     id_product = interaction.values[0].split('-')[1]
     database.execute(f"SELECT price FROM product_VJN WHERE id = {id_product}")
@@ -23,7 +24,7 @@ async def crepes(interaction : discord_components.Interaction) -> None:
         WHERE id = {id_command}
     """)
     database.commit()
-    await interaction.user.send(content = f"Commande n°{id_command}\n{command(interaction, id_command)}\nConfirmer votre commande.", components = interaction.client.bot.vjn_object.set_check_command(id_command))
+    await interaction.user.send(content = f"Commande n°{id_command}\n{command(interaction, id_command)}\nConfirmer votre commande.", components = interaction.client.bot.vjn_object.set_check_command(id_command, origin))
     if interaction.message.channel is None:
         interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
     await interaction.message.delete()
@@ -134,4 +135,24 @@ function_valid = {
     "valid-paiement-*" : paiement,
     "valid-assigned-*" : assigned,
     "valid-livrer-*" : livrer,
+}
+
+async def start(interaction : discord_components.Interaction) -> None:
+    id_command = interaction.custom_id.split('-')[2]
+    await interaction.user.send(components = interaction.client.bot.vjn_object.set_start_menu(id_command))
+    if interaction.message.channel is None:
+        interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
+    await interaction.message.delete()
+
+async def category_retour(interaction : discord_components.Interaction) -> None:
+    id_command = interaction.custom_id.split('-')[2]
+    id_product = interaction.custom_id.split('-')[1].split('_')[1]
+    await interaction.user.send(components = interaction.client.bot.vjn_object.set_category_menu(id_command, id_product))
+    if interaction.message.channel is None:
+        interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
+    await interaction.message.delete()
+
+function_retour = {
+    "retour-start-*" : start,
+    "retour-category_*-*" : category_retour,
 }
