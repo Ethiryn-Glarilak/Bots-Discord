@@ -1,4 +1,4 @@
-.env
+/.env
 .history
 .vscode
 __pycache__
