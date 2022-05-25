@@ -1,3 +1,4 @@
+from ast import In
 import enum
 import json
 import pathlib
@@ -61,15 +62,15 @@ class VJNObject:
 
         self.set_menu(self.start_menu, menu)
 
-    def set_check_command(self):
-        self.check_command = Interaction()\
+    def set_check_command(self, id):
+        return Interaction()\
             .add_interaction(
                 Interaction()
                     .add_button(label = "Valider", style = Style.GREEN, id = "valid-command")
                     # FIXME: ajouter bouton pour revenir en arrière
                     # .add_button(label = "Retour", style = Style.GREY, id = "retour")
                     # FIXME: ajouter bouton pour annuler
-                    # .add_button(label = "Annuler", style = Style.RED, id = "annuler", emoji = "❎")
+                    # .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
             )
 
     def set_paiement_command(self, id):
@@ -77,8 +78,7 @@ class VJNObject:
             .add_interaction(
                 Interaction()
                     .add_button(label = "Valider", style = Style.GREEN, id = f"valid-paiement-{id}")
-                    # FIXME: ajouter bouton pour annuler
-                    # .add_button(label = "Annuler", style = Style.RED, id = "annuler")
+                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
             )
 
     def set_assignment(self, id):
@@ -87,16 +87,16 @@ class VJNObject:
             cooks.add_button(label = f"Cooks {i}", style = Style.GREY, id = f"assigned-{id}-{i}")
         return Interaction()\
             .add_interaction(cooks)\
-            # FIXME: ajouter bouton pour annuler
-            # .add_button(label = "Annuler", style = Style.RED, id = "annuler")
+            .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
 
     def set_after_assignment(self, id):
         return Interaction()\
-            .add_button(label = "Valider", style = Style.GREEN, id = f"valid-assigned-{id}")
-            # FIXME: ajouter bouton pour modifier
-            # .add_button(label = "Modifier", style = Style.GREEN, id = f"modifier")
-            # FIXME: ajouter bouton pour annuler
-            # .add_button(label = "Annuler", style = Style.RED, id = "annuler")
+            .add_interaction(
+                Interaction()
+                    .add_button(label = "Valider", style = Style.GREEN, id = f"valid-assigned-{id}")
+                    .add_button(label = "Modifier", style = Style.BLUE, id = f"modifier-assigned-{id}")
+                    .add_button(label = "Annuler", style = Style.RED, id = f"annuler-assigned-{id}")
+            )
 
     def set_livrer(self, id):
         return Interaction().add_button(label = "Livrer", style = Style.GREEN, id = f"valid-livrer-{id}")
