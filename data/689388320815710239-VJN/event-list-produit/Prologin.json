@@ -119,7 +119,7 @@
     },
     {
       "id": 13,
-      "name": "Emmental Raclette Oeuf",
+      "name": "Emmental Raclette Œuf",
       "category": [
         3,
         8,
@@ -128,7 +128,7 @@
     },
     {
       "id": 14,
-      "name": "Oeuf",
+      "name": "Œuf",
       "category": [
         3,
         8
@@ -154,7 +154,7 @@
     },
     {
       "id": 17,
-      "name": "Raclette Oeuf",
+      "name": "Raclette Œuf",
       "category": [
         3,
         8,
@@ -163,7 +163,7 @@
     },
     {
       "id": 18,
-      "name": "Emmental Oeuf",
+      "name": "Emmental Œuf",
       "category": [
         3,
         8,
@@ -181,7 +181,7 @@
     },
     {
       "id": 20,
-      "name": "Jambon Emmental Raclette Oeuf",
+      "name": "Jambon Emmental Raclette Œuf",
       "category": [
         4,
         8,
@@ -190,7 +190,7 @@
     },
     {
       "id": 21,
-      "name": "Jambon Oeuf",
+      "name": "Jambon Œuf",
       "category": [
         4,
         8
@@ -216,7 +216,7 @@
     },
     {
       "id": 24,
-      "name": "Jambon Raclette Oeuf",
+      "name": "Jambon Raclette Œuf",
       "category": [
         4,
         89
@@ -224,7 +224,7 @@
     },
     {
       "id": 25,
-      "name": "Jambon Emmental Oeuf",
+      "name": "Jambon Emmental Œuf",
       "category": [
         4,
         8,
@@ -242,7 +242,7 @@
     },
     {
       "id": 27,
-      "name": "Poulet Emmental Raclette Oeuf",
+      "name": "Poulet Emmental Raclette Œuf",
       "category": [
         5,
         8,
@@ -251,7 +251,7 @@
     },
     {
       "id": 28,
-      "name": "Poulet Oeuf",
+      "name": "Poulet Œuf",
       "category": [
         5,
         8,
@@ -278,7 +278,7 @@
     },
     {
       "id": 31,
-      "name": "Poulet Raclette Oeuf",
+      "name": "Poulet Raclette Œuf",
       "category": [
         5,
         8,
@@ -287,7 +287,7 @@
     },
     {
       "id": 32,
-      "name": "Poulet Emmental Oeuf",
+      "name": "Poulet Emmental Œuf",
       "category": [
         5,
         8,
@@ -305,7 +305,7 @@
     },
     {
       "id": 34,
-      "name": "Jambon Poulet Emmental Raclette Oeuf",
+      "name": "Jambon Poulet Emmental Raclette Œuf",
       "category": [
         6,
         8,
@@ -314,7 +314,7 @@
     },
     {
       "id": 35,
-      "name": "Jambon Poulet Oeuf",
+      "name": "Jambon Poulet Œuf",
       "category": [
         6,
         8
@@ -340,7 +340,7 @@
     },
     {
       "id": 38,
-      "name": "Jambon Poulet Raclette Oeuf",
+      "name": "Jambon Poulet Raclette Œuf",
       "category": [
         6,
         8,
@@ -349,7 +349,7 @@
     },
     {
       "id": 39,
-      "name": "Jambon Poulet Emmental Oeuf",
+      "name": "Jambon Poulet Emmental Œuf",
       "category": [
         6,
         8,
@@ -369,6 +369,20 @@
     "1 Fromage": 9,
     "2 Fromages": 10
   },
-  "compose": true,
+  "compose": {
+    "Pate Bière": 1,
+    "Pate Nature": 2,
+    "Confiture Fraise": 3,
+    "Nutella": 4,
+    "Miel": 5,
+    "Banane": 6,
+    "Sucre": 7,
+    "Beurre": 8,
+    "Emmental": 9,
+    "Raclette": 10,
+    "Œuf": 11,
+    "Jambon": 12,
+    "Poulet": 13
+  },
   "cooks": 3
 }

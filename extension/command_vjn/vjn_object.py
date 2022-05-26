@@ -52,11 +52,13 @@ class VJNObject:
         menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"crepes-{product}"} for product in [product.split("-")[0] for product in self.json.get("highlighted")] if int(product) in self.database]
         # FIXME: add choix aléatoire
         menu.extend({"label": f"{name.capitalize()}", "value": f"category-{id}"} for name, id in self.json.get("category").items())
-        if self.json.get("compose", False):
+        if self.json.get("compose", []) != []:
             menu.append({"label" : "Composer", "value" : "compose"})
 
         if len(menu) > 25:
             raise ValueError("To many options, max options are 25")
+        if not menu:
+            menu.append({"label": "empty category", "value": "error"})
 
         self.set_menu(start_menu, menu)
         return start_menu.add_button(label = "Annuler", style = Style.RED, id = f"annuler-start_menu-{id}")
@@ -82,6 +84,30 @@ class VJNObject:
             Interaction()
                 .add_button(label = "Retour", style = Style.GREY, id = f"retour-start-{id}")
                 .add_button(label = "Annuler", style = Style.RED, id = f"annuler-category_menu-{id}")
+        )
+
+    def set_compose_menu(self, id, default : list[str]):
+        # Récupération recette existante
+        self.database.execute("SELECT * FROM ingredient_VJN")
+        self.database.fetchall()
+
+        # Création composent
+        menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"ingredient-{product}", "default": product in default} for product in [str(product) for product in self.json.get("compose").values()] if int(product) in self.database]
+
+        if len(menu) > 25:
+            menu = menu[:25]
+            # FIXME: Replace by a second menu
+            # raise ValueError("To many options, max options are 25")
+        if not menu:
+            menu.append({"label": "empty category", "value": "error"})
+
+        start_menu = Interaction().add_menu(id = f"menu-ingredient-{id}", placeholder = "Choice your crêpe", max = len(menu))
+        self.set_menu(start_menu, menu)
+        return start_menu.add_interaction(
+            Interaction()
+                .add_button(label = "Valider", style = Style.GREEN, id = f"valid-compose-{id}")
+                .add_button(label = "Retour", style = Style.GREY, id = f"retour-start-{id}")
+                .add_button(label = "Annuler", style = Style.RED, id = f"annuler-compose_menu-{id}")
         )
 
     def set_check_command(self, id, origin):

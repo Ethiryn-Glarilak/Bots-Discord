@@ -21,6 +21,7 @@ CREATE TABLE ingredient_VJN
     (
         id              SERIAL PRIMARY KEY,
         name            VARCHAR(255) NOT NULL,
+        price           MONEY,
         quantities      INT
     );
 
@@ -71,20 +72,20 @@ INSERT INTO product_VJN (name, price) VALUES
     ('Jambon Poulet Raclette Oeuf', 0),
     ('Jambon Poulet Emmental Oeuf', 0);
 
-INSERT INTO ingredient_VJN (name) VALUES
-    ('Pate Bière'),
-    ('Pate Nature'),
-    ('Confiture Fraise'),
-    ('Nutella'),
-    ('Miel'),
-    ('Banane'),
-    ('Sucre'),
-    ('Beurre'),
-    ('Emmental'),
-    ('Raclette'),
-    ('Oeuf'),
-    ('Jambon'),
-    ('Poulet');
+INSERT INTO ingredient_VJN (name, price) VALUES
+    ('Pate Bière', 0),
+    ('Pate Nature', 0),
+    ('Confiture Fraise', 0),
+    ('Nutella', 0),
+    ('Miel', 0),
+    ('Banane', 0),
+    ('Sucre', 0),
+    ('Beurre', 0),
+    ('Emmental', 0),
+    ('Raclette', 0),
+    ('Oeuf', 0),
+    ('Jambon', 0),
+    ('Poulet', 0);
 
 INSERT INTO product_ingredient_VJN (id_product, id_ingredient) VALUES
     (1, 3),(1, 4),

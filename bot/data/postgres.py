@@ -50,6 +50,8 @@ class DataBase:
                 self.cursor.execute(query)
             if self.count >= self.number:
                 self.commit()
+            else:
+                self.count += 1
         return self
 
     def fetchone(self) -> bool:

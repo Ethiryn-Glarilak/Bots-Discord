@@ -21,7 +21,7 @@ async def commander(interaction : discord_components.Interaction) -> None:
 async def error(interaction : discord_components.Interaction):
     if interaction.client.bot.user != interaction.user:
         interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
-        await interaction.respond(content = f"Function not found {interaction.custom_id}")
+        await interaction.respond(content = f"Function not found `{interaction.custom_id}`")
 
 async def menu(interaction : discord_components.Interaction) -> None:
     for name, value in function_menu.items():

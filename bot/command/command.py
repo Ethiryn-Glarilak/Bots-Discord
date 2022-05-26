@@ -16,7 +16,6 @@ class Command:
     async def error(self, message):
         if message.bot.user != message.author:
             message.bot.log.get_logger(f"command-{message.bot.name}", "command", True).debug(f"Function not found {message.parse[0]}")
-            print(message.content)
 
     async def __call__(self, message) -> None:
         await self.function.get(message.parser[0].name, self.error)(message)
