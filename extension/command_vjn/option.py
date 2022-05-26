@@ -38,10 +38,6 @@ async def category(interaction : discord_components.Interaction) -> None:
         interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
     await interaction.message.delete()
 
-    # if interaction.client.bot.user != interaction.user:
-    #     interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")
-    #     await interaction.respond(content = f"Les catégories ne sont pas développer {interaction.custom_id}:{interaction.values[0]}")
-
 async def compose(interaction : discord_components.Interaction) -> None:
     if interaction.client.bot.user != interaction.user:
         interaction.client.bot.log.get_logger(f"interaction-{interaction.client.bot.name}", "interaction", True).debug(f"Function not found {interaction.custom_id}")

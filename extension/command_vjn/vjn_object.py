@@ -71,7 +71,9 @@ class VJNObject:
         menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"crepes-{product}"} for product in [str(product.get("id")) for product in self.json.get("product") if int(category) in product.get("category")] if int(product) in self.database]
 
         if len(menu) > 25:
-            raise ValueError("To many options, max options are 25")
+            menu = menu[:25]
+            # FIXME: Replace by a second menu
+            # raise ValueError("To many options, max options are 25")
         if not menu:
             menu.append({"label": "empty category", "value": "error"})
 

@@ -14,77 +14,360 @@
   "product": [
     {
       "id": 1,
-      "name": "sucre",
+      "name": "Confiture Fraise Banane",
       "category": [
-        1
+        1,
+        7
       ]
     },
     {
       "id": 2,
-      "name": "beurre sucre",
+      "name": "Miel Banane",
       "category": [
-        1
+        1,
+        7
       ]
     },
     {
       "id": 3,
-      "name": "miel",
+      "name": "Nutella Banane",
       "category": [
-        1
+        1,
+        7
       ]
     },
     {
       "id": 4,
-      "name": "chèvre miel",
+      "name": "Confiture Fraise Banane",
       "category": [
-        1
+        1,
+        7
       ]
     },
     {
       "id": 5,
-      "name": "banane",
+      "name": "Sucre Beurre",
       "category": [
-        1
+        1,
+        7
       ]
     },
     {
       "id": 6,
-      "name": "nutella",
+      "name": "Miel",
       "category": [
-        1
+        2,
+        7
       ]
     },
     {
       "id": 7,
-      "name": "nutella banane",
+      "name": "Nutella",
       "category": [
-        1
+        2,
+        7
       ]
     },
     {
       "id": 8,
-      "name": "confiture fraise",
+      "name": "Confiture Fraise",
       "category": [
-        1
+        2,
+        7
       ]
     },
     {
       "id": 9,
-      "name": "confiture abricot",
+      "name": "Banane",
       "category": [
-        1
+        2,
+        7
       ]
     },
     {
       "id": 10,
       "name": "Sucre",
       "category": [
-        1
+        2,
+        7
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Pate Uniquement",
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Emmental Raclette",
+      "category": [
+        3,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Emmental Raclette Oeuf",
+      "category": [
+        3,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Oeuf",
+      "category": [
+        3,
+        8
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Raclette",
+      "category": [
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Emmental",
+      "category": [
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Raclette Oeuf",
+      "category": [
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Emmental Oeuf",
+      "category": [
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Jambon Emmental Raclette",
+      "category": [
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Jambon Emmental Raclette Oeuf",
+      "category": [
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Jambon Oeuf",
+      "category": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Jambon Raclette",
+      "category": [
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Jambon Emmental",
+      "category": [
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Jambon Raclette Oeuf",
+      "category": [
+        4,
+        89
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Jambon Emmental Oeuf",
+      "category": [
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Poulet Emmental Raclette",
+      "category": [
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Poulet Emmental Raclette Oeuf",
+      "category": [
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Poulet Oeuf",
+      "category": [
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Poulet Raclette",
+      "category": [
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Poulet Emmental",
+      "category": [
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Poulet Raclette Oeuf",
+      "category": [
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Poulet Emmental Oeuf",
+      "category": [
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Jambon Poulet Emmental Raclette",
+      "category": [
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Jambon Poulet Emmental Raclette Oeuf",
+      "category": [
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Jambon Poulet Oeuf",
+      "category": [
+        6,
+        8
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Jambon Poulet Raclette",
+      "category": [
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Jambon Poulet Emmental",
+      "category": [
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Jambon Poulet Raclette Oeuf",
+      "category": [
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Jambon Poulet Emmental Oeuf",
+      "category": [
+        6,
+        8,
+        9
       ]
     }
   ],
   "category": {
-    "Sucré": 1
+    "Spécial": 1,
+    "Basic": 2,
+    "Sans Viande": 3,
+    "Jambon": 4,
+    "Poulet": 5,
+    "Jambon Poulet": 6,
+    "Sucré": 7,
+    "Salé": 8,
+    "1 Fromage": 9,
+    "2 Fromages": 10
   },
   "compose": true,
   "cooks": 3
