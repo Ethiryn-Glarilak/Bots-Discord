@@ -53,7 +53,7 @@ class VJNObject:
         # FIXME: add choix aléatoire
         menu.extend({"label": f"{name.capitalize()}", "value": f"category-{id}"} for name, id in self.json.get("category").items())
         if self.json.get("compose", []) != []:
-            menu.append({"label" : "Composer", "value" : "compose"})
+            menu.append({"label" : "Composer sa crêpe", "value" : "compose"})
 
         if len(menu) > 25:
             raise ValueError("To many options, max options are 25")
@@ -88,10 +88,10 @@ class VJNObject:
 
     def set_compose_menu(self, id, default : list[str]):
         # Récupération recette existante
-        self.database.execute("SELECT * FROM ingredient_VJN")
-        self.database.fetchall()
+        self.database.execute("SELECT * FROM ingredient_VJN").fetchall()
 
         # Création composent
+        # FIXME: Ajouter la prise en compte des accents
         menu = [{"label": f"{self.database[product, 'name'].capitalize()} - {self.database[product, 'price'] if self.database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"ingredient-{product}", "default": product in default} for product in [str(product) for product in self.json.get("compose").values()] if int(product) in self.database]
 
         if len(menu) > 25:

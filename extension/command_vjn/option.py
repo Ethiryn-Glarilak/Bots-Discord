@@ -41,6 +41,15 @@ async def category(interaction : discord_components.Interaction) -> None:
 async def compose(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
 
+    database = interaction.client.bot.database.get("default")
+    id_product = database.execute(f"INSERT INTO product_VJN (name, price) VALUES ('{interaction.user}_{id_command}', 0) RETURNING id").fetchall()[0, "id"]
+
+    database.execute(f"""
+        UPDATE command_VJN
+        SET id_product = {id_product}
+        WHERE id = {id_command}
+    """)
+
     await interaction.user.send(components = interaction.client.bot.vjn_object.set_compose_menu(id_command, []))
     if interaction.message.channel is None:
         interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
@@ -50,11 +59,10 @@ async def ingredient(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
 
     database = interaction.client.bot.database.get("default")
-    database.execute("SELECT * FROM ingredient_VJN")
-    database.fetchall()
+    id_product = database.execute("SELECT id_product FROM command_VJN").fetchall()[0, "id_product"]
+    database.execute("SELECT * FROM ingredient_VJN").fetchall()
     price = sum(float(database[ingredient.split("-")[1], "price"].replace(" €", "").replace(",", ".")) for ingredient in interaction.values)
 
-    id_product = database.execute(f"INSERT INTO product_VJN (name, price) VALUES ('{interaction.user}_{id_command}', {price}) RETURNING id").fetchall()[0, "id"]
     database.execute(f"""
         INSERT INTO product_ingredient_VJN (id_product, id_ingredient) VALUES
             {"".join(f"({id_product}, {ingredient.split('-')[1]}), " for ingredient in interaction.values)[:-2]}
@@ -62,9 +70,14 @@ async def ingredient(interaction : discord_components.Interaction) -> None:
 
     database.execute(f"""
         UPDATE command_VJN
-        SET id_product = {id_product},
-            price = {price}
+        SET price = {price}
         WHERE id = {id_command}
+    """)
+
+    database.execute(f"""
+        UPDATE product_VJN
+        SET price = {price}
+        WHERE id = {id_product}
     """)
 
     origin = f"""compose_{"_".join(f"{ingredient.split('-')[1]}" for ingredient in interaction.values)}"""

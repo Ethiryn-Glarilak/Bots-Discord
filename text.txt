@@ -1,3 +1,4 @@
+\encoding UTF8
 \i 'D:/Programmation/Python/Bots Discord/extension/command_vjn/database-prologin.sql'
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO bot_discord;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO bot_discord;
