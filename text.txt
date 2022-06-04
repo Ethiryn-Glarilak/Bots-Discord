@@ -1,7 +1,6 @@
 \encoding UTF8
-\i 'D:/Programmation/Python/Bots Discord/extension/command_vjn/database-prologin.sql'
+\i 'D:/Programmation/Python/Bots Discord/data/guild/689388320815710239-VJN/database.sql'
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO bot_discord;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO bot_discord;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO vscode;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO bot_discord;
-\i 'D:/Programmation/Python/Bots Discord/extension/command_vjn/database.sql'

@@ -1,10 +1,11 @@
-import re
 import psycopg
 from bot.data.dict import Dict
 
 class DataBase:
 
-    def __init__(self, host = "localhost", dbname = "discord", port = 5432, user = "bot_discord", password =  "bot"):
+    def __init__(self, bot, host = "localhost", dbname = "discord", port = 5432, user = "bot_discord", password =  "bot"):
+        if bot.args.test:
+            dbname = "test"
         self.host = host
         self.dbname = dbname
         self.port = port

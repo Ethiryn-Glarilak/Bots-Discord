@@ -1,15 +1,15 @@
 {
-  "highlighted": [
-    "5-Beurre Sucre Nature",
-    "24-Jambon Œuf Emmental Nature",
-    "3-Nutella Banane Nature"
-  ],
-  "product": [
-  ],
-  "category": {
+  "default": {
+    "Nutella": 7,
+    "Beurre Sucre": 5,
+    "Jambon Œuf Emmental": 24,
+    "Jambon Œuf Raclette": 25,
+    "Nutella Banane": 3
   },
-  "compose": {
-    "Pate Biere": 1,
+  "other": {
+  },
+  "ingredient": {
+    "Pate Bière": 1,
     "Pate Nature": 2,
     "Confiture Fraise": 3,
     "Nutella": 4,
@@ -23,5 +23,6 @@
     "Jambon": 12,
     "Poulet": 13
   },
-  "cooks": 3
+  "cooks": 3,
+  "quantity": 5
 }

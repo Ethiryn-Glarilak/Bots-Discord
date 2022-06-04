@@ -17,6 +17,7 @@ class TokenType(enum.Enum):
     TOKEN_REBOOT = 11
     TOKEN_REFRESH = 12
     TOKEN_EXAMPLE = 13
+    TOKEN_DATA = 14
 
     #  Other reserved words #
     TOKEN_L_HOCK = 31 # <'['>

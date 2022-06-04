@@ -4,6 +4,7 @@ import discord_components
 import os
 from bot.bot.import_option import Import
 from bot.command.command import Command
+from bot.composant.message import Message
 from bot.data.postgres import DataBase
 from bot.interaction.response import Response
 from bot.logger import Manager
@@ -24,7 +25,7 @@ class Bot(discord.Client):
         self.components : discord_components.DiscordComponents = discord_components.DiscordComponents(self)
         self.command : Command = Command()
         self.interaction : Response = Response()
-        self.database : dict[DataBase] = {"default" : DataBase()}
+        self.database : dict[DataBase] = {"default" : DataBase(self)}
         Import.load(self, self.args.option)
 
     def parse_args(self):
@@ -53,6 +54,14 @@ class Bot(discord.Client):
             required=False,
             help = "Optional argument to load specified environment",
         )
+        parser.add_argument(
+            "-t",
+            "--test",
+            action='store_true',
+            dest = "test",
+            required=False,
+            help = "Optional argument to use database test",
+        )
         self.args = parser.parse_args()
         if self.args.option is None:
             self.args.option = [self.name, "normal"]
@@ -76,3 +85,18 @@ class Bot(discord.Client):
     def set_version(self):
         with open("version") as file:
             self.version.append(int(file.read()))
+
+    async def on_message(self, discord_message : discord.Message) -> None:
+        message : Message = Message(self, discord_message)
+
+        if message.parse() != TokenType.TOKEN_ERROR:
+            await message.command()
+            return
+        self.log.get_logger(self.name).error(f"This message not understand {message.content}")
+        await discord_message.channel.send("This is not a valid message", reference = discord_message)
+
+    async def on_button_click(self, interaction : discord_components.interaction) -> None:
+        await self.interaction(interaction)
+
+    async def on_select_option(self, interaction : discord_components.interaction) -> None:
+        await self.interaction(interaction)

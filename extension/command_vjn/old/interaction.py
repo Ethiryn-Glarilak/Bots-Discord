@@ -1,8 +1,7 @@
 import discord_components
-import os
 import re
 from extension.command_vjn.vjn_object import Status
-from extension.command_vjn.option import function_menu, function_valid, function_retour
+from extension.command_vjn.option import function_menu, function_valid, function_retour, function_annuler
 
 async def commander(interaction : discord_components.Interaction) -> None:
     bot = interaction.client.bot
@@ -76,15 +75,44 @@ async def retour(interaction : discord_components.Interaction) -> None:
     await error(interaction)
 
 async def annuler(interaction : discord_components.Interaction) -> None:
-    id_command = interaction.custom_id.split('-')[2]
+    for name, value in function_annuler.items():
+        if re.match(name, interaction.custom_id):
+            await value(interaction)
+            return
+    await error(interaction)
+
+async def pate(interaction : discord_components.Interaction) -> None:
+    id_command = interaction.custom_id.split('-')[1]
+
     database = interaction.client.bot.database.get("default")
+    id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute(f"""
-        DELETE FROM command_VJN
-        WHERE id = {id_command}
-    """)
-    channel = interaction.client.bot.get_channel(int(os.getenv("log"))) # channel log
-    message = interaction.message.content.replace("\n", " ")
-    await channel.send(content=f":x: {message or f'n°{id_command} {interaction.user}'} :x:")
+        SELECT id FROM ingredient_VJN
+        JOIN (SELECT * FROM product_ingredient_VJN WHERE id_product = {id_product}) AS ingredient
+        ON id = id_ingredient WHERE type = True
+    """).fetchall()
+
+    selected = database["id"]
+
+    await interaction.user.send(components = interaction.client.bot.vjn_object.set_pate(id_command, selected))
+    if interaction.message.channel is None:
+        interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
+    await interaction.message.delete()
+
+async def garniture(interaction : discord_components.Interaction) -> None:
+    id_command = interaction.custom_id.split('-')[1]
+
+    database = interaction.client.bot.database.get("default")
+    id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
+    database.execute(f"""
+        SELECT id FROM ingredient_VJN
+        JOIN (SELECT * FROM product_ingredient_VJN WHERE id_product = {id_product}) AS ingredient
+        ON id = id_ingredient WHERE type = False
+    """).fetchall()
+
+    selected = database["id"]
+
+    await interaction.user.send(components = interaction.client.bot.vjn_object.set_garniture(id_command, selected))
     if interaction.message.channel is None:
         interaction.message.channel = await interaction.user.create_dm() if interaction.channel is None else interaction.channel
     await interaction.message.delete()
@@ -99,4 +127,6 @@ class InteractionCommandVJN:
         "modifier-*" : modifier,
         "retour-*" : retour,
         "annuler-*" : annuler,
+        "pate-*" : pate,
+        "garniture-*" : garniture,
     }
