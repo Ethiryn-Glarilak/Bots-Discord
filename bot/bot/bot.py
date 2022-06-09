@@ -2,6 +2,8 @@ import argparse
 import discord
 import discord_components
 import os
+import platform
+import subprocess
 from bot.bot.import_option import Import
 from bot.command.command import Command
 from bot.composant.message import Message
@@ -20,6 +22,7 @@ class Bot(discord.Client):
         self.set_version()
         self.parse_args()
         self.log : Manager = Manager().set_level(int(os.getenv("level")))
+        self.start_presence()
         self.mode : Mode = Mode()
         self.prefix : str = prefix
         self.components : discord_components.DiscordComponents = discord_components.DiscordComponents(self)
@@ -62,6 +65,13 @@ class Bot(discord.Client):
             required=False,
             help = "Optional argument to use database test",
         )
+        parser.add_argument(
+            "-q",
+            "--quotes",
+            dest = "quotes",
+            required=False,
+            help = "Optional argument to use database test",
+        )
         self.args = parser.parse_args()
         if self.args.option is None:
             self.args.option = [self.name, "normal"]
@@ -100,3 +110,16 @@ class Bot(discord.Client):
 
     async def on_select_option(self, interaction : discord_components.interaction) -> None:
         await self.interaction(interaction)
+
+    def start_presence(self):
+        if platform.system() == "Windows":
+            self.process = subprocess.Popen(["py", "-3", "Presence.py", "-q", self.args.quotes], shell = False)
+            self.log.get_logger(self.name).info("Presence started")
+        elif platform.system() == "Linux":
+            self.process = subprocess.Popen(["python3", "Presence.py", "-q", self.args.quotes], shell = True)
+            self.log.get_logger(self.name).info("Presence started")
+        else:
+            self.log.get_logger(self.name).error(f"os not supported : {platform.system()}")
+
+    def __del__(self):
+        self.process.terminate()
