@@ -6,6 +6,7 @@ Import.link.update(
     {
         "commandVJN" : {
             "bot" : BotCommandVJN,
+            "ready" : ReadyCommandVJN,
             "parser" : ParserCommandVJN,
             "command" : CommandCommandVJN,
             "interaction" : InteractionCommandVJN,

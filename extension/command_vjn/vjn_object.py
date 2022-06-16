@@ -40,11 +40,12 @@ class VJNObject:
         with open(path_event, encoding="utf-8") as file:
             self.json = json.load(file)
 
-        # Role Présent
-        self.present = 987093379940753418
-        self.present = 984575805663367188
-
     async def start(self, bot):
+
+        # Role Présent
+        print("Attention à l'id du role Présent")
+        self.present = 987093379940753418 # VJN
+        self.present = 984575805663367188 # Test
         # vjn = bot.get_guild(int(os.getenv("guild_VJN"))) # guild VJN
         # roles = list(map(lambda role : role.name, await vjn.fetch_roles()))
 
@@ -53,4 +54,4 @@ class VJNObject:
         #     bot.vjn_object.role_free = await vjn.create_role(name = "Free", colour = discord.Colour.blue())
         # else:
         #     bot.vjn_object.role_free = roles[roles.index("Free")]
-        pass
+        print(f"Load {bot.name}")
