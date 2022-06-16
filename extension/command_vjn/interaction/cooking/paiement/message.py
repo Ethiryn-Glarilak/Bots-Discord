@@ -1,5 +1,6 @@
 import discord_components
 import os
+import re
 from bot.interaction.composent.button import Style
 from bot.interaction.interaction import Interaction
 from extension.command_vjn.vjn_object import Status
@@ -27,7 +28,8 @@ async def paiement(interaction : discord_components.Interaction):
 
     # FIXME
     price = database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}").fetchall()[0, 'price']
-    price = price * database[0, 'quantity']
+    price = float(re.findall(r"\d+,\d{1,2}", price)[0].replace(",", ".")) * database[0, 'quantity']
+    price = f"{price:.2f} €".replace(".", ",")
 
     if price != "0,00 €":
         # FIXME
@@ -38,7 +40,7 @@ async def paiement(interaction : discord_components.Interaction):
         """)
         channel = interaction.client.bot.get_channel(int(os.getenv("paiement"))) # channel paiement
         await interaction.edit_origin(content = f"Commande fini !\nLa commande {command(interaction, id_command)} à {price} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.", components = [])
-        await channel.send(content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}", components = menu(id_command))
+        await channel.send(content = f"n°{id_command} <@{interaction.user.id}> : {command(interaction, id_command)} -> {price}", components = menu(id_command))
     else:
         await interaction.edit_origin(content = "Commande fini !", components = [])
         await assignment(interaction)
