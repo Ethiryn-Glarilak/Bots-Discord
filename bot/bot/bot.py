@@ -91,7 +91,7 @@ class Bot(discord.Client):
 
     async def on_ready(self) -> None:
         for value in self.ready.values():
-            value(self)
+            await value(self)
 
         await self.change_presence(status = discord.Status.do_not_disturb, activity = discord.Game(name="Auto-programmer"))
         print(self)
