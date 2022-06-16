@@ -19,6 +19,7 @@ def menu(id_command : int, disabled : bool):
 async def compose_ingredient(interaction : discord_components.Interaction):
     id_command = interaction.custom_id.split('-')[2]
     database = interaction.client.bot.vjn_object.database
+    bot = interaction.client.bot
     type_ingredient = interaction.custom_id.split('-')[1] == "pate"
 
     # FIXME : Contenu crêpes erronée
@@ -48,7 +49,7 @@ async def compose_ingredient(interaction : discord_components.Interaction):
     # FIXME
     ingredients = database.execute(f"SELECT id_ingredient FROM product_ingredient_VJN WHERE id_product = {id_product}").fetchall()["id_ingredient"]
     database.execute("SELECT * FROM ingredient_VJN").fetchall()
-    price = sum(float(database[str(ingredient), "price"].replace(" €", "").replace(",", ".")) for ingredient in ingredients)
+    price = 0 if bot.args.free else sum(float(database[str(ingredient), "price"].replace(" €", "").replace(",", ".")) for ingredient in ingredients)
 
     # FIXME
     database.execute(f"""

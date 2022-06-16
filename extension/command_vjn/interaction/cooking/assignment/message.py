@@ -49,9 +49,10 @@ async def assignment(interaction : discord_components.Interaction):
     price = database[0, "price"]
     user = bot.get_user(database[0, "id_user"])
     channel = interaction.client.bot.get_channel(int(os.getenv("assignment"))) # channel assignment
+
+    content = f"n°{id_command} {user} : {command(interaction, id_command)} -> {price}"
+    components = menu(bot, id_command)
+
     for _ in range(1, quantity + 1):
-        await channel.send(
-            content = f"n°{id_command} {user} : {command(interaction, id_command)} -> {price}",
-            components = menu(bot, id_command)
-        )
+        await channel.send(content = content, components = components)
     await interaction.message.delete()

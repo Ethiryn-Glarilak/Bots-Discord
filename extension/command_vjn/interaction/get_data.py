@@ -1,6 +1,7 @@
 import csv
 import discord
 import pathlib
+import os
 from bot.data.postgres import DataBase
 from extension.command_vjn.vjn_object import Status
 
@@ -8,7 +9,7 @@ async def get_data(message) -> None:
     bot = message.bot
     database : DataBase = bot.database.get("default")
 
-    commandes = database.execute("SELECT id, id_user, quantity, status FROM command_VJN").fetchall().value
+    commandes = database.execute(f"SELECT id, id_user, quantity, status FROM command_VJN WHERE date >= '{os.getenv('date_data')}'").fetchall().value
     ingredient = database.execute("SELECT name FROM ingredient_VJN").fetchall()["name"]
 
     header = ["Nom"]
@@ -25,13 +26,15 @@ async def get_data(message) -> None:
         for product in database["id_ingredient"]:
             tableau[-1][product] = commande[2]
 
-    event = pathlib.Path("data/guild/689388320815710239-VJN/event-list-produit/event-load").read_text()
-    file = pathlib.Path(f"data/guild/689388320815710239-VJN/save/rapport-{event}.csv")
+    event = pathlib.Path("data/guild/890357045138690108-VJN/event-list-produit/event-load").read_text()
+    file = pathlib.Path(f"data/guild/890357045138690108-VJN/save/rapport-{event}.csv")
 
     with open(file, "w", encoding="utf-8") as f:
         write = csv.writer(f, lineterminator = "\n")
         write.writerow(header)
         write.writerows(tableau)
 
-    await message.delete()
+
+    if message.channel.type != discord.ChannelType.private or message.author.id == message.bot.user.id:
+        await message.delete()
     await message.author.send(file = discord.File(file))

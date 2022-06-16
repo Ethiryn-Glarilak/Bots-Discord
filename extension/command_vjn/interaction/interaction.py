@@ -10,13 +10,13 @@ async def error(interaction : discord_components.Interaction):
 async def menu(interaction : discord_components.Interaction):
     for name, value in {
         "default" : default,
-        # "other" : other, # FIXME : Add other choice (Similar to default)
+        "other" : other,
         "compose" : compose,
         "ingredient-*" : compose_ingredient,
         "product-*" : choice,
         "quantity-*" : valider_quantity,
     }.items():
-        if re.match(name, interaction.values[0]):
+        if re.match(name, interaction.values[0]) is not None:
             await value(interaction)
             return
     await error(interaction)

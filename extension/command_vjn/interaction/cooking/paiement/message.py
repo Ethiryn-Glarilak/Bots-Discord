@@ -27,6 +27,7 @@ async def paiement(interaction : discord_components.Interaction):
 
     # FIXME
     price = database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}").fetchall()[0, 'price']
+    price = price * database[0, 'quantity']
 
     if price != "0,00 €":
         # FIXME
@@ -36,7 +37,8 @@ async def paiement(interaction : discord_components.Interaction):
             WHERE id = {id_command}
         """)
         channel = interaction.client.bot.get_channel(int(os.getenv("paiement"))) # channel paiement
-        await interaction.user.send(content = f"La commande {command(interaction, id_command)} à {price} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.", components = [])
+        await interaction.edit_origin(content = f"Commande fini !\nLa commande {command(interaction, id_command)} à {price} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.", components = [])
         await channel.send(content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}", components = menu(id_command))
     else:
+        await interaction.edit_origin(content = "Commande fini !", components = [])
         await assignment(interaction)

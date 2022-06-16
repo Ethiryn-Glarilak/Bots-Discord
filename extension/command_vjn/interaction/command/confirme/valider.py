@@ -4,4 +4,3 @@ from extension.command_vjn.interaction.cooking.paiement.message import paiement
 
 async def confirme(interaction : discord_components.Interaction):
     await paiement(interaction)
-    await interaction.edit_origin(content = "Commande fini !", components = [])

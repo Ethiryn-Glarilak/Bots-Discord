@@ -25,7 +25,7 @@ def menu(id_command, bot, default : list[int], type_ingredient : bool):
     database.execute("SELECT * FROM ingredient_VJN").fetchall()
 
     # Création composent
-    menu = [{"label": f"{database[product, 'name'].capitalize()} - {database[product, 'price'] if database[product, 'price'] != '0,00 €' else 'Gratuit'}", "value": f"ingredient-{product}", "default": int(product) in default} for product in [str(product) for product in json.get("ingredient").values()] if int(product) in database and database[product, 'type'] == type_ingredient]
+    menu = [{"label": f"{database[product, 'name'].capitalize()} - {database[product, 'price'] if database[product, 'price'] != '0,00 €' and not bot.args.free else 'Gratuit'}", "value": f"ingredient-{product}", "default": int(product) in default} for product in [str(product) for product in json.get("ingredient").values()] if int(product) in database and database[product, 'type'] == type_ingredient]
 
     # FIXME
     # print(max(1, min(len(menu), 25)))
@@ -60,4 +60,8 @@ async def menu_ingredient(interaction : discord_components.Interaction):
 
     selected = database["id"]
 
-    await interaction.edit_origin(components = menu(id_command, bot, selected, type_ingredient))
+    await interaction.edit_origin(
+        # FIXME
+        content = "Si la pâte est déjà sélectionner il faut faire `rejeter la commande`. Désolé le bouton validé n'est pas encore créé",
+        components = menu(id_command, bot, selected, type_ingredient)
+    )

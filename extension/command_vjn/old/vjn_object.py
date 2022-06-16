@@ -31,8 +31,8 @@ class VJNObject:
         self.database = bot.database.get("default")
 
         # Recuperation recette disponible
-        event = pathlib.Path("data/689388320815710239-VJN/event-list-produit/event-load").read_text()
-        path_event = pathlib.Path(f"data/689388320815710239-VJN/event-list-produit/{event}.json")
+        event = pathlib.Path("data/890357045138690108-VJN/event-list-produit/event-load").read_text()
+        path_event = pathlib.Path(f"data/890357045138690108-VJN/event-list-produit/{event}.json")
         if not path_event.exists():
             raise ValueError(f"Event file does not exist : {path_event}")
         with open(path_event, encoding="utf-8") as file:

@@ -21,7 +21,7 @@ def menu(id_command, bot):
 
     # Récupération recette existante
     get_all_product(database)
-    menu = [{"label": f"{database[str(product), 'name'].capitalize()} - {database[str(product), 'price'] if database[str(product), 'price'] != '0,00 €' else 'Gratuit'}", "value": f"product-{product}"} for product in json.get("default", []).values() if product in database]
+    menu = [{"label": f"{database[str(product), 'name'].capitalize()} - {database[str(product), 'price'] if database[str(product), 'price'] != '0,00 €' and not bot.args.free else 'Gratuit'}", "value": f"product-{product}"} for product in json.get("default", []).values() if product in database]
 
     # Création composent
     start_menu = Interaction().add_menu(id = f"menu-default-{id_command}", placeholder = "Choice your product")

@@ -1,6 +1,6 @@
 import discord_components
 from bot.interaction.interaction import Interaction
-from bot.interaction.composent.button import Style
+from bot.composant.role import Role
 from extension.command_vjn.vjn_object import VJNObject
 from extension.command_vjn.interaction.default import *
 
@@ -39,3 +39,6 @@ async def commander(interaction : discord_components.Interaction):
         id_command = create_command_user(database, interaction.user.id)
 
     await interaction.respond(components = menu(bot, id_command))
+
+    # Add role Présent at user
+    await interaction.user.add_roles(Role(bot.vjn_object.present))

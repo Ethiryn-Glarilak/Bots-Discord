@@ -1,6 +1,10 @@
+import asyncio
+from re import A
+import discord
 import enum
 import json
 import dotenv
+import os
 import pathlib
 
 class Status(enum.IntEnum):
@@ -29,9 +33,24 @@ class VJNObject:
         self.database = bot.database.get("default")
 
         # Recuperation recette disponible
-        event = pathlib.Path("data/guild/689388320815710239-VJN/event-list-produit/event-load").read_text()
-        path_event = pathlib.Path(f"data/guild/689388320815710239-VJN/event-list-produit/{event}.json")
+        event = pathlib.Path("data/guild/890357045138690108-VJN/event-list-produit/event-load").read_text()
+        path_event = pathlib.Path(f"data/guild/890357045138690108-VJN/event-list-produit/{event}.json")
         if not path_event.exists():
             raise ValueError(f"Event file does not exist : {path_event}")
         with open(path_event, encoding="utf-8") as file:
             self.json = json.load(file)
+
+        # Role Présent
+        self.present = 987093379940753418
+        self.present = 984575805663367188
+
+    async def start(self, bot):
+        # vjn = bot.get_guild(int(os.getenv("guild_VJN"))) # guild VJN
+        # roles = list(map(lambda role : role.name, await vjn.fetch_roles()))
+
+        # # FIXME NAME
+        # if "Free" not in roles:
+        #     bot.vjn_object.role_free = await vjn.create_role(name = "Free", colour = discord.Colour.blue())
+        # else:
+        #     bot.vjn_object.role_free = roles[roles.index("Free")]
+        pass
