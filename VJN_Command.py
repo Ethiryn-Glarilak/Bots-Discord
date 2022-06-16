@@ -1,3 +1,4 @@
+import aiohttp
 import bot
 import discord
 import dotenv
@@ -17,4 +18,7 @@ class VJN_Command(bot.Bot):
 if __name__ == "__main__":
     dotenv.load_dotenv()
     vjn_command = VJN_Command()
-    vjn_command.run(os.getenv("vjn_command"))
+    try:
+        vjn_command.run(os.getenv("vjn_command"))
+    except aiohttp.ClientConnectionError:
+        print("Failed to connect to vjn_command")

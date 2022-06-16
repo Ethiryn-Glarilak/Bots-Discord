@@ -1,3 +1,4 @@
+import aiohttp
 import bot
 import dotenv
 import os
@@ -25,10 +26,22 @@ if __name__ == "__main__":
         else:
             seanren.log.get_logger(seanren.name).error(f"os not supported : {platform.system()}")
 
+    if platform.system() == "Windows":
+        seanren.process = subprocess.Popen(["py", "-3", "Presence.py", "-q", seanren.args.quotes if seanren.args.quotes is not None else ""], shell = False)
+        seanren.log.get_logger(seanren.name).info("Presence started")
+    elif platform.system() == "Linux":
+        seanren.process = subprocess.Popen(["python3", "Presence.py", "-q", seanren.args.quotes if seanren.args.quotes is not None else ""], shell = True)
+        seanren.log.get_logger(seanren.name).info("Presence started")
+    else:
+        seanren.log.get_logger(seanren.name).error(f"os not supported : {platform.system()}")
+
     try:
         seanren.run(os.getenv("seanren"))
+    except aiohttp.ClientConnectionError:
+        print("Failed to connect to seanren")
     except Exception:
-        pass
+        print(Exception.args())
     finally:
+        seanren.process.terminate()
         if process is not None:
             process.terminate()

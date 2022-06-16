@@ -1,3 +1,4 @@
+import aiohttp
 import bot
 import dotenv
 import os
@@ -11,4 +12,7 @@ class Ciaham(bot.Bot):
 if __name__ == "__main__":
     dotenv.load_dotenv()
     ciaham = Ciaham()
-    ciaham.run(os.getenv("ciaham"))
+    try:
+        ciaham.run(os.getenv("ciaham"))
+    except aiohttp.ClientConnectionError:
+        print("Failed to connect to ciaham")

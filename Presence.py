@@ -42,6 +42,9 @@ quotes = {
         "Prépare de la pâte à crêpes",
         "Consulte les commandes",
     ],
+    "edit_code" : [
+        "Débogage du fichier JPEG.py"
+    ]
 }.get(args.option, ["Error: No quotes found"])
 
 counter = 60 * 60 * 4 + 60 * 30 + 50
