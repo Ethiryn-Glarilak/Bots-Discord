@@ -29,6 +29,7 @@ class Import:
     def load(bot, args):
         init = {
             "bot" : (Import.__bot_get, Import.__bot_set),
+            "ready" : (Import.__ready_get, Import.__ready_set),
             "command" : (Import.__command_get, Import.__command_set),
             "parser" : (Import.__parser_get, Import.__parser_set),
             "interaction" : (Import.__interaction_get, Import.__interaction_set),
@@ -58,6 +59,16 @@ class Import:
                 setattr(bot, key, value)
             except AttributeError:
                 bot.log.get_logger(bot.name).error(f"key {key} cannot be changed !")
+
+    @staticmethod
+    def __ready_get(args) -> None:
+        if args is None:
+            return
+        Import.save.update(args.additional_function)
+
+    @staticmethod
+    def __ready_set(bot) -> None:
+        bot.ready.update(Import.save)
 
     @staticmethod
     def __command_get(args) -> None:

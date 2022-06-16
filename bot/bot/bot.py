@@ -26,6 +26,7 @@ class Bot(discord.Client):
         self.components : discord_components.DiscordComponents = discord_components.DiscordComponents(self)
         self.command : Command = Command()
         self.interaction : Response = Response()
+        self.ready : dict = {}
         self.database : dict[DataBase] = {"default" : DataBase(self)}
         Import.load(self, self.args.option)
 
@@ -88,10 +89,9 @@ class Bot(discord.Client):
     def __str__(self) -> str:
         return f"{self.name} ({self.version[0]}.{self.version[1]}.{self.version[2]})"
 
-    # FIXME
     async def on_ready(self) -> None:
-        # FIXME mettre en import
-        # await self.vjn_object.start(self)
+        for value in self.ready.values():
+            value(self)
 
         await self.change_presence(status = discord.Status.do_not_disturb, activity = discord.Game(name="Auto-programmer"))
         print(self)
