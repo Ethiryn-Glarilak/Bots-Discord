@@ -41,4 +41,4 @@ async def commander(interaction : discord_components.Interaction):
     await interaction.respond(components = menu(bot, id_command))
 
     # Add role Présent at user
-    await interaction.user.add_roles(Role(bot.vjn_object.present))
+    await interaction.user.add_roles(Role(role = bot.vjn_object.present))
