@@ -1,5 +1,5 @@
-from bot.interaction.interaction import Interaction
-from bot.interaction.composent.button import Style
+from src.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
 
 async def example(message) -> None:
 

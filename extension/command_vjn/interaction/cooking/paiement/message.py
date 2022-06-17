@@ -1,8 +1,8 @@
 import discord_components
 import os
 import re
-from bot.interaction.composent.button import Style
-from bot.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
+from src.interaction.interaction import Interaction
 from extension.command_vjn.vjn_object import Status
 from extension.command_vjn.interaction.cooking.assignment.message import assignment
 

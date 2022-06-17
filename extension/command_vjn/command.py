@@ -1,10 +1,10 @@
 import os
 import pathlib
 from extension.command_vjn.example import example as example_command
-from bot.interaction.interaction import Interaction
-from bot.interaction.composent.button import Style
-from bot.parser.token.token_type import TokenType
-from bot.valid.default import DefaultValidator
+from src.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
+from src.parser.token.token_type import TokenType
+from src.valid.default import DefaultValidator
 from extension.command_vjn.vjn_object import VJNObject
 from extension.command_vjn.interaction.get_data import get_data
 

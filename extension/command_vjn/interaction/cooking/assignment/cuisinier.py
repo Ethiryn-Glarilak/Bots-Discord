@@ -1,6 +1,6 @@
 import discord_components
-from bot.interaction.composent.button import Style
-from bot.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
+from src.interaction.interaction import Interaction
 
 def menu(id_command : int):
     return Interaction()\

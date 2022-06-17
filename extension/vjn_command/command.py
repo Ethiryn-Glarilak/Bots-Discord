@@ -1,6 +1,6 @@
 import discord
-from bot.parser.token.token_type import TokenType
-from bot.valid.default import DefaultValidator
+from src.parser.token.token_type import TokenType
+from src.valid.default import DefaultValidator
 
 async def test(message) -> None:
     if DefaultValidator.creator(message).check():

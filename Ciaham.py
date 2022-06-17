@@ -1,9 +1,9 @@
 import aiohttp
-import bot
+import src
 import dotenv
 import os
 
-class Ciaham(bot.Bot):
+class Ciaham(src.Bot):
 
     def __init__(self) -> None:
         super().__init__("Ciaham", [3, 5], "C")

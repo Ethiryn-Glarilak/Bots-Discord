@@ -1,6 +1,6 @@
 import discord_components
-from bot.interaction.interaction import Interaction
-from bot.interaction.composent.button import Style
+from src.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
 from extension.command_vjn.interaction.default import *
 
 def command(interaction : discord_components.Interaction, id_command : int):

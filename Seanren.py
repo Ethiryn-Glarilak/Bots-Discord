@@ -1,11 +1,11 @@
 import aiohttp
-import bot
+import src
 import dotenv
 import os
 import platform
 import subprocess
 
-class Seanren(bot.Bot):
+class Seanren(src.Bot):
 
     def __init__(self) -> None:
         super().__init__("Seanren", [3, 5], "S")

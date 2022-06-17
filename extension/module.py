@@ -1,4 +1,4 @@
-from bot.bot.import_option import Import
+from src.bot.import_option import Import
 from extension.vjn_command import *
 from extension.command_vjn import *
 

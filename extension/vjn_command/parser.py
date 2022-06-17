@@ -1,4 +1,4 @@
-from bot.parser.token.token_type import TokenType
+from src.parser.token.token_type import TokenType
 
 class ParserVJNCommand:
 

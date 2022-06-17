@@ -2,7 +2,7 @@ import csv
 import discord
 import pathlib
 import os
-from bot.data.postgres import DataBase
+from src.data.postgres import DataBase
 from extension.command_vjn.vjn_object import Status
 
 async def get_data(message) -> None:

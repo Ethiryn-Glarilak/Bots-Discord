@@ -1,6 +1,6 @@
 import discord_components
-from bot.interaction.interaction import Interaction
-from bot.composant.role import Role
+from src.interaction.interaction import Interaction
+from src.composant.role import Role
 from extension.command_vjn.vjn_object import VJNObject
 from extension.command_vjn.interaction.default import *
 

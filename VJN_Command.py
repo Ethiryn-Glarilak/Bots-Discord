@@ -1,10 +1,10 @@
 import aiohttp
-import bot
+import src
 import discord
 import dotenv
 import os
 
-class VJN_Command(bot.Bot):
+class VJN_Command(src.Bot):
 
     def __init__(self) -> None:
         super().__init__("VJN_Command", [3, 5], "VJN")

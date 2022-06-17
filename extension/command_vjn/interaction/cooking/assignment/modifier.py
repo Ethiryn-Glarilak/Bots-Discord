@@ -1,7 +1,7 @@
 import discord_components
 import os
-from bot.interaction.composent.button import Style
-from bot.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
+from src.interaction.interaction import Interaction
 
 def command(interaction : discord_components.Interaction, id_command : int):
     database = interaction.client.bot.database.get("default")

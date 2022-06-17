@@ -2,8 +2,8 @@ import enum
 import json
 import dotenv
 import pathlib
-from bot.interaction.interaction import Interaction
-from bot.interaction.composent.button import Style
+from src.interaction.interaction import Interaction
+from src.interaction.composent.button import Style
 
 class Status(enum.IntEnum):
     COMMAND = 10
