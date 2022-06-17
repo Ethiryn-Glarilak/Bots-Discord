@@ -1,5 +1,4 @@
 import discord_components
-import os
 from src.interaction.composent.button import Style
 from src.interaction.interaction import Interaction
 from extension.command_vjn.vjn_object import Status
@@ -19,6 +18,7 @@ def menu(id_command : int):
 
 async def livraison(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
+    vjn_object = interaction.client.bot.vjn_object
     database = interaction.client.bot.database.get("default")
 
     database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}").fetchall()
@@ -29,7 +29,7 @@ async def livraison(interaction : discord_components.Interaction) -> None:
                 status = {Status.READY.value}
             WHERE id = {id_command}
         """)
-        channel = interaction.client.bot.get_channel(int(os.getenv("livraison"))) # channel livraison
+        channel = interaction.client.bot.get_channel(vjn_object.livraison) # channel livraison
         database.execute(f"SELECT id_user FROM command_VJN WHERE id = {id_command}").fetchall()
         await channel.send(content = interaction.message.content, components = menu(id_command))
         user = interaction.client.bot.get_user(database[0, "user"])

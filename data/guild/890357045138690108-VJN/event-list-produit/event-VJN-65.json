@@ -34,6 +34,7 @@
     "Jambon": 12,
     "Viande hachée": 25
   },
-  "cooks": 3,
-  "quantity": 5
+  "cooks": 5,
+  "quantity": 5,
+  "date_data": "2022-06-17"
 }

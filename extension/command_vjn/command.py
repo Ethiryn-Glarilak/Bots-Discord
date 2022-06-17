@@ -1,4 +1,3 @@
-import os
 import pathlib
 from extension.command_vjn.example import example as example_command
 from src.interaction.interaction import Interaction
@@ -13,30 +12,31 @@ async def refresh(message) -> None:
         return
 
     message.bot.vjn_object = VJNObject(message.bot)
+    vjn_object = message.bot.vjn_object
     await message.delete()
 
     # Start VJN
-    channel = message.bot.get_channel(int(os.getenv("command"))) # channel command
+    channel = message.bot.get_channel(vjn_object.command) # channel command
     async for element in channel.history():
         await element.delete()
     components = Interaction().add_button(label = "Commander", style = Style.GREEN, id = "commander")
     await channel.send(
         content=pathlib.Path("data/guild/890357045138690108-VJN/command.txt").read_text(encoding = "utf-8")
                 .replace("@dev-chef", "@680605398549528613")
-                .replace("#help", f"#{os.getenv('command')}")
-                .replace("#roles", f"#{os.getenv('roles')}"),
+                .replace("#help", f"#{vjn_object.command}")
+                .replace("#roles", f"#{vjn_object.roles}"),
         components=components
     )
 
     # Help VJN
-    channel = message.bot.get_channel(int(os.getenv("help"))) # channel command
+    channel = message.bot.get_channel(vjn_object.help) # channel command
     async for element in channel.history():
         await element.delete()
     await channel.send(
         content=pathlib.Path("data/guild/890357045138690108-VJN/help.txt").read_text(encoding = "utf-8")
                 .replace("@dev-chef", "@680605398549528613")
-                .replace("#help", f"#{os.getenv('command')}")
-                .replace("#roles", f"#{os.getenv('roles')}")
+                .replace("#help", f"#{vjn_object.command}")
+                .replace("#roles", f"#{vjn_object.roles}")
     )
 
     await message.bot.vjn_object.start(message.bot)

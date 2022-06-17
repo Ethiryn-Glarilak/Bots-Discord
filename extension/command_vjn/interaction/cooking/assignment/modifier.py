@@ -1,5 +1,4 @@
 import discord_components
-import os
 from src.interaction.composent.button import Style
 from src.interaction.interaction import Interaction
 

@@ -1,5 +1,4 @@
 import discord_components
-import os
 from src.interaction.composent.button import Style
 from src.interaction.interaction import Interaction
 from extension.command_vjn.vjn_object import Status
@@ -25,6 +24,7 @@ def menu(bot, id_command : int):
 
 async def assignment(interaction : discord_components.Interaction):
     bot = interaction.client.bot
+    vjn_object = interaction.client.bot.vjn_object
     id_command = interaction.custom_id.split('-')[2]
     database = interaction.client.bot.database.get("default")
 
@@ -48,7 +48,7 @@ async def assignment(interaction : discord_components.Interaction):
     quantity = database[0, "quantity"]
     price = database[0, "price"]
     user = bot.get_user(database[0, "id_user"])
-    channel = interaction.client.bot.get_channel(int(os.getenv("assignment"))) # channel assignment
+    channel = interaction.client.bot.get_channel(vjn_object.assignment) # channel assignment
 
     content = f"n°{id_command} {user} : {command(interaction, id_command)} -> {price}"
     components = menu(bot, id_command)

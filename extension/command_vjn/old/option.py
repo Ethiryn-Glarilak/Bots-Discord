@@ -127,6 +127,7 @@ function_menu = {
 
 async def valid(interaction : discord_components.Interaction) -> None:
     database = interaction.client.bot.database.get("default")
+    vjn_object = interaction.client.bot.vjn_object
     id_command = interaction.custom_id.split('-')[2]
     database.execute(f"""
         UPDATE command_VJN
@@ -138,12 +139,12 @@ async def valid(interaction : discord_components.Interaction) -> None:
     price = database[0, 'price']
     if price != "0,00 €":
         # paid
-        channel = interaction.client.bot.get_channel(int(os.getenv("paiement"))) # channel paiement
+        channel = interaction.client.bot.get_channel(vjn_object.paiement) # channel paiement
         await interaction.user.send(content = f"La commande {command(interaction, id_command)} à {price} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.")
         await channel.send(content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}", components = interaction.client.bot.vjn_object.set_paiement_command(id_command))
     else:
         # assigned
-        channel = interaction.client.bot.get_channel(int(os.getenv("assignment"))) # channel assignment
+        channel = interaction.client.bot.get_channel(vjn_object.assignment) # channel assignment
         await interaction.user.send(content = f"La commande {command(interaction, id_command)} est envoyée à VJN.")
         await channel.send(
             content = f"n°{id_command} {interaction.user} : {command(interaction, id_command)} -> {price}",
@@ -155,6 +156,7 @@ async def valid(interaction : discord_components.Interaction) -> None:
 
 async def paiement(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
+    vjn_object = interaction.client.bot.vjn_object
     database = interaction.client.bot.database.get("default")
     database.execute(f"""
         UPDATE command_VJN
@@ -164,7 +166,7 @@ async def paiement(interaction : discord_components.Interaction) -> None:
     database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}")
     database.fetchall()
     price = database[0, 'price']
-    channel = interaction.client.bot.get_channel(int(os.getenv("assignment"))) # channel assignment
+    channel = interaction.client.bot.get_channel(vjn_object.assignment) # channel assignment
     await channel.send(
         content = f"n°{database[0, 'id']} {interaction.user} : {command(interaction, database[0, 'id'])} -> {price}",
         components = interaction.client.bot.vjn_object.set_assignment(id_command)
@@ -173,13 +175,14 @@ async def paiement(interaction : discord_components.Interaction) -> None:
 
 async def assigned(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
+    vjn_object = interaction.client.bot.vjn_object
     database = interaction.client.bot.database.get("default")
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.READY.value}
         WHERE id = {id_command}
     """)
-    channel = interaction.client.bot.get_channel(int(os.getenv("livraison"))) # channel livraison
+    channel = interaction.client.bot.get_channel(vjn_object.livraison) # channel livraison
     database.execute(f"SELECT id_user FROM command_VJN WHERE id = {id_command}")
     database.fetchall()
     await channel.send(
@@ -192,13 +195,14 @@ async def assigned(interaction : discord_components.Interaction) -> None:
 
 async def livrer(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
+    vjn_object = interaction.client.bot.vjn_object
     database = interaction.client.bot.database.get("default")
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.FINISH.value}
         WHERE id = {id_command}
     """)
-    channel = interaction.client.bot.get_channel(int(os.getenv("log"))) # channel log
+    channel = interaction.client.bot.get_channel(vjn_object.log) # channel log
     await channel.send(content = interaction.message.content)
     await interaction.message.delete()
 
@@ -211,12 +215,13 @@ function_valid = {
 
 async def annuler(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
+    vjn_object = interaction.client.bot.vjn_object
     database = interaction.client.bot.database.get("default")
     database.execute(f"""
         DELETE FROM command_VJN
         WHERE id = {id_command}
     """)
-    channel = interaction.client.bot.get_channel(int(os.getenv("log"))) # channel log
+    channel = interaction.client.bot.get_channel(vjn_object.log) # channel log
     message = interaction.message.content.replace("\n", " ")
     await channel.send(content=f":x: {message or f'n°{id_command} {interaction.user}'} :x:")
     if interaction.message.channel is None:

@@ -1,5 +1,4 @@
 import discord_components
-import os
 import re
 from src.interaction.composent.button import Style
 from src.interaction.interaction import Interaction
@@ -24,6 +23,7 @@ def menu(id_command : int):
 
 async def paiement(interaction : discord_components.Interaction):
     id_command = interaction.custom_id.split('-')[2]
+    vjn_object = interaction.client.bot.vjn_object
     database = interaction.client.bot.database.get("default")
 
     # FIXME
@@ -38,7 +38,7 @@ async def paiement(interaction : discord_components.Interaction):
             SET status = {Status.PAYMENT_REQUIRED.value}
             WHERE id = {id_command}
         """)
-        channel = interaction.client.bot.get_channel(int(os.getenv("paiement"))) # channel paiement
+        channel = interaction.client.bot.get_channel(vjn_object.paiement) # channel paiement
         await interaction.edit_origin(content = f"Commande fini !\nLa commande {command(interaction, id_command)} à {price} est envoyée à VJN.\nAllez payer à la caisse pour lancer la préparation.", components = [])
         await channel.send(content = f"n°{id_command} <@{interaction.user.id}> : {command(interaction, id_command)} -> {price}", components = menu(id_command))
     else:

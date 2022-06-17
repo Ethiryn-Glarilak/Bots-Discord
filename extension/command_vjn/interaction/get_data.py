@@ -1,15 +1,15 @@
 import csv
 import discord
 import pathlib
-import os
 from src.data.postgres import DataBase
 from extension.command_vjn.vjn_object import Status
 
 async def get_data(message) -> None:
     bot = message.bot
+    vjn_object = message.bot.vjn_object
     database : DataBase = bot.database.get("default")
 
-    commandes = database.execute(f"SELECT id, id_user, quantity, status FROM command_VJN WHERE date >= '{os.getenv('date_data')}'").fetchall().value
+    commandes = database.execute(f"SELECT id, id_user, quantity, status FROM command_VJN WHERE date >= '{vjn_object.date_data}'").fetchall().value
     ingredient = database.execute("SELECT name FROM ingredient_VJN").fetchall()["name"]
 
     header = ["Nom"]
@@ -33,7 +33,6 @@ async def get_data(message) -> None:
         write = csv.writer(f, lineterminator = "\n")
         write.writerow(header)
         write.writerows(tableau)
-
 
     if message.channel.type != discord.ChannelType.private or message.author.id == message.bot.user.id:
         await message.delete()

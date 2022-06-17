@@ -1,6 +1,3 @@
-import asyncio
-from re import A
-import discord
 import enum
 import json
 import dotenv
@@ -41,6 +38,16 @@ class VJNObject:
             self.json = json.load(file)
 
     async def start(self, bot):
+
+        # Récupération id
+        self.command = int(os.getenv("command"))
+        self.paiement = int(os.getenv("paiement"))
+        self.assignment = int(os.getenv("assignment"))
+        self.livraison = int(os.getenv("livraison"))
+        self.log = int(os.getenv("log"))
+        self.help = int(os.getenv("help"))
+        self.roles = int(os.getenv("roles"))
+        self.date_data = self.json.get("date_data")
 
         # Role Présent
         print("Attention à l'id du role Présent")

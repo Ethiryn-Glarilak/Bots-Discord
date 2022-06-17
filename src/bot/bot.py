@@ -1,4 +1,3 @@
-import asyncio
 import argparse
 import discord
 import discord_components
