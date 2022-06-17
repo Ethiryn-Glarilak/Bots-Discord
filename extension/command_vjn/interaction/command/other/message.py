@@ -25,7 +25,7 @@ def menu(interaction : discord_components.Interaction):
 
     # user.roles
     # price = bot.args.free #or vjn_object.role_free in user.roles
-    print(vjn_object.role_free in user.roles)
+    # print(vjn_object.role_free in user.roles)
 
     promotion = False or bot.args.free
 
