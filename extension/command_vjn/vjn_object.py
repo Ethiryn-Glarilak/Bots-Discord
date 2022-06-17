@@ -1,3 +1,4 @@
+import discord
 import enum
 import json
 import dotenv
@@ -37,8 +38,6 @@ class VJNObject:
         with open(path_event, encoding="utf-8") as file:
             self.json = json.load(file)
 
-    async def start(self, bot):
-
         # Récupération id
         self.command = int(os.getenv("command"))
         self.paiement = int(os.getenv("paiement"))
@@ -48,11 +47,24 @@ class VJNObject:
         self.help = int(os.getenv("help"))
         self.roles = int(os.getenv("roles"))
         self.date_data = self.json.get("date_data")
+        self.vjn = int(os.getenv("guild_VJN"))
+
+    async def start(self, bot):
+
+        vjn = bot.get_guild(self.vjn) # guild VJN
+        roles = list(map(lambda role : role.name, await vjn.fetch_roles()))
+
+        if "Présent" not in roles:
+            print("new")
+            self.present = await vjn.create_role(name = "Présent", colour = discord.Colour(0x1ABC9C))
+        else:
+            print("old")
+            self.present = roles[roles.index("Présent")]
 
         # Role Présent
-        print("Attention à l'id du role Présent")
-        self.present = 987093379940753418 # VJN
-        self.present = 984575805663367188 # Test
+        # print("Attention à l'id du role Présent")
+        # self.present = 987093379940753418 # VJN
+        # self.present = 984575805663367188 # Test
         # vjn = bot.get_guild(int(os.getenv("guild_VJN"))) # guild VJN
         # roles = list(map(lambda role : role.name, await vjn.fetch_roles()))
 
@@ -62,3 +74,4 @@ class VJNObject:
         # else:
         #     bot.vjn_object.role_free = roles[roles.index("Free")]
         print(f"Load {bot.name}")
+        print(f"Roles {self.present}")
