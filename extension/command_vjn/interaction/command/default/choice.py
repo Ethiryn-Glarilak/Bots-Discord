@@ -10,11 +10,15 @@ async def choice(interaction : discord_components.Interaction):
     # FIXME
     database.execute(f"SELECT price FROM product_VJN WHERE id = {id_product}").fetchall()
 
+    vjn_object = bot.vjn_object
+    user = interaction.user
+    promotion = vjn_object.free in user.roles or bot.args.free
+
     # FIXME
     database.execute(f"""
         UPDATE command_VJN
         SET id_product = {id_product},
-            price = '{"0,00 €" if bot.args.free else database[0, "price"]}'
+            price = '{"0,00 €" if promotion else database[0, "price"]}'
         WHERE id = {id_command}
     """)
 

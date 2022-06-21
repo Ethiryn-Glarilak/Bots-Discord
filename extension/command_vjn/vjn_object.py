@@ -57,8 +57,9 @@ class VJNObject:
         vjn : discord.Guild = bot.get_guild(self.vjn) # guild VJN
         roles = await vjn.fetch_roles()
 
-        self.present = self.check_role("Present", roles)
+        self.present = self.check_role("Présent", roles)
         if self.present is None:
+            bot.log.get_logger(bot.name).error("Create Présent")
             self.present = await vjn.create_role(name = "Présent", colour = discord.Colour(0x1ABC9C))
 
         # FIXME NAME

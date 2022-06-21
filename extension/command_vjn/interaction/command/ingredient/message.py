@@ -14,10 +14,13 @@ def set_menu(menu : Interaction, options : list):
     for option in options:
         menu.add_option(**option)
 
-def menu(id_command, bot, default : list[int], type_ingredient : bool):
+def menu(id_command, bot, default : list[int], type_ingredient : bool, interaction):
     vjn_object : VJNObject = bot.vjn_object
     database = vjn_object.database
     json : dict[dict] = vjn_object.json
+
+    user = interaction.user
+    promotion = vjn_object.free in user.roles or bot.args.free
 
     # FIXME
     # get_all_product(database)
@@ -25,7 +28,7 @@ def menu(id_command, bot, default : list[int], type_ingredient : bool):
     database.execute("SELECT * FROM ingredient_VJN").fetchall()
 
     # Création composent
-    menu = [{"label": f"{database[product, 'name'].capitalize()} - {database[product, 'price'] if database[product, 'price'] != '0,00 €' and not bot.args.free else 'Gratuit'}", "value": f"ingredient-{product}", "default": int(product) in default} for product in [str(product) for product in json.get("ingredient").values()] if int(product) in database and database[product, 'type'] == type_ingredient]
+    menu = [{"label": f"{database[product, 'name'].capitalize()} - {database[product, 'price'] if database[product, 'price'] != '0,00 €' and not promotion else 'Gratuit'}", "value": f"ingredient-{product}", "default": int(product) in default} for product in [str(product) for product in json.get("ingredient").values()] if int(product) in database and database[product, 'type'] == type_ingredient]
 
     # FIXME
     # print(max(1, min(len(menu), 25)))
@@ -63,5 +66,5 @@ async def menu_ingredient(interaction : discord_components.Interaction):
     await interaction.edit_origin(
         # FIXME
         content = "Si la pâte est déjà sélectionner il faut faire `rejeter la commande`. Désolé le bouton validé n'est pas encore créé",
-        components = menu(id_command, bot, selected, type_ingredient)
+        components = menu(id_command, bot, selected, type_ingredient, interaction)
     )

@@ -14,14 +14,24 @@ def set_menu(menu : Interaction, options : list):
     for option in options:
         menu.add_option(**option)
 
-def menu(id_command, bot):
+def menu(interaction : discord_components.Interaction):
+    id_command = interaction.custom_id.split('-')[2]
+    bot = interaction.client.bot
     vjn_object : VJNObject = bot.vjn_object
     json : dict[dict] = bot.vjn_object.json
     database = vjn_object.database
 
+    user = interaction.user
+
+    # user.roles
+    # price = bot.args.free #or vjn_object.role_free in user.roles
+    # print(vjn_object.free in user.roles)
+
+    promotion = vjn_object.free in user.roles or bot.args.free
+
     # Récupération recette existante
     get_all_product(database)
-    menu = [{"label": f"{database[str(product), 'name'].capitalize()} - {database[str(product), 'price'] if database[str(product), 'price'] != '0,00 €' and not bot.args.free else 'Gratuit'}", "value": f"product-{product}"} for product in json.get("default", []).values() if product in database]
+    menu = [{"label": f"{database[str(product), 'name'].capitalize()} - {database[str(product), 'price'] if database[str(product), 'price'] != '0,00 €' and not promotion else 'Gratuit'}", "value": f"product-{product}"} for product in json.get("default", []).values() if product in database]
 
     # Création composent
     start_menu = Interaction().add_menu(id = f"menu-default-{id_command}", placeholder = "Choice your product")
