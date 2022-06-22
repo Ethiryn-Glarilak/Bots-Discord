@@ -9,6 +9,7 @@ class Logger(logging.Logger):
         self.addHandler(handler)
 
     def set_logger(self, filename : typing.Union[str, pathlib.Path] = pathlib.Path("default.log")):
+        pathlib.Path("data/log").mkdir(parents=True, exist_ok=True)
         filename = pathlib.Path("data/log").joinpath(filename)
         if filename.suffix != ".log":
             filename = filename.with_suffix(".log")
