@@ -1,2 +1,1 @@
-worker: python3 test.py
-worker_window: py -3 test.py
+vjn_command: python3 VJN_Command.py -o commandVJN -e vjn
