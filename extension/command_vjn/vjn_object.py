@@ -35,21 +35,21 @@ class VJNObject:
         else:
             if bot.args.test:
                 self.database = DataBase(
-                    self,
-                    host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
-                    dbname = "de4cukfmv57pqs",
-                    port = "5432",
-                    user =  "snnppmggxxdubi",
-                    password = "c56d6a1bfb097caca1d389f65cd3d2420187b3142e3ca7c0708c318b92a2a10a"
-                )
-            else:
-                self.database = DataBase(
-                    self,
+                    bot,
                     host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
                     dbname = "dbiojci7uor6hp",
                     port = "5432",
                     user =  "impnxjpcbybilb",
                     password = "fb5a948a28f4d5356455cbb4f844f652ec279acb6384ccb3bb625040f9bf2b70"
+                )
+            else:
+                self.database = DataBase(
+                    bot,
+                    host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
+                    dbname = "de4cukfmv57pqs",
+                    port = "5432",
+                    user =  "snnppmggxxdubi",
+                    password = "c56d6a1bfb097caca1d389f65cd3d2420187b3142e3ca7c0708c318b92a2a10a"
                 )
             bot.database["VJN"] = self.database
 

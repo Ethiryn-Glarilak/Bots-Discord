@@ -4,7 +4,7 @@ from src.data.dict import Dict
 class DataBase:
 
     def __init__(self, bot, host = "localhost", dbname = "discord", port = 5432, user = "bot_discord", password =  "bot"):
-        if bot.args.test:
+        if bot.args.test and host == "localhost":
             dbname = "test"
         self.host = host
         self.dbname = dbname
