@@ -36,7 +36,10 @@ class DataBase:
                 self.cursor = self.connection.cursor()
                 return True
             except psycopg.Error:
-                print("Error")
+                if self.uri is None:
+                    print(f"Error, database = {self.dbname}")
+                else:
+                    print("Error, failed to connect uri")
                 return False
         return self.connect
 
