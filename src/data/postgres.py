@@ -3,14 +3,16 @@ from src.data.dict import Dict
 
 class DataBase:
 
-    def __init__(self, bot, host = "localhost", dbname = "discord", port = 5432, user = "bot_discord", password =  "bot"):
-        if bot.args.test and host == "localhost":
-            dbname = "test"
-        self.host = host
-        self.dbname = dbname
-        self.port = port
-        self.user = user
-        self.password = password
+    def __init__(self, bot, uri = None, **connection):
+        self.uri = uri
+
+        if bot.args.test and connection.get("host", "localhost") == "localhost":
+            connection["dbname"] = "test"
+        self.host = connection.get("host", "localhost")
+        self.dbname = connection.get("dbname", "discord")
+        self.port = connection.get("port", 5432)
+        self.user = connection.get("user", "bot_discord")
+        self.password = connection.get("password", "bot")
         self.save_auto = True
         self.connect = False
         self.value = Dict()
@@ -21,13 +23,16 @@ class DataBase:
     def start(self) -> bool:
         if not self.connect:
             try:
-                self.connection = psycopg.connect(
-                    host = self.host,
-                    dbname = self.dbname,
-                    port = self.port,
-                    user = self.user,
-                    password = self.password,
-                )
+                if self.uri is None:
+                    self.connection = psycopg.connect(
+                        host = self.host,
+                        dbname = self.dbname,
+                        port = self.port,
+                        user = self.user,
+                        password = self.password,
+                    )
+                else:
+                    self.connection = psycopg.connect(self.uri)
                 self.cursor = self.connection.cursor()
                 return True
             except psycopg.Error:

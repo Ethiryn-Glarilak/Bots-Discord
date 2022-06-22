@@ -34,14 +34,7 @@ class VJNObject:
             self.database = bot.database.get("default")
         else:
             if bot.args.test:
-                self.database = DataBase(
-                    bot,
-                    host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
-                    dbname = "dbiojci7uor6hp",
-                    port = "5432",
-                    user =  "impnxjpcbybilb",
-                    password = "fb5a948a28f4d5356455cbb4f844f652ec279acb6384ccb3bb625040f9bf2b70"
-                )
+                self.database = DataBase(bot, "postgres://impnxjpcbybilb:fb5a948a28f4d5356455cbb4f844f652ec279acb6384ccb3bb625040f9bf2b70@ec2-54-228-125-183.eu-west-1.compute.amazonaws.com:5432/dbiojci7uor6hp")
             else:
                 self.database = DataBase(
                     bot,
