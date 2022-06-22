@@ -24,7 +24,7 @@ async def refresh(message) -> None:
         content=pathlib.Path("data/guild/890357045138690108-VJN/command.txt").read_text(encoding = "utf-8")
                 .replace("@dev-chef", "@680605398549528613")
                 .replace("#help", f"#{vjn_object.command}")
-                .replace("#roles", f"#{vjn_object.roles}"),
+                .replace("#welcome", f"#{vjn_object.welcome}"),
         components=components
     )
 
@@ -36,7 +36,7 @@ async def refresh(message) -> None:
         content=pathlib.Path("data/guild/890357045138690108-VJN/help.txt").read_text(encoding = "utf-8")
                 .replace("@dev-chef", "@680605398549528613")
                 .replace("#help", f"#{vjn_object.command}")
-                .replace("#roles", f"#{vjn_object.roles}")
+                .replace("#welcome", f"#{vjn_object.welcome}")
     )
 
     await message.bot.vjn_object.start(message.bot)

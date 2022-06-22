@@ -39,6 +39,7 @@ class VJNObject:
             self.json = json.load(file)
 
         # Récupération id
+        self.welcome = int(os.getenv("welcome"))
         self.command = int(os.getenv("command"))
         self.paiement = int(os.getenv("paiement"))
         self.assignment = int(os.getenv("assignment"))
