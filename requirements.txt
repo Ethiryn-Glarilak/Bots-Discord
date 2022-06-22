@@ -5,3 +5,4 @@ discord.py>=1.7.3
 psutil>=5.9.1
 psycopg>=3.0.14
 pypresence>=4.2.1
+python-dotenv>=0.20.0
