@@ -4,6 +4,7 @@ import json
 import dotenv
 import os
 import pathlib
+from src.data.postgres import DataBase
 
 class Status(enum.IntEnum):
     COMMAND = 10
@@ -28,7 +29,29 @@ class VJNObject:
     def __init__(self, bot):
         # Raccourcis bot et database
         dotenv.load_dotenv(pathlib.Path(f"data/environment/.env{'' if bot.args.environment is None else f'-{bot.args.environment}'}"))
-        self.database = bot.database.get("default")
+
+        if os.getenv("ONLINE") is None:
+            self.database = bot.database.get("default")
+        else:
+            if bot.args.test:
+                self.database = DataBase(
+                    self,
+                    host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
+                    dbname = "de4cukfmv57pqs",
+                    port = "5432",
+                    user =  "snnppmggxxdubi",
+                    password = "c56d6a1bfb097caca1d389f65cd3d2420187b3142e3ca7c0708c318b92a2a10a"
+                )
+            else:
+                self.database = DataBase(
+                    self,
+                    host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
+                    dbname = "dbiojci7uor6hp",
+                    port = "5432",
+                    user =  "impnxjpcbybilb",
+                    password = "fb5a948a28f4d5356455cbb4f844f652ec279acb6384ccb3bb625040f9bf2b70"
+                )
+            bot.database["VJN"] = self.database
 
         # Recuperation recette disponible
         event = pathlib.Path("data/guild/890357045138690108-VJN/event-list-produit/event-load").read_text()
