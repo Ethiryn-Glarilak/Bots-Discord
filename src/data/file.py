@@ -2,7 +2,7 @@ import json
 import pathlib
 import typing
 
-import src.data.link as link
+from src.data.link import link
 from src.composant.composant import Composant
 
 class File:
