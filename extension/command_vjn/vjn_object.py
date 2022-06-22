@@ -34,16 +34,9 @@ class VJNObject:
             self.database = bot.database.get("default")
         else:
             if bot.args.test:
-                self.database = DataBase(bot, "postgres://impnxjpcbybilb:fb5a948a28f4d5356455cbb4f844f652ec279acb6384ccb3bb625040f9bf2b70@ec2-54-228-125-183.eu-west-1.compute.amazonaws.com:5432/dbiojci7uor6hp")
+                self.database = DataBase(bot, uri = os.getenv("test"))
             else:
-                self.database = DataBase(
-                    bot,
-                    host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
-                    dbname = "de4cukfmv57pqs",
-                    port = "5432",
-                    user =  "snnppmggxxdubi",
-                    password = "c56d6a1bfb097caca1d389f65cd3d2420187b3142e3ca7c0708c318b92a2a10a"
-                )
+                self.database = DataBase(bot, uri = os.getenv("discord"))
             bot.database["VJN"] = self.database
 
         # Recuperation recette disponible
