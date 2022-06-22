@@ -1,0 +1,7 @@
+aiohttp>=3.7.4.post0
+discord>=1.7.3
+discord-components>=2.1.2
+discord.py>=1.7.3
+psutil>=5.9.1
+psycopg>=3.0.14
+pypresence>=4.2.1
