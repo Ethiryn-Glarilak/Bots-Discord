@@ -20,5 +20,5 @@ Je ne suis pas toujours sur le campus et le bot non plus, il peut donc y avoir u
 Pour toutes les suggestions concernant le bot envoyez un message à <@dev-chef>.
 
 :construction: Développement :construction:
-Pour rejoindre l'équipe de DEV `check membre` dans le salon <#roles> et contacter <@502595083137318912>
+Pour rejoindre l'équipe de DEV `check membre` dans le salon <#welcome> et contacter <@502595083137318912>
 Pour consulter le repos du bot : https://github.com/Ethiryn-Glarilak/Bots-Discord (Bot : VJN-Command)

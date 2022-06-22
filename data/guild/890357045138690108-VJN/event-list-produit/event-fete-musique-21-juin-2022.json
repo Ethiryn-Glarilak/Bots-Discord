@@ -1,19 +1,11 @@
 {
-  "other": {
-    "Barbe à papa Fraise": 94,
-    "Barbe à papa Pomme Verte": 191,
-    "Barbe à papa Fruit de la Passion": 192,
-    "Barbe à papa Menthe": 193
-  },
   "ingredient": {
     "Pate Bière": 1,
     "Pate Nature": 2,
     "Œuf": 11,
     "Sucre": 7,
-    "Banane": 6,
-    "Oignon": 19,
+    "Beurre": 8,
     "Crème fraîche": 20,
-    "Champignon de Paris": 21,
     "Miel": 5,
     "Nutella": 4,
     "Spéculoos": 16,
@@ -22,15 +14,13 @@
     "Confiture Abricot": 14,
     "Confiture Myrtille": 23,
     "Beurre de Cacahuète": 17,
-    "Pate de guimauve": 24,
-    "Chèvre": 15,
     "Emmental": 9,
     "Raclette": 10,
     "Poulet": 13,
     "Jambon": 12,
-    "Viande hachée": 25
+    "Thon": 26
   },
-  "cooks": 5,
+  "cooks": 3,
   "quantity": 5,
-  "date_data": "2022-06-17"
+  "date_data": "2022-06-21"
 }
