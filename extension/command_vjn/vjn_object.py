@@ -30,17 +30,12 @@ class VJNObject:
         # Raccourcis bot et database
         dotenv.load_dotenv(pathlib.Path(f"data/environment/.env{'' if bot.args.environment is None else f'-{bot.args.environment}'}"))
 
-        print("coucou")
         if os.getenv("ONLINE") is None:
-            print("coucou1")
             self.database = bot.database.get("default")
         else:
-            print("coucou2")
             if bot.args.test:
-                print("coucou3")
                 self.database = DataBase(bot, "postgres://impnxjpcbybilb:fb5a948a28f4d5356455cbb4f844f652ec279acb6384ccb3bb625040f9bf2b70@ec2-54-228-125-183.eu-west-1.compute.amazonaws.com:5432/dbiojci7uor6hp")
             else:
-                print("coucou4")
                 self.database = DataBase(
                     bot,
                     host = "ec2-54-228-125-183.eu-west-1.compute.amazonaws.com",
@@ -49,9 +44,7 @@ class VJNObject:
                     user =  "snnppmggxxdubi",
                     password = "c56d6a1bfb097caca1d389f65cd3d2420187b3142e3ca7c0708c318b92a2a10a"
                 )
-            print("coucou5")
             bot.database["VJN"] = self.database
-        print("coucou6")
 
         # Recuperation recette disponible
         event = pathlib.Path("data/guild/890357045138690108-VJN/event-list-produit/event-load").read_text()
