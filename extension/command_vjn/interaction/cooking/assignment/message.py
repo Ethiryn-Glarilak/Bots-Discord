@@ -18,7 +18,7 @@ async def assignment(interaction : discord_components.Interaction):
     bot = interaction.client.bot
     vjn_object = interaction.client.bot.vjn_object
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
 
     # FIXME
     database.execute(f"""

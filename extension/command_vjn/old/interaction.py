@@ -5,7 +5,7 @@ from extension.command_vjn.option import function_menu, function_valid, function
 
 async def commander(interaction : discord_components.Interaction) -> None:
     bot = interaction.client.bot
-    database = bot.database.get("default")
+    database = bot.vjn_object.database
 
     # Check si l'utilisateur n'as pas déjà une commande en cours
     if database.execute(f"SELECT count(*) as number FROM command_VJN WHERE id_user = {interaction.user.id} AND status = {Status.COMMAND.value}").fetchall()[0, "number"] != 0:
@@ -38,7 +38,7 @@ async def valider(interaction : discord_components.Interaction) -> None:
 
 async def assigned(interaction : discord_components.Interaction) -> None:
     id_command, cooks = interaction.custom_id.split('-')[1:]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         UPDATE command_VJN
         SET status = {int(cooks)}
@@ -53,7 +53,7 @@ async def assigned(interaction : discord_components.Interaction) -> None:
 
 async def modifier(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     cooks = database.execute(f"SELECT status FROM command_VJN WHERE id = {id_command}").fetchall()[0, "status"]
     database.execute(f"""
         UPDATE command_VJN
@@ -84,7 +84,7 @@ async def annuler(interaction : discord_components.Interaction) -> None:
 async def pate(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[1]
 
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute(f"""
         SELECT id FROM ingredient_VJN
@@ -102,7 +102,7 @@ async def pate(interaction : discord_components.Interaction) -> None:
 async def garniture(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[1]
 
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute(f"""
         SELECT id FROM ingredient_VJN

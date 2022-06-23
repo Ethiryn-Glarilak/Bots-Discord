@@ -2,7 +2,7 @@ import discord_components
 from extension.command_vjn.interaction.command.quantity.message import quantity
 
 async def choice(interaction : discord_components.Interaction):
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     bot = interaction.client.bot
     id_command = interaction.custom_id.split('-')[2]
     id_product = interaction.values[0].split('-')[1]

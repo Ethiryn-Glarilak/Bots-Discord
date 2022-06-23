@@ -4,7 +4,7 @@ from extension.command_vjn.vjn_object import Status
 async def livrer(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.FINISH.value}

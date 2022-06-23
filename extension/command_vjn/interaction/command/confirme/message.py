@@ -18,7 +18,7 @@ async def valider_quantity(interaction : discord_components.Interaction):
     await interaction.defer(edit_origin = True)
     quantity = 1 if interaction.values == [] else interaction.values[0].split('-')[1]
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
 
     database.execute(f"""
         UPDATE command_VJN

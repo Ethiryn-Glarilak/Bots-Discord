@@ -11,7 +11,7 @@ def menu(id_command : int):
 async def livraison(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
 
     database.execute(f"SELECT * FROM command_VJN WHERE id = {id_command}").fetchall()
     if database[0, "quantity"] == database[0, "ready"] + 1:

@@ -4,7 +4,7 @@ from extension.command_vjn.vjn_object import Status
 from extension.command_vjn.interaction.default import *
 
 async def crepes(interaction : discord_components.Interaction) -> None:
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     origin = interaction.custom_id.split('-')[1]
     id_command = interaction.custom_id.split('-')[2]
     id_product = interaction.values[0].split('-')[1]
@@ -33,7 +33,7 @@ async def category(interaction : discord_components.Interaction) -> None:
 async def compose(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
 
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"INSERT INTO product_VJN (name, price) VALUES ('{interaction.user}_{id_command}', 0) RETURNING id").fetchall()[0, "id"]
 
     database.execute(f"""
@@ -52,7 +52,7 @@ async def ingredient(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     type_ingredient = interaction.custom_id.split('-')[1]
 
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute("SELECT * FROM ingredient_VJN").fetchall()
     price = sum(float(database[ingredient.split("-")[1], "price"].replace(" €", "").replace(",", ".")) for ingredient in interaction.values)
@@ -118,7 +118,7 @@ function_menu = {
 }
 
 async def valid(interaction : discord_components.Interaction) -> None:
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     vjn_object = interaction.client.bot.vjn_object
     id_command = interaction.custom_id.split('-')[2]
     database.execute(f"""
@@ -149,7 +149,7 @@ async def valid(interaction : discord_components.Interaction) -> None:
 async def paiement(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.FILE_ATTENTE.value}
@@ -168,7 +168,7 @@ async def paiement(interaction : discord_components.Interaction) -> None:
 async def assigned(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.READY.value}
@@ -188,7 +188,7 @@ async def assigned(interaction : discord_components.Interaction) -> None:
 async def livrer(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         UPDATE command_VJN
         SET status = {Status.FINISH.value}
@@ -208,7 +208,7 @@ function_valid = {
 async def annuler(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         DELETE FROM command_VJN
         WHERE id = {id_command}
@@ -222,7 +222,7 @@ async def annuler(interaction : discord_components.Interaction) -> None:
 
 async def compose_annuler(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute(f"""
         UPDATE command_VJN
@@ -237,7 +237,7 @@ async def compose_annuler(interaction : discord_components.Interaction) -> None:
 
 async def check_annuler(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute(f"""
         DELETE FROM product_ingredient_VJN
@@ -273,7 +273,7 @@ async def category_retour(interaction : discord_components.Interaction) -> None:
 
 async def compose_retour(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
     database.execute(f"""
         DELETE FROM product_ingredient_VJN
