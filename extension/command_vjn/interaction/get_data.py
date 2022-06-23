@@ -7,7 +7,7 @@ from extension.command_vjn.vjn_object import Status
 async def get_data(message) -> None:
     bot = message.bot
     vjn_object = message.bot.vjn_object
-    database : DataBase = bot.database.get("default")
+    database : DataBase = vjn_object.database.get("default")
 
     commandes = database.execute(f"SELECT id, id_user, quantity, status FROM command_VJN WHERE date >= '{vjn_object.date_data}'").fetchall().value
     ingredient = database.execute("SELECT name FROM ingredient_VJN").fetchall()["name"]
