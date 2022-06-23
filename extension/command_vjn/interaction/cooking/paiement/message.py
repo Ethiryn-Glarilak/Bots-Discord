@@ -4,15 +4,7 @@ from src.interaction.composent.button import Style
 from src.interaction.interaction import Interaction
 from extension.command_vjn.vjn_object import Status
 from extension.command_vjn.interaction.cooking.assignment.message import assignment
-
-def command(interaction : discord_components.Interaction, id_command : int):
-    database = interaction.client.bot.database.get("default")
-    id_product = database.execute(f"SELECT id_product FROM command_VJN WHERE id = {id_command}").fetchall()[0, "id_product"]
-    name = database.execute(f"SELECT name FROM product_VJN WHERE id = {id_product}").fetchall()[0, "name"].capitalize() + " :"
-    database.execute(f"SELECT name FROM (SELECT id_ingredient FROM (SELECT * FROM product_VJN WHERE id = {id_product}) AS product_VJN JOIN product_ingredient_VJN ON id = id_product) AS product_ingredient_VJN JOIN ingredient_VJN ON id = id_ingredient").fetchall()
-    for product in database:
-        name += f" {product[0]},"
-    return name[:-1]
+from extension.command_vjn.interaction.default import *
 
 def menu(id_command : int):
     return Interaction().add_interaction(
