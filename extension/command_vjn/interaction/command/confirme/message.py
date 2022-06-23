@@ -1,6 +1,7 @@
 import discord_components
 from src.interaction.interaction import Interaction
 from src.interaction.composent.button import Style
+from extension.command_vjn.interaction.default import *
 
 def menu(id_command : int):
     return Interaction()\
