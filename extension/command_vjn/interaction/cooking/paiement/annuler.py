@@ -3,7 +3,7 @@ import discord_components
 async def annuler_paiement(interaction : discord_components.Interaction) -> None:
     id_command = interaction.custom_id.split('-')[2]
     vjn_object = interaction.client.bot.vjn_object
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         DELETE FROM command_VJN
         WHERE id = {id_command}

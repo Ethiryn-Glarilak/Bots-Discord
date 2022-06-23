@@ -15,7 +15,7 @@ def menu(id_command : int):
 
 async def assigned(interaction : discord_components.Interaction) -> None:
     id_command, cooks = interaction.custom_id.split('-')[1:]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     database.execute(f"""
         UPDATE command_VJN
         SET status = {int(cooks)}

@@ -28,7 +28,7 @@ class VJNObject:
     def __init__(self, bot):
         # Raccourcis bot et database
         dotenv.load_dotenv(pathlib.Path(f"extension/command_VJN/.env{'' if bot.args.environment is None else f'-{bot.args.environment}'}"))
-        self.database = bot.database.get("default")
+        self.database = bot.vjn_object.database
 
         # Recuperation recette disponible
         event = pathlib.Path("data/890357045138690108-VJN/event-list-produit/event-load").read_text()

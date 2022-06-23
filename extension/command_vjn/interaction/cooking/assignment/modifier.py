@@ -15,7 +15,7 @@ def menu(bot, id_command : int):
 
 async def modifier(interaction : discord_components.Interaction):
     id_command = interaction.custom_id.split('-')[2]
-    database = interaction.client.bot.database.get("default")
+    database = interaction.client.bot.vjn_object.database
     cooks = database.execute(f"SELECT status FROM command_VJN WHERE id = {id_command}").fetchall()[0, "status"]
 
     emojis = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
