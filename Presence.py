@@ -27,10 +27,10 @@ quotes = {
         "Fall seven times and stand up eight.",
         "The best revenge is massive success.",
         "Eighty percent of success is showing up.",
-        "Life is what happens to you while you’re busy making other plans.",
+        "Life is what happens to you while you're busy making other plans.",
         "Strive not to be a success, but rather to be of value.",
         "The best time to plant a tree was 20 years ago. The second best time is now.",
-        "Everything you’ve ever wanted is on the other side of fear."
+        "Everything you've ever wanted is on the other side of fear.",
     ],  # The quotes to choose from
     "commandVJN" : [
         "Débogage du fichier bot.py",
@@ -43,8 +43,16 @@ quotes = {
         "Consulte les commandes",
     ],
     "edit_code" : [
-        "Débogage du fichier JPEG.py"
-    ]
+        "Débogage du fichier JPEG.py",
+    ],
+    "wei" : [
+        "Travaille sur Notion",
+        "Planifie le WEI",
+        "Travaille sur le WEI",
+        "Comment organise-t-on le WEI",
+        "Quelle activité est-il prévu pour le WEI",
+        "Vous voulez partir à quelle heure pour le WEI ?",
+    ],
 }.get(args.option, ["Error: No quotes found"])
 
 counter = 60 * 60 * 4 + 60 * 30 + 50
@@ -64,7 +72,7 @@ while True:  # The presence will stay on as long as the program is running
         large_text = "My bot logo",
         small_image = "small_icon",
         small_text = "text of small_image",
-        party_size = [1, 4],
+        # party_size = [1, 4],
         buttons = [
             {
                 "label": "-" + "Github".center(8) + "-",
