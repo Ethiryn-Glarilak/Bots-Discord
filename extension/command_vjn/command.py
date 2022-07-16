@@ -8,7 +8,11 @@ from extension.command_vjn.vjn_object import VJNObject
 from extension.command_vjn.interaction.get_data import get_data
 
 async def refresh(message) -> None:
-    if not DefaultValidator.creator(message).add_user(502595083137318912).check():
+    if not DefaultValidator.creator(message) \
+            .add_user(502595083137318912) \
+            .add_user(288313331536625664) \
+            .add_user(689072516144300049) \
+            .check():
         return
 
     message.bot.vjn_object = VJNObject(message.bot)
