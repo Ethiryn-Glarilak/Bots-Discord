@@ -1,0 +1,83 @@
+{
+  "highlighted": [
+    "1-sucre",
+    "2-beurre sucre",
+    "3-miel",
+    "4-chèvre miel",
+    "5-banane",
+    "6-nutella",
+    "7-nutella banane",
+    "8-confiture fraise",
+    "9-confiture abricot"
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "sucre",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "name": "beurre sucre",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "name": "miel",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "name": "chèvre miel",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "name": "banane",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "name": "nutella",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "name": "nutella banane",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "name": "confiture fraise",
+      "category": [
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "name": "confiture abricot",
+      "category": [
+        1
+      ]
+    }
+  ],
+  "category": {
+    "Sucré": 1
+  },
+  "compose": true,
+  "cooks": 3
+}

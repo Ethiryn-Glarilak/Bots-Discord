@@ -1,0 +1,26 @@
+{
+  "ingredient": {
+    "Pate Bière": 1,
+    "Pate Nature": 2,
+    "Œuf": 11,
+    "Sucre": 7,
+    "Beurre": 8,
+    "Crème fraîche": 20,
+    "Miel": 5,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Sirop d érable": 22,
+    "Confiture Fraise": 3,
+    "Confiture Abricot": 14,
+    "Confiture Myrtille": 23,
+    "Beurre de Cacahuète": 17,
+    "Emmental": 9,
+    "Raclette": 10,
+    "Poulet": 13,
+    "Jambon": 12,
+    "Thon": 26
+  },
+  "cooks": 3,
+  "quantity": 5,
+  "date_data": "2022-06-21"
+}

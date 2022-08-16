@@ -1,0 +1,24 @@
+Pour commander utiliser le bouton Commander dans le salon <#help>.
+
+:no_entry_sign: Erreur :no_entry_sign:
+Si lors de la command le message invalid from body apparaît attendre 5 secondes et ressayer. Si à nouveau cela ne fonctionne pas, alors suivre le paragraphe suivant.
+
+:no_entry: Erreur :no_entry:
+Pour tout autre message d'erreur. Se rendre au stand VJN.
+Envoyez une capture d'écran du message à <@dev-chef>.
+
+:x: Annuler :x:
+Pour annuler une commande se rendre au stand VJN pour l'annuler avant le paiement ou indiquer l'annulation.
+
+:arrow_backward: Retour :arrow_backward:
+Pour faire retour utiliser le bouton rejeter le message et recommencer la commande.
+
+:e_mail: Message du dev chef (<@dev-chef>) :e_mail:
+Je ne suis pas toujours sur le campus et le bot non plus, il peut donc y avoir un délai le temps déboguer. Il faudra donc être patient(e).)
+
+:bulb: Suggestion :bulb:
+Pour toutes les suggestions concernant le bot envoyez un message à <@dev-chef>.
+
+:construction: Développement :construction:
+Pour rejoindre l'équipe de DEV `check membre` dans le salon <#welcome> et contacter <@502595083137318912>
+Pour consulter le repos du bot : https://github.com/Ethiryn-Glarilak/Bots-Discord (Bot : VJN-Command)

@@ -1,0 +1,21 @@
+{
+  "default": {
+    "Chèvre Miel": 40,
+    "Spéculoos Banane": 41
+  },
+  "ingredient": {
+    "Pate Nature": 2,
+    "Pate Bière": 1,
+    "Sucre": 7,
+    "Beurre": 8,
+    "Banane": 6,
+    "Miel": 5,
+    "Spéculoos": 14,
+    "Nutella": 4,
+    "Confiture Fraise": 3,
+    "Confiture Abricot": 16,
+    "Chèvre": 15
+  },
+  "cooks": 3,
+  "quantity": 5
+}

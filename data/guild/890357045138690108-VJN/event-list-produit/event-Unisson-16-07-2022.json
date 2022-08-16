@@ -1,0 +1,21 @@
+{
+  "ingredient": {
+    "Pate Nature": 2,
+    "Œuf": 11,
+    "Sucre": 7,
+    "Banane": 6,
+    "Miel": 5,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Sirop d érable": 22,
+    "Confiture Fraise": 3,
+    "Confiture Abricot": 14,
+    "Beurre de Cacahuète": 17,
+    "Emmental": 9,
+    "Jambon": 12,
+    "Poulet": 13
+  },
+  "cooks": 3,
+  "quantity": 5,
+  "date_data": "2022-07-16"
+}
