@@ -1,3 +1,0 @@
-from extension.command_vjn.interaction.command.ingredient.message import menu_ingredient
-from extension.command_vjn.interaction.command.ingredient.ingredient import compose_ingredient
-from extension.command_vjn.interaction.command.ingredient.valider import compose_valider

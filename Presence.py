@@ -1,11 +1,16 @@
 import argparse
+import dotenv
 import psutil
 import random
+import os
 import pypresence
 import time
 
+if __name__ != "__main__":
+    exit()
 
-client_id = '984231201818705920'  # Fake ID, put your real one here
+dotenv.load_dotenv()
+client_id = os.getenv("client_id")  # Fake ID, put your real one here
 RPC = pypresence.Presence(client_id,pipe=0)  # Initialize the client class
 RPC.connect() # Start the handshake loop
 
