@@ -1,11 +1,16 @@
 import argparse
+import dotenv
 import psutil
 import random
+import os
 import pypresence
 import time
 
+if __name__ != "__main__":
+    exit()
 
-client_id = '984231201818705920'  # Fake ID, put your real one here
+dotenv.load_dotenv()
+client_id = os.getenv("client_id")  # Fake ID, put your real one here
 RPC = pypresence.Presence(client_id,pipe=0)  # Initialize the client class
 RPC.connect() # Start the handshake loop
 
@@ -32,27 +37,6 @@ quotes = {
         "The best time to plant a tree was 20 years ago. The second best time is now.",
         "Everything you've ever wanted is on the other side of fear.",
     ],  # The quotes to choose from
-    "commandVJN" : [
-        "Débogage du fichier bot.py",
-        "Travailler pour ajouter une nouvelle commande",
-        "Lire le code de VJN_command",
-        "Comprendre le code de VJN_command",
-        "Cherche fonctionnalité de l'API Discord",
-        "Cuisiner des crêpes pour le bot VJN_command",
-        "Prépare de la pâte à crêpes",
-        "Consulte les commandes",
-    ],
-    "edit_code" : [
-        "Débogage du fichier JPEG.py",
-    ],
-    "wei" : [
-        "Travaille sur Notion",
-        "Planifie le WEI",
-        "Travaille sur le WEI",
-        "Comment organise-t-on le WEI",
-        "Quelle activité est-il prévu pour le WEI",
-        "Vous voulez partir à quelle heure pour le WEI ?",
-    ],
 }.get(args.option, ["Error: No quotes found"])
 
 counter = 60 * 60 * 4 + 60 * 30 + 50
