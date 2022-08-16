@@ -1,19 +1,10 @@
 import inspect
-from src.bot.ciaham import *
 from src.bot.normal import *
-from src.bot.seanren import *
 from src.data.postgres import DataBase
 
 class Import:
 
     link = {
-        "Ciaham" : {
-            "command" : CommandCiaham,
-        },
-        "Seanren" : {
-            "command" : CommandSeanren,
-            "parser" : ParserSeanren,
-        },
         "normal" : {
             "command" : CommandNormal,
             "parser" : ParserNormal,
