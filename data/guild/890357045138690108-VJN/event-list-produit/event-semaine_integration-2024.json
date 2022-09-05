@@ -1,0 +1,26 @@
+{
+  "default": {
+    "Nutella": 7,
+    "Spéculoos": 194,
+    "Beurre Sucre": 5
+  },
+  "other": {
+    "Barbe à papa Fraise": 94,
+    "Barbe à papa Pomme Verte": 191,
+    "Barbe à papa Fruit de la Passion": 192,
+    "Barbe à papa Menthe": 193
+  },
+  "ingredient": {
+    "Miel": 5,
+    "Sucre": 7,
+    "Beurre": 8,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Pate Nature": 2,
+    "Confiture Fraise": 3,
+    "Confiture Abricot": 14,
+    "Beurre de Cacahuète": 17
+  },
+  "cooks": 3,
+  "quantity": 5
+}
