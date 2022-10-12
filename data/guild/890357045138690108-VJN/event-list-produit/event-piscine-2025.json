@@ -3,13 +3,20 @@
     "Nutella": 7,
     "Beurre Sucre": 5
   },
-  "ingredient": {
+  "other": {
+    "Barbe à papa Fraise": 94,
+    "Barbe à papa Pomme Verte": 191,
+    "Barbe à papa Fruit de la Passion": 192,
+    "Barbe à papa Menthe": 193
+  },
+    "ingredient": {
     "Pate Nature": 2,
     "Sucre": 7,
     "Nutella": 4,
     "Spéculoos": 16,
-    "Confiture": 3,
-    "Oeuf": 11,
+    "Beurre": 8,
+    "Beurre de Cacahuete": 17,
+    "Miel": 5,
     "Raclette": 10,
     "Emmental": 9,
     "Poulet": 13,
