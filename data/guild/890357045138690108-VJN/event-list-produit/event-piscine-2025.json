@@ -1,0 +1,20 @@
+{
+  "default": {
+    "Nutella": 7,
+    "Beurre Sucre": 5
+  },
+  "ingredient": {
+    "Pate Nature": 2,
+    "Sucre": 7,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Confiture": 3,
+    "Oeuf": 11,
+    "Raclette": 10,
+    "Emmental": 9,
+    "Poulet": 13,
+    "Jambon": 12
+  },
+  "cooks": 3,
+  "quantity": 5
+}
