@@ -48,6 +48,7 @@ def menu(interaction : discord_components.Interaction):
 
 async def default(interaction : discord_components.Interaction):
     await interaction.defer(edit_origin = True)
-    id_command = interaction.custom_id.split('-')[2]
-    bot = interaction.client.bot
-    await interaction.edit_origin(components = menu(id_command, bot))
+    # id_command = interaction.custom_id.split('-')[2]
+    # bot = interaction.client.bot
+    # await interaction.edit_origin(components = menu(id_command, bot))
+    await interaction.edit_origin(components = menu(interaction))
