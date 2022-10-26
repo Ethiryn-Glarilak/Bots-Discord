@@ -1,0 +1,39 @@
+{
+  "default": {
+    "Nutella": 7,
+    "Spéculoos": 194,
+    "Beurre Sucre": 5
+  },
+  "other": {
+    "Barbe à papa Fraise": 94,
+    "Barbe à papa Pomme Verte": 191,
+    "Barbe à papa Fruit de la Passion": 192,
+    "Barbe à papa Menthe": 193
+  },
+    "ingredient": {
+    "Pate Nature": 2,
+    "Toping": 29,
+    "Chantilly": 34,
+    "Sucre": 7,
+    "Citron": 28,
+    "Banane": 6,
+    "Fraise": 32,
+    "Beurre": 8,
+    "Oeuf": 11,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Beurre de Cacahuete": 17,
+    "Caramel": 31,
+    "Miel": 5,
+    "Confiture": 3,
+    "Emmental": 9,
+    "Chèvre": 15,
+    "Raclette": 10,
+    "Jambon": 12,
+    "Poulet": 13,
+    "Saucisson": 30,
+    "Thon": 26,
+  },
+  "cooks": 3,
+  "quantity": 5
+}
