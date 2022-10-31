@@ -1,83 +1,33 @@
 {
-  "highlighted": [
-    "1-sucre",
-    "2-beurre sucre",
-    "3-miel",
-    "4-chèvre miel",
-    "5-banane",
-    "6-nutella",
-    "7-nutella banane",
-    "8-confiture fraise",
-    "9-confiture abricot"
-  ],
-  "product": [
-    {
-      "id": 1,
-      "name": "sucre",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 2,
-      "name": "beurre sucre",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 3,
-      "name": "miel",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 3,
-      "name": "chèvre miel",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 5,
-      "name": "banane",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 6,
-      "name": "nutella",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 7,
-      "name": "nutella banane",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 8,
-      "name": "confiture fraise",
-      "category": [
-        1
-      ]
-    },
-    {
-      "id": 9,
-      "name": "confiture abricot",
-      "category": [
-        1
-      ]
-    }
-  ],
-  "category": {
-    "Sucré": 1
+  "default": {
+    "Nutella": 7,
+    "Spéculoos": 194,
+    "Beurre Sucre": 5
   },
-  "compose": true,
-  "cooks": 3
+  "other": {
+    "Barbe à papa Fraise": 94,
+    "Barbe à papa Pomme Verte": 191,
+    "Barbe à papa Fruit de la Passion": 192,
+    "Barbe à papa Menthe": 193
+  },
+    "ingredient": {
+    "Pate Nature": 2,
+    "Nature": 35,
+    "Toping": 29,
+    "Chantilly": 34,
+    "Citron": 28,
+    "Beurre": 8,
+    "Sucre": 7,
+    "Banane": 6,
+    "Fraise": 32,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Miel": 5,
+    "Beurre de Cacahuete": 17,
+    "Caramel": 31,
+    "Sirop d'Erable": 22,
+    "Confiture": 3
+  },
+  "cooks": 3,
+  "quantity": 5
 }
