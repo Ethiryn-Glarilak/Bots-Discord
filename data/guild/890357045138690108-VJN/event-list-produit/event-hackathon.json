@@ -1,0 +1,27 @@
+{
+  "default": {
+    "Nutella": 7,
+    "Spéculoos": 194,
+    "Beurre Sucre": 5
+  },
+    "ingredient": {
+    "Pate Nature": 2,
+    "Banane": 6,
+    "Fraise": 32,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Miel": 5,
+    "Sucre": 7,
+    "Caramel": 31,
+    "Toping": 29,
+    "Confiture": 3,
+    "Chèvre": 15,
+    "Raclette": 10,
+    "Emmental": 9,
+    "Poulet": 13,
+    "Jambon": 12,
+    "Thon": 26
+  },
+  "cooks": 5,
+  "quantity": 1
+}
