@@ -19,6 +19,7 @@ class Bot(discord.Client):
         self.version : list[int] = version
         self.set_version()
         self.parse_args()
+        self.args.free = True
         self.log : Manager = Manager().set_level(int(os.getenv("level")))
         self.mode : Mode = Mode()
         self.prefix : str = prefix
