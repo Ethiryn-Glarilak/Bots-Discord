@@ -1,0 +1,40 @@
+{
+  "other": {
+    "Barbe à papa Fraise": 94,
+    "Barbe à papa Pomme Verte": 191,
+    "Barbe à papa Fruit de la Passion": 192,
+    "Barbe à papa Menthe": 193
+  },
+  "ingredient": {
+    "Pate Nature": 2,
+    "Topping": 29,
+    "Chantilly": 34,
+    "Citron": 28,
+    "Beurre":8,
+    "Sucre": 7,
+    "Banane": 6,
+    "Fraise": 32,
+    "Nutella": 4,
+    "Spéculoos": 16,
+    "Beurre de Cacahuète": 17,
+    "Caramel": 31,
+    "Miel": 5,
+    "Confiture": 3,
+    "Crème fraîche": 20,
+    "Œuf": 11,
+    "Champignon de Paris": 21,
+    "Oignon": 19,
+    "Raclette": 10,
+    "Emmental": 9,
+    "Chèvre": 15,
+    "Poulet": 13,
+    "Jambon": 12,
+    "Saucisson": 30,
+    "Thon": 26,
+    "Viande hachée": 25,
+    "Patate": 36
+  },
+  "cooks": 5,
+  "quantity": 5,
+  "date_data": "2022-11-26"
+}
