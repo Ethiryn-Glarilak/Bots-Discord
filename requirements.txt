@@ -1,0 +1,4 @@
+discord
+psycopg2
+python-dotenv
+SQLAlchemy
